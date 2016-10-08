@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Filme;
 
-public class FilmeDao implements GenericDao<Filme>{
+public class FilmeDao implements GenericDao<Filme> {
 
 	@Override
 	public void inclui(Filme obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -21,13 +21,13 @@ public class FilmeDao implements GenericDao<Filme>{
 	}
 
 	@Override
-	public void altera(Filme obj) throws SQLException {
+	public Filme altera(Filme obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void exclui(Filme obj) throws SQLException {
+	public void exclui(Long idObj) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}

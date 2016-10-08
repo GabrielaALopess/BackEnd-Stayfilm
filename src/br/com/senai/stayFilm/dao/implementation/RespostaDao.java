@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Resposta;
 
-public class RespostaDao implements GenericDao<Resposta>{
+public class RespostaDao implements GenericDao<Resposta> {
 
 	@Override
 	public void inclui(Resposta obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -21,13 +21,13 @@ public class RespostaDao implements GenericDao<Resposta>{
 	}
 
 	@Override
-	public void altera(Resposta obj) throws SQLException {
+	public Resposta altera(Resposta obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void exclui(Resposta obj) throws SQLException {
+	public void exclui(Long idObj) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	}

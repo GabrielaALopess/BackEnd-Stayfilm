@@ -11,7 +11,7 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	@Override
 	public void inclui(Atividade obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -21,15 +21,15 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	}
 
 	@Override
-	public void altera(Atividade obj) throws SQLException {
+	public Atividade altera(Atividade obj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public void exclui(Atividade obj) throws SQLException {
+	public void exclui(Long idObj) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
