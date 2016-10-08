@@ -6,12 +6,12 @@ import java.util.List;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Endereco;
 
-public class EnderecoDao implements GenericDao<Endereco> {
+public class EnderecoDao implements GenericDao<Endereco>{
 
 	@Override
 	public void inclui(Endereco obj) throws SQLException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -21,15 +21,15 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	}
 
 	@Override
-	public Endereco altera(Endereco obj) throws SQLException {
+	public void altera(Endereco obj) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public void exclui(Long idObj) throws SQLException {
+	public void exclui(Endereco obj) throws SQLException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

@@ -4,44 +4,42 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Escala;
 
 @Repository
-public class ColaboradorDao implements GenericDao<Colaborador> {
-
+public class ColaboradorDao implements GenericDao<Colaborador>{
+	
 	private EntityManager manager;
-
-	@Transactional
-	@Override
-	public void inclui(Colaborador colaborador) throws SQLException {
-		manager.persist(colaborador);
-
+	
+	ColaboradorDao(){
+		
 	}
 
 	@Override
-	public List<Colaborador> pesquisa(Colaborador colaborador) throws SQLException {
-		TypedQuery<Colaborador> query = manager.createQuery("select c from Colaborador c", Colaborador.class);
-		return query.getResultList();
+	public void inclui(Colaborador obj) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Transactional
 	@Override
-	public Colaborador altera(Colaborador colaborador) throws SQLException {
-		return manager.merge(colaborador);
+	public List<Colaborador> pesquisa(Colaborador obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	@Transactional
 	@Override
-	public void exclui(Long idObj) throws SQLException {
-		Colaborador colaborador = manager.find(Colaborador.class, idObj);
-		manager.remove(colaborador);
+	public void altera(Colaborador obj) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exclui(Colaborador obj) throws SQLException {
+		// TODO Auto-generated method stub
 		
 	}
 

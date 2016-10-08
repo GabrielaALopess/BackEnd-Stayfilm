@@ -22,9 +22,6 @@ public class Colaborador {
 	private Status status;
 	private String email;
 	private String senha;
-	@ManyToMany
-	@JoinColumn(name="endereco_id")
-	private Endereco endereco;
 
 	public Long getIdColaborador() {
 		return idColaborador;
@@ -80,14 +77,6 @@ public class Colaborador {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
 	}
 
 	@ManyToMany
