@@ -54,8 +54,8 @@ public class RespostaDao implements GenericDao<Resposta> {
 	}
 
 	@Override
-	public Resposta pesquisa(Long idPesquisa) {
-		return manager.find(Resposta.class, idPesquisa);
+	public Resposta pesquisa(Long idResposta) {
+		return manager.find(Resposta.class, idResposta);
 	}
 
 }

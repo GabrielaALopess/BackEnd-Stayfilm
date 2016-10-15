@@ -17,7 +17,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Resposta;
 
-public class AtividadeController {
+public class AtividadeRestController {
 
 	@Autowired
 	@Qualifier("atividadeDao")
