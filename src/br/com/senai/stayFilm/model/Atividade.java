@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import br.com.senai.stayFilm.enumeration.Periodo;
 
@@ -13,12 +13,12 @@ import br.com.senai.stayFilm.enumeration.Periodo;
 public class Atividade {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long idAtividade;
 	private String instituicao;
 	private String atividade;
 	private Periodo periodo;
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador idColaborador;
 

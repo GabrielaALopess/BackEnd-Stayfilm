@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.com.senai.stayFilm.enumeration.StatusAvaliacao;
 
@@ -21,8 +23,9 @@ public class Avaliacao {
 	private Date hora;
 	private String observacao;
 	private StatusAvaliacao status;
+	@ManyToOne
 	private Resposta idResposta;
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name="colaborador_id")
 	private Colaborador idColaborador;
 	public Long getIdAvaliacao() {

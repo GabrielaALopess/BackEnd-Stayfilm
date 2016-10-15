@@ -1,5 +1,6 @@
 package br.com.senai.stayFilm.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +13,11 @@ public class Resposta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idResposta;
+	@Column
 	private String tituloResposta;
+	@Column
 	private String resposta;
+	@Column
 	private Idioma idioma;
 
 	public Idioma getIdioma() {

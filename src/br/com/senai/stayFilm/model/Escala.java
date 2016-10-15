@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Escala {
@@ -19,7 +21,7 @@ public class Escala {
 	private String observacao;
 	private Date dataEscala;
 	private Date horaEscala;
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name="colaborador_id")
 	private Colaborador idColaborador;
 

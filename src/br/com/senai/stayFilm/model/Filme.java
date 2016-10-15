@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.com.senai.stayFilm.enumeration.TemaFilme;
 
@@ -16,7 +18,7 @@ public class Filme {
 	private Long idFilme;
 	private String descricaoFilme;
 	private TemaFilme temaFilme;
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "avaliacao_id")
 	private Avaliacao idAvaliacao;
 

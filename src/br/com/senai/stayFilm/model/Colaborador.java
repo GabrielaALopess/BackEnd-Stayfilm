@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.com.senai.stayFilm.enumeration.Status;
 
@@ -22,6 +24,9 @@ public class Colaborador {
 	private Status status;
 	private String email;
 	private String senha;
+	@ManyToOne
+	@JoinColumn(name="endereco_id")
+	private Endereco endereco;
 
 	public Long getIdColaborador() {
 		return idColaborador;
@@ -55,13 +60,7 @@ public class Colaborador {
 		this.status = status;
 	}
 
-	public Endereco getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(Endereco enderecos) {
-		this.enderecos = enderecos;
-	}
+	
 
 	public String getSenha() {
 		return senha;
@@ -79,7 +78,12 @@ public class Colaborador {
 		this.email = email;
 	}
 
-	@ManyToMany
-	@JoinColumn(name = "endereco_id")
-	private Endereco enderecos;
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 }
