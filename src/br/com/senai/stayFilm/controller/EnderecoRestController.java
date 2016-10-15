@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Endereco;
-import br.com.senai.stayFilm.model.Resposta;
 
 @RestController
 public class EnderecoRestController {
@@ -37,7 +38,24 @@ public class EnderecoRestController {
 
 	}
 	
+	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Endereco pesquisarResposta(@PathVariable Long idEnderco) throws SQLException {
+		return enderecoDao.pesquisa(idEnderco);
+
+	}
+
 	
+	@RequestMapping(value = "/endereco/editar/{idEndereco}", method = RequestMethod.PUT)
+	public Endereco altera(@RequestBody Endereco endereco) throws SQLException {
+		return enderecoDao.altera(endereco);
+
+	}
+	
+	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable long idEndereco) throws SQLException {
+		enderecoDao.exclui(idEndereco);
+		return ResponseEntity.noContent().build();
+	}
 	
 	
 	
