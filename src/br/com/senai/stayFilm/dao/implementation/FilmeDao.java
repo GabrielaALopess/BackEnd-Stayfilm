@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Filme;
+import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class FilmeDao implements GenericDao<Filme> {
@@ -23,11 +24,6 @@ public class FilmeDao implements GenericDao<Filme> {
 
 	}
 
-	@Override
-	public List<Filme> pesquisa(Filme obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Filme altera(Filme obj) throws SQLException {
@@ -40,5 +36,19 @@ public class FilmeDao implements GenericDao<Filme> {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public Filme pesquisa(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+//	@Override
+//	public Filme pesquisa(long idObj) throws SQLException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

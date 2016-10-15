@@ -17,4 +17,8 @@ public enum Idioma {
 	public void setIdioma(String idioma) {
 		this.idioma = idioma;
 	}
+	@Override
+	public String toString() {
+		return this.idioma;
+	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.model.Resposta;
 import br.com.senai.stayFilm.model.Telefone;
 
 @Repository
@@ -23,11 +24,6 @@ public class TelefoneDao implements GenericDao<Telefone> {
 
 	}
 
-	@Override
-	public List<Telefone> pesquisa(Telefone obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Telefone altera(Telefone obj) throws SQLException {
@@ -40,5 +36,19 @@ public class TelefoneDao implements GenericDao<Telefone> {
 		// TODO Auto-generated method stub
 
 	}
+
+
+	@Override
+	public Telefone pesquisa(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+//	@Override
+//	public Telefone pesquisa(long idObj) throws SQLException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

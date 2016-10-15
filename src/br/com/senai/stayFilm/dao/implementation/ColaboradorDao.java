@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
+import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class ColaboradorDao implements GenericDao<Colaborador> {
@@ -27,11 +28,6 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 
 	}
 
-	@Override
-	public List<Colaborador> pesquisa(Colaborador colaborador) throws SQLException {
-		TypedQuery<Colaborador> query = manager.createQuery("select c from Colaborador c", Colaborador.class);
-		return query.getResultList();
-	}
 
 	@Transactional
 	@Override
@@ -46,5 +42,19 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		manager.remove(colaborador);
 		
 	}
+
+
+	@Override
+	public Colaborador pesquisa(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+//	@Override
+//	public Colaborador pesquisa(long idObj) throws SQLException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

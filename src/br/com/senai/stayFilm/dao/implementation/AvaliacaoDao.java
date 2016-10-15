@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Escala;
+import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class AvaliacaoDao implements GenericDao<Avaliacao> {
@@ -26,11 +27,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		manager.persist(avaliacao);
 	}
 
-	@Override
-	public List<Avaliacao> pesquisa(Avaliacao avaliacao) throws SQLException {
-		TypedQuery<Avaliacao> query = manager.createQuery("select a from Avaliacao a", Avaliacao.class);
-		return query.getResultList();
-	}
 
 	@Transactional
 	@Override
@@ -44,5 +40,13 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		Avaliacao avaliacao = manager.find(Avaliacao.class, idAvaliacao);
 		manager.remove(avaliacao);
 	}
+
+
+	@Override
+	public Avaliacao pesquisa(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

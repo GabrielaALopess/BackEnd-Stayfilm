@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.enumeration.Idioma;
 import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Resposta;
-
 
 @Repository
 public class RespostaDao implements GenericDao<Resposta> {
@@ -28,26 +28,34 @@ public class RespostaDao implements GenericDao<Resposta> {
 
 	}
 
-	@Override
-	public List<Resposta> pesquisa(Resposta resposta) throws SQLException {
-//		TypedQuery<Resposta> query = manager.createQuery("select r from Resposta r", Resposta.class);
-//		return query.getResultList();
-	return null;
-	}
-	
 	@Transactional
 	@Override
 	public Resposta altera(Resposta resposta) throws SQLException {
-//		return manager.merge(resposta);
-		return null;
+		
+//		MyEntity e2 = em.merge(e);
+//		e2.setAtributo(novoValor); 
+//
+//		resposta.setIdioma(Idioma.valueOf(Idioma.class,"?"));
+//		resposta.setResposta("?");
+//		resposta.setTituloResposta("?");
+		
+		//String exemplo = Idioma.valueOf(Idioma.class, name)
+		
+		
+		return manager.merge(resposta);
 	}
-	
+
 	@Transactional
 	@Override
-	public void exclui(Long idObj) throws SQLException {
-//		Resposta resposta = manager.find(Resposta.class, idObj);
-//		manager.remove(resposta);
+	public void exclui(Long idResposta) throws SQLException {
+		 Resposta resposta = manager.find(Resposta.class, idResposta);
+		 manager.remove(resposta);
 
+	}
+
+	@Override
+	public Resposta pesquisa(Long idPesquisa) {
+		return manager.find(Resposta.class, idPesquisa);
 	}
 
 }
