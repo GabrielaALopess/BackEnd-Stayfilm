@@ -19,7 +19,7 @@ import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Resposta;
 
 @RestController
-public class RespostaController {
+public class RespostaRestController {
 
 	@Autowired
 	@Qualifier("respostaDao")
