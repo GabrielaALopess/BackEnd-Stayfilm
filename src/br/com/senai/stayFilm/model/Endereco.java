@@ -13,6 +13,15 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEndereco;
+	
+	private String endereco;
+	private String complemento;
+	private String bairro;
+	private Estado estado;
+	private String cidade;
+	private String cep;
+	
+	
 
 	public Long getIdEndereco() {
 		return idEndereco;
@@ -70,10 +79,5 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	private String endereco;
-	private String complemento;
-	private String bairro;
-	private Estado estado;
-	private String cidade;
-	private String cep;
+	
 }

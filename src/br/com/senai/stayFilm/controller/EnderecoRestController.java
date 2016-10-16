@@ -38,8 +38,10 @@ public class EnderecoRestController {
 
 	}
 	
-	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Endereco pesquisarResposta(@PathVariable Long idEnderco) throws SQLException {
+	
+	
+	@RequestMapping(value = "/endereco/buscar/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Endereco pesquisarEndereco(@PathVariable Long idEnderco) throws SQLException {
 		return enderecoDao.pesquisa(idEnderco);
 
 	}

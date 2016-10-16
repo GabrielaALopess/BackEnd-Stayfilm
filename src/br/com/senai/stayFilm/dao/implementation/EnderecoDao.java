@@ -1,7 +1,6 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Endereco;
-import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class EnderecoDao implements GenericDao<Endereco> {
@@ -40,7 +38,8 @@ public class EnderecoDao implements GenericDao<Endereco> {
 			manager.remove(endereco);
 	}
 
-
+	
+	
 	@Override
 	public Endereco pesquisa(Long idEndereco) {
 		return manager.find(Endereco.class, idEndereco);
