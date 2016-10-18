@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Telefone;
 
 public class TelefoneRestController {

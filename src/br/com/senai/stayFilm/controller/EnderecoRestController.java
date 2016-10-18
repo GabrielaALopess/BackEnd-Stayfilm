@@ -40,21 +40,25 @@ public class EnderecoRestController {
 	
 	
 	
-	@RequestMapping(value = "/endereco/buscar/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Endereco pesquisarEndereco(@PathVariable Long idEnderco) throws SQLException {
-		return enderecoDao.pesquisa(idEnderco);
+	@RequestMapping(value = "/endereco/buscar/{idEndereco}",
+					method = RequestMethod.GET,
+					produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Endereco pesquisarEndereco(@PathVariable Long idEndereco) throws SQLException {
+		return enderecoDao.pesquisa(idEndereco);
 
 	}
 
 	
-	@RequestMapping(value = "/endereco/editar/{idEndereco}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/endereco/editar/{idEndereco}", 
+			method = RequestMethod.PUT)
 	public Endereco altera(@RequestBody Endereco endereco) throws SQLException {
 		return enderecoDao.altera(endereco);
 
 	}
 	
-	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> remover(@PathVariable long idEndereco) throws SQLException {
+	@RequestMapping(value = "/endereco/{idEndereco}", 
+			method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable Long idEndereco) throws SQLException {
 		enderecoDao.exclui(idEndereco);
 		return ResponseEntity.noContent().build();
 	}

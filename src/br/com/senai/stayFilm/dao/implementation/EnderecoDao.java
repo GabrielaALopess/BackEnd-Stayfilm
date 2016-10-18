@@ -32,6 +32,7 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return manager.merge(endereco);
 	}
 
+	@Transactional
 	@Override
 	public void exclui(Long idEndereco) throws SQLException {
 			Endereco endereco = manager.find(Endereco.class, idEndereco);

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Resposta;
 
 @RestController
