@@ -19,18 +19,6 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	private EntityManager manager;
 
 	@Transactional
-	public void cadastra(Endereco endereco, long idColaborador) throws SQLException {
-		
-		Colaborador col = new Colaborador();
-		col.setIdColaborador(idColaborador);
-		
-		endereco.setIdColaborador(col);
-		
-		manager.persist(endereco);
-
-	}
-
-	@Transactional
 	@Override
 	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
 		Colaborador col = manager.find(Colaborador.class, idColaborador);
@@ -51,33 +39,21 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return manager.find(Endereco.class, idEndereco);
 	}
 
-	@Override
-	public void inclui(Endereco obj) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public Endereco altera(Endereco obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void inclui(Endereco endereco, long idColaborador) {
-		// TODO Auto-generated method stub
-		
-	}
-
-/*<<<<<<< HEAD
 	@Transactional
 	@Override
 	public void inclui(Endereco endereco, long idColaborador) {
-
 		Colaborador col = manager.find(Colaborador.class, idColaborador);
 		endereco.setIdColaborador(col);
 		manager.persist(endereco);
+		
+	}
 
+	@Override
+	public void inclui(Endereco obj) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -85,14 +61,6 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-=======
-	@Override
-	public void inclui(Endereco obj) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
 
-	
->>>>>>> 4fbd3559a52ca3a3f4264be280db6d16ccc11948
-*/
+
 }

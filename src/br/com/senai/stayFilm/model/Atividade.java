@@ -18,6 +18,7 @@ public class Atividade {
 	private String instituicao;
 	private String atividade;
 	private Periodo periodo;
+	
 	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador idColaborador;

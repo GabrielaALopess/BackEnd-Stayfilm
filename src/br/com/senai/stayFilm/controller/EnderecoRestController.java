@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.dao.implementation.EnderecoDao;
 import br.com.senai.stayFilm.model.Endereco;
 
 @RestController
@@ -23,19 +23,13 @@ public class EnderecoRestController {
 	@Autowired
 	@Qualifier("enderecoDao")
 	private GenericDao<Endereco> enderecoDao;
-	
-	@RequestMapping(value = "/endereco/{idColaborador}", method = RequestMethod.POST)
-/*	public ResponseEntity<Endereco> inserir(@RequestBody Endereco endereco, @PathVariable long idColaborador) throws SQLException {
-		try {
-			enderecoDao.inclui(endereco,idColaborador);
-			URI location = new URI("/endereco" + endereco.getIdEndereco());
-		}*/
-	public ResponseEntity<Endereco> inserir(@PathVariable Long idColaborador, @RequestBody Endereco endereco) throws SQLException {
+
+	@RequestMapping(value = "/endereco/{idColaborador}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Endereco> inserir(@PathVariable Long idColaborador, @RequestBody Endereco endereco)
+			throws SQLException {
 
 		try {
-			EnderecoDao end = new EnderecoDao();
-			end.cadastra(endereco, idColaborador);
-			//enderecoDao.inclui(endereco);
+			enderecoDao.inclui(endereco, idColaborador);
 			URI location = new URI("/endereco" + endereco.getIdColaborador());
 			return ResponseEntity.created(location).body(endereco);
 		} catch (URISyntaxException e) {
@@ -44,41 +38,28 @@ public class EnderecoRestController {
 		}
 
 	}
+
 	
-/*<<<<<<< HEAD
-	@RequestMapping(value = "/endereco/buscar/{idEndereco}",
-					method = RequestMethod.GET,
-					produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Endereco pesquisarEndereco(@PathVariable Long idEndereco) throws SQLException {
-		return enderecoDao.pesquisa(idEndereco);
-=======
 	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Endereco pesquisarResposta(@PathVariable Long idEnderco) throws SQLException {
-		return enderecoDao.pesquisa(idEnderco);
->>>>>>> 4fbd3559a52ca3a3f4264be280db6d16ccc11948
+	public Endereco pesquisarResposta(@PathVariable Long idEndereco) throws SQLException {
+		return enderecoDao.pesquisa(idEndereco);
+	}
 
-	}*/
-
-	
-
-	@RequestMapping(value = "/endereco/editar/{idEndereco}/{idColaborador}", 
-			method = RequestMethod.PUT)
+	@RequestMapping(value = "/endereco/editar/{idEndereco}/{idColaborador}", method = RequestMethod.PUT)
 	public Endereco altera(@RequestBody Endereco endereco, @PathVariable long idColaborador) throws SQLException {
 		return enderecoDao.altera(endereco, idColaborador);
 	}
-		
-		@RequestMapping(value = "/endereco/editar/{idEndereco}", method = RequestMethod.PUT)
+
+	@RequestMapping(value = "/endereco/editar/{idEndereco}", method = RequestMethod.PUT)
 	public Endereco altera(@RequestBody Endereco endereco) throws SQLException {
 		return enderecoDao.altera(endereco);
 
 	}
-	
+
 	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable long idEndereco) throws SQLException {
 		enderecoDao.exclui(idEndereco);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
-	
+
 }

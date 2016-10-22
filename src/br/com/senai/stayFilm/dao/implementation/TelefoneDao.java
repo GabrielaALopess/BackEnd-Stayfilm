@@ -68,11 +68,4 @@ public class TelefoneDao implements GenericDao<Telefone> {
 
 
 
-
-//	@Override
-//	public Telefone pesquisa(long idObj) throws SQLException {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 }

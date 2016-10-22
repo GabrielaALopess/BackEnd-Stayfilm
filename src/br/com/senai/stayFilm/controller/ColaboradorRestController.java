@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class ColaboradorRestController {
 	@Qualifier("colaboradorDao")
 	private GenericDao<Colaborador> colaboradorDao;
 
-	@RequestMapping(value = "/colaborador", method = RequestMethod.POST)
+	@RequestMapping(value = "/colaborador", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Colaborador> inserir(@RequestBody Colaborador colaborador) throws SQLException {
 
 		try {
