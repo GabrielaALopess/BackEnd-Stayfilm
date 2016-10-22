@@ -24,7 +24,7 @@ public abstract interface GenericDao<T> {
 
 	T search(Long idObj);
 
-	void insertWithKey (T obj, long idColaborador);
+	void insertWithKey (T obj, long idObj);
 
 	T updateWithKey(T obj, long idObj) throws SQLException;
 

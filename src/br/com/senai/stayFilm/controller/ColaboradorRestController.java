@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Endereco;
 
 @RestController
 public class ColaboradorRestController {
@@ -35,6 +37,23 @@ public class ColaboradorRestController {
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+
+	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Colaborador pesquisarEndereco(@PathVariable Long idColaborador) throws SQLException {
+		return colaboradorDao.search(idColaborador);
+	}
+
+	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PUT)
+	public Colaborador altera(@RequestBody Colaborador colaborador, @PathVariable long idColaborador)
+			throws SQLException {
+		return colaboradorDao.update(colaborador);
+	}
+
+	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable long idColaborador) throws SQLException {
+		colaboradorDao.delete(idColaborador);
+		return ResponseEntity.noContent().build();
 	}
 
 }

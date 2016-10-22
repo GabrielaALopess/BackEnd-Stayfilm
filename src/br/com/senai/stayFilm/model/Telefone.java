@@ -5,11 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import br.com.senai.stayFilm.enumeration.TipoTelefone;
+
+
+/**
+ * 22/10/2016
+ * @author Equipe Stayfilm
+ * Classe modelo 
+ * para o telefone do colaborador.
+ */
 
 @Entity
 public class Telefone {
@@ -17,10 +23,11 @@ public class Telefone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTelefone;
+	
 	private TipoTelefone tipoTelefone;
 	private String numero;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador idColaborador;
 
