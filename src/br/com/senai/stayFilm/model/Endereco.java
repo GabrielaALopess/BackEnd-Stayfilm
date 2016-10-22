@@ -10,8 +10,8 @@ import br.com.senai.stayFilm.enumeration.Estado;
 
 /**
  * 22/10/2016
- * 
- * @author Equipe Stayfilm Classe modelo para o endereço do colaborador.
+ * @author Equipe Stayfilm Classe modelo 
+ * para o endereço do colaborador.
  */
 @Entity
 public class Endereco {

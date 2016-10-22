@@ -62,17 +62,17 @@ public class AtividadeDao implements GenericDao<Atividade> {
 
 
 	@Override
-	public void inclui(Endereco endereco, long idColaborador) {
+	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 
 
 	@Override
-	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
+	public void insertWithKey(Endereco endereco, long idColaborador) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 

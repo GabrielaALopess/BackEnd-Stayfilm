@@ -29,7 +29,8 @@ public class EnderecoRestController {
 			throws SQLException {
 
 		try {
-			enderecoDao.inclui(endereco, idColaborador);
+			
+			enderecoDao.insertWithKey(endereco, idColaborador);
 			URI location = new URI("/endereco" + endereco.getIdColaborador());
 			return ResponseEntity.created(location).body(endereco);
 		} catch (URISyntaxException e) {

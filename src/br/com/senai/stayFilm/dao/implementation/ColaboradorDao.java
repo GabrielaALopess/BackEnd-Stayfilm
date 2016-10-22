@@ -52,20 +52,17 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 	}
 
 
-
-
-
-	@Override
-	public void inclui(Endereco endereco, long idColaborador) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 	@Override
 	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public void insertWithKey(Endereco endereco, long idColaborador) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

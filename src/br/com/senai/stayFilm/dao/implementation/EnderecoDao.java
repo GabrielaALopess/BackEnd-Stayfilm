@@ -41,14 +41,7 @@ public class EnderecoDao implements GenericDao<Endereco> {
 
 	
 
-	@Transactional
-	@Override
-	public void inclui(Endereco endereco, long idColaborador) {
-		Colaborador col = manager.find(Colaborador.class, idColaborador);
-		endereco.setIdColaborador(col);
-		manager.persist(endereco);
-		
-	}
+	
 
 	@Override
 	public void inclui(Endereco obj) throws SQLException {
@@ -60,6 +53,16 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	public Endereco altera(Endereco obj) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Transactional
+	@Override
+	public void insertWithKey(Endereco endereco, long idColaborador) {
+		Colaborador col = manager.find(Colaborador.class, idColaborador);
+		endereco.setIdColaborador(col);
+		manager.persist(endereco);
+		
 	}
 
 
