@@ -1,9 +1,11 @@
 package br.com.senai.stayFilm.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import br.com.senai.stayFilm.enumeration.Estado;
 
@@ -21,6 +23,9 @@ public class Endereco {
 	private String cidade;
 	private String cep;
 	
+	
+	@OneToOne(orphanRemoval=true)
+	private Colaborador idColaborador;
 	
 
 	public Long getIdEndereco() {
@@ -78,6 +83,18 @@ public class Endereco {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+	public Colaborador getIdColaborador() {
+		return idColaborador;
+	}
+
+	public void setIdColaborador(Colaborador idColaborador) {
+		this.idColaborador = idColaborador;
+	}
+
+
+
+
 
 	
 }

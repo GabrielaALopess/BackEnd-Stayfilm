@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.model.Endereco;
 import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
@@ -43,6 +44,22 @@ public class FilmeDao implements GenericDao<Filme> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public void inclui(Endereco endereco, long idColaborador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 //	@Override

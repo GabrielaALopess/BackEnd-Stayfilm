@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Atividade;
+import br.com.senai.stayFilm.model.Endereco;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
@@ -47,6 +48,29 @@ public class AtividadeDao implements GenericDao<Atividade> {
 
 	@Override
 	public Atividade pesquisa(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	public void inclui(Endereco endereco, Long idColaborador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void inclui(Endereco endereco, long idColaborador) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -24,11 +24,11 @@ public class EnderecoRestController {
 	@Qualifier("enderecoDao")
 	private GenericDao<Endereco> enderecoDao;
 	
-	@RequestMapping(value = "/endereco", method = RequestMethod.POST)
-	public ResponseEntity<Endereco> inserir(@RequestBody Endereco endereco) throws SQLException {
-
+	@RequestMapping(value = "/endereco/{idColaborador}", method = RequestMethod.POST)
+	public ResponseEntity<Endereco> inserir(@RequestBody Endereco endereco, @PathVariable long idColaborador) throws SQLException {
+		
 		try {
-			enderecoDao.inclui(endereco);
+			enderecoDao.inclui(endereco,idColaborador);
 			URI location = new URI("/endereco" + endereco.getIdEndereco());
 			return ResponseEntity.created(location).body(endereco);
 		} catch (URISyntaxException e) {
@@ -37,8 +37,6 @@ public class EnderecoRestController {
 		}
 
 	}
-	
-	
 	
 	@RequestMapping(value = "/endereco/buscar/{idEndereco}",
 					method = RequestMethod.GET,
@@ -49,10 +47,12 @@ public class EnderecoRestController {
 	}
 
 	
-	@RequestMapping(value = "/endereco/editar/{idEndereco}", 
+	@RequestMapping(value = "/endereco/editar/{idEndereco}/{idColaborador}", 
 			method = RequestMethod.PUT)
-	public Endereco altera(@RequestBody Endereco endereco) throws SQLException {
-		return enderecoDao.altera(endereco);
+	public Endereco altera(@RequestBody Endereco endereco, @PathVariable long idColaborador) throws SQLException {
+	
+		
+		return enderecoDao.altera(endereco, idColaborador);
 
 	}
 	
