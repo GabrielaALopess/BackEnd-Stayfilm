@@ -29,10 +29,19 @@ public class Endereco implements Serializable{
 	private String cep;
 	
 	
+	
 
+	/**
+	 * chave estrangeira colaborador
+	 */
+	
 	@OneToOne(cascade= CascadeType.ALL)
 	private Colaborador idColaborador;
 
+	
+	
+	
+	
 	public Long getIdEndereco() {
 		return idEndereco;
 	}
