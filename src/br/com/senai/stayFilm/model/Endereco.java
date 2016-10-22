@@ -1,19 +1,26 @@
 package br.com.senai.stayFilm.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import br.com.senai.stayFilm.enumeration.Estado;
 
 @Entity
-public class Endereco {
+public class Endereco implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3936348585019583776L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEndereco;
-	
 	private String endereco;
 	private String complemento;
 	private String bairro;
@@ -22,6 +29,9 @@ public class Endereco {
 	private String cep;
 	
 	
+
+	@OneToOne(cascade= CascadeType.ALL)
+	private Colaborador idColaborador;
 
 	public Long getIdEndereco() {
 		return idEndereco;
@@ -77,6 +87,14 @@ public class Endereco {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public Colaborador getIdColaborador() {
+		return idColaborador;
+	}
+
+	public void setIdColaborador(Colaborador idColaborador) {
+		this.idColaborador = idColaborador;
 	}
 
 	

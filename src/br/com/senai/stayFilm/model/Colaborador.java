@@ -6,13 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.senai.stayFilm.enumeration.Status;
 
+@JsonIgnoreProperties("endereco")
 @Entity
 public class Colaborador {
 
@@ -24,9 +23,11 @@ public class Colaborador {
 	private Status status;
 	private String email;
 	private String senha;
-	@ManyToOne
-	@JoinColumn(name="endereco_id")
-	private Endereco endereco;
+	
+//	@OneToOne(
+//			//mappedBy="idColaborador",
+//			cascade = CascadeType.ALL)
+//	private Endereco endereco;
 
 	public Long getIdColaborador() {
 		return idColaborador;
@@ -60,8 +61,6 @@ public class Colaborador {
 		this.status = status;
 	}
 
-	
-
 	public String getSenha() {
 		return senha;
 	}
@@ -78,12 +77,12 @@ public class Colaborador {
 		this.email = email;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
 }
