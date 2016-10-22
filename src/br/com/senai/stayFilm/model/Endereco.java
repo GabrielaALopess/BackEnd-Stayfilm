@@ -12,21 +12,22 @@ import br.com.senai.stayFilm.enumeration.Estado;
 @Entity
 public class Endereco {
 
+	/**
+	 * 
+	 */
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEndereco;
-	
 	private String endereco;
 	private String complemento;
 	private String bairro;
 	private Estado estado;
 	private String cidade;
 	private String cep;
-	
-	
+
 	@OneToOne(orphanRemoval=true)
 	private Colaborador idColaborador;
-	
 
 	public Long getIdEndereco() {
 		return idEndereco;
@@ -91,9 +92,6 @@ public class Endereco {
 	public void setIdColaborador(Colaborador idColaborador) {
 		this.idColaborador = idColaborador;
 	}
-
-
-
 
 
 	
