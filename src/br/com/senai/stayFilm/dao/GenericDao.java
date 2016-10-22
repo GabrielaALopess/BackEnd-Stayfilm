@@ -16,17 +16,17 @@ import br.com.senai.stayFilm.model.Resposta;
  */
 public abstract interface GenericDao<T> {
 
-	void inclui(T obj) throws SQLException;
+	void insert(T obj) throws SQLException;
 
-	void exclui(Long idObj) throws SQLException;
+	void delete(Long idObj) throws SQLException;
 
-	T altera(T obj) throws SQLException;
+	T update(T obj) throws SQLException;
 
-	T pesquisa(Long idObj);
+	T search(Long idObj);
 
-	void insertWithKey (Endereco endereco, long idColaborador);
+	void insertWithKey (T obj, long idColaborador);
 
-	Endereco altera(Endereco endereco, long idColaborador) throws SQLException;
+	T updateWithKey(T obj, long idObj) throws SQLException;
 
 	
 

@@ -12,58 +12,58 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
 
+/**
+ * 22/10/2016
+ * 
+ * @author Equipe Stayfilm Classe utilizada para a persistência dos dados do
+ *         endereco.
+ */
 @Repository
 public class EnderecoDao implements GenericDao<Endereco> {
 
 	@PersistenceContext
 	private EntityManager manager;
 
+	@Override
+	public void insert(Endereco obj) throws SQLException {
+		// NOT USE
+
+	}
+
 	@Transactional
 	@Override
-	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
-		Colaborador col = manager.find(Colaborador.class, idColaborador);
-		endereco.setIdColaborador(col);
-		return manager.merge(endereco);
-	}
-	
-	
-
-	@Override
-	public void exclui(Long idEndereco) throws SQLException {
+	public void delete(Long idEndereco) throws SQLException {
 		Endereco endereco = manager.find(Endereco.class, idEndereco);
 		manager.remove(endereco);
+
 	}
 
 	@Override
-	public Endereco pesquisa(Long idEndereco) {
-		return manager.find(Endereco.class, idEndereco);
-	}
-
-	
-
-	
-
-	@Override
-	public void inclui(Endereco obj) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Endereco altera(Endereco obj) throws SQLException {
-		// TODO Auto-generated method stub
+	public Endereco update(Endereco obj) throws SQLException {
+		// NOT USE
 		return null;
 	}
 
+	@Override
+	public Endereco search(Long idEndereco) {
+		return manager.find(Endereco.class, idEndereco);
+	}
 
 	@Transactional
 	@Override
 	public void insertWithKey(Endereco endereco, long idColaborador) {
-		Colaborador col = manager.find(Colaborador.class, idColaborador);
-		endereco.setIdColaborador(col);
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		endereco.setIdColaborador(colaborador);
 		manager.persist(endereco);
-		
+
 	}
 
+	@Transactional
+	@Override
+	public Endereco updateWithKey(Endereco endereco, long idColaborador) throws SQLException {
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		endereco.setIdColaborador(colaborador);
+		return manager.merge(endereco);
+	}
 
 }

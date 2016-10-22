@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Endereco;
 
 @RestController
 public class ColaboradorRestController {
@@ -28,7 +27,7 @@ public class ColaboradorRestController {
 	public ResponseEntity<Colaborador> inserir(@RequestBody Colaborador colaborador) throws SQLException {
 
 		try {
-			colaboradorDao.inclui(colaborador);
+			colaboradorDao.insert(colaborador);
 			URI location = new URI("/colaborador" + colaborador.getIdColaborador());
 			return ResponseEntity.created(location).body(colaborador);
 		} catch (URISyntaxException e) {

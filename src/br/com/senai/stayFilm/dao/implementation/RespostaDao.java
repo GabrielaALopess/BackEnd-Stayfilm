@@ -2,71 +2,49 @@ package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.model.Endereco;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class RespostaDao implements GenericDao<Resposta> {
 
-	@PersistenceContext
-	private EntityManager manager;
-
-	@Transactional
 	@Override
-	public void inclui(Resposta resposta) throws SQLException {
-		manager.persist(resposta);
-
-	}
-
-	@Transactional
-	@Override
-	public Resposta altera(Resposta resposta) throws SQLException {
+	public void insert(Resposta obj) throws SQLException {
+		// TODO Auto-generated method stub
 		
-//		MyEntity e2 = em.merge(e);
-//		e2.setAtributo(novoValor); 
-//
-//		resposta.setIdioma(Idioma.valueOf(Idioma.class,"?"));
-//		resposta.setResposta("?");
-//		resposta.setTituloResposta("?");
-		
-		//String exemplo = Idioma.valueOf(Idioma.class, name)
-		
-		
-		return manager.merge(resposta);
-	}
-
-	@Transactional
-	@Override
-	public void exclui(Long idResposta) throws SQLException {
-		 Resposta resposta = manager.find(Resposta.class, idResposta);
-		 manager.remove(resposta);
-
 	}
 
 	@Override
-	public Resposta pesquisa(Long idResposta) {
-		return manager.find(Resposta.class, idResposta);
+	public void delete(Long idObj) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
-
-	
 	@Override
-	public Endereco altera(Endereco endereco, long idColaborador) throws SQLException {
+	public Resposta update(Resposta obj) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void insertWithKey(Endereco endereco, long idColaborador) {
+	public Resposta search(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertWithKey(Resposta obj, long idColaborador) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Resposta updateWithKey(Resposta obj, long idObj) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Endereco;
 
+
+/**
+ * 22/10/2016
+ * @author Equipe Stayfilm
+ * Controller do Endereco
+ */
+
 @RestController
 public class EnderecoRestController {
 
@@ -29,7 +36,7 @@ public class EnderecoRestController {
 			throws SQLException {
 
 		try {
-			
+
 			enderecoDao.insertWithKey(endereco, idColaborador);
 			URI location = new URI("/endereco" + endereco.getIdColaborador());
 			return ResponseEntity.created(location).body(endereco);
@@ -40,26 +47,19 @@ public class EnderecoRestController {
 
 	}
 
-	
 	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Endereco pesquisarResposta(@PathVariable Long idEndereco) throws SQLException {
-		return enderecoDao.pesquisa(idEndereco);
+	public Endereco pesquisarEndereco(@PathVariable Long idEndereco) throws SQLException {
+		return enderecoDao.search(idEndereco);
 	}
 
 	@RequestMapping(value = "/endereco/editar/{idEndereco}/{idColaborador}", method = RequestMethod.PUT)
 	public Endereco altera(@RequestBody Endereco endereco, @PathVariable long idColaborador) throws SQLException {
-		return enderecoDao.altera(endereco, idColaborador);
-	}
-
-	@RequestMapping(value = "/endereco/editar/{idEndereco}", method = RequestMethod.PUT)
-	public Endereco altera(@RequestBody Endereco endereco) throws SQLException {
-		return enderecoDao.altera(endereco);
-
+		return enderecoDao.updateWithKey(endereco, idColaborador);
 	}
 
 	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable long idEndereco) throws SQLException {
-		enderecoDao.exclui(idEndereco);
+		enderecoDao.delete(idEndereco);
 		return ResponseEntity.noContent().build();
 	}
 
