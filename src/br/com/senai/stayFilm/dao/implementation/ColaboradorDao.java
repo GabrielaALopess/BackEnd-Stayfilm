@@ -57,5 +57,5 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		// NOT USE
 		return null;
 	}
-
+	
 }

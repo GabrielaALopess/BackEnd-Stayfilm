@@ -28,6 +28,4 @@ public abstract interface GenericDao<T> {
 
 	T updateWithKey(T obj, long idObj) throws SQLException;
 
-	
-
 }

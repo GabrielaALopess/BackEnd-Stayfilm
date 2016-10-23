@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Endereco;
+
+
+/**
+ * 23/10/2016
+ * @author Equipe StayFilme
+ * Controller de Colaborador
+ */
 
 @RestController
 public class ColaboradorRestController {
@@ -40,7 +46,7 @@ public class ColaboradorRestController {
 	}
 
 	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Colaborador pesquisarEndereco(@PathVariable Long idColaborador) throws SQLException {
+	public Colaborador pesquisarColaborador(@PathVariable Long idColaborador) throws SQLException {
 		return colaboradorDao.search(idColaborador);
 	}
 
@@ -50,7 +56,7 @@ public class ColaboradorRestController {
 		return colaboradorDao.update(colaborador);
 	}
 
-	@RequestMapping(value = "/endereco/{idEndereco}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable long idColaborador) throws SQLException {
 		colaboradorDao.delete(idColaborador);
 		return ResponseEntity.noContent().build();

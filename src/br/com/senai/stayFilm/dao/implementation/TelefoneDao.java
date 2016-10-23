@@ -39,7 +39,6 @@ public class TelefoneDao implements GenericDao<Telefone> {
 
 	@Override
 	public Telefone search(Long idTelefone) {
-		// TODO Auto-generated method stub
 		return manager.find(Telefone.class, idTelefone);
 	}
 

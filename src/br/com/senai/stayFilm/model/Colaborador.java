@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.senai.stayFilm.enumeration.Status;
 
-@JsonIgnoreProperties("endereco")
 @Entity
 public class Colaborador {
 

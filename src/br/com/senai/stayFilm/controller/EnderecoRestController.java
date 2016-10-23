@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Endereco;
 
-
 /**
  * 22/10/2016
- * @author Equipe Stayfilm
- * Controller do Endereco
+ * 
+ * @author Equipe Stayfilm Controller do Endereco
  */
 
 @RestController
