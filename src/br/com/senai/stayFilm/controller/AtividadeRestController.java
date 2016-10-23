@@ -40,6 +40,12 @@ public class AtividadeRestController {
 
 	}
 
+	@RequestMapping(value = "/atividade/{idAtividade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Atividade pesquisarAtividade(@PathVariable Long idAtividade) throws SQLException {
+		return atividadeDao.search(idAtividade);
+	}
+
+
 	@Transactional
 	@RequestMapping(value = "/atividade/editar/{idAtividade}/{idColaborador}", method = RequestMethod.PUT)
 	public Atividade altera(@RequestBody Atividade atividade, @PathVariable long idColaborador) throws SQLException {

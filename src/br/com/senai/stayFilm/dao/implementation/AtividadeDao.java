@@ -46,8 +46,7 @@ public class AtividadeDao implements GenericDao<Atividade> {
 
 	@Override
 	public Atividade search(Long idAtividade) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Atividade.class, idAtividade);
 	}
 
 	@Transactional
