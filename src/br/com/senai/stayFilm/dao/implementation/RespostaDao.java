@@ -2,49 +2,65 @@ package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Resposta;
 
+/**
+ * 23/10/2016
+ * 
+ * @author Equipe Stayfilm Classe utilizada para a persistência dos dados da
+ *         Resposta.
+ */
+
 @Repository
 public class RespostaDao implements GenericDao<Resposta> {
 
+	@PersistenceContext
+	private EntityManager manager;
+
+	@Transactional
 	@Override
-	public void insert(Resposta obj) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void insert(Resposta resposta) throws SQLException {
+		manager.persist(resposta);
+
+	}
+
+	@Transactional
+	@Override
+	public void delete(Long idResposta) throws SQLException {
+		Resposta resposta = manager.find(Resposta.class, idResposta);
+		manager.remove(resposta);
+	}
+
+	@Transactional
+	@Override
+	public Resposta update(Resposta resposta) throws SQLException {
+
+		return manager.merge(resposta);
 	}
 
 	@Override
-	public void delete(Long idObj) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
+	public Resposta search(Long idResposta) {
 
-	@Override
-	public Resposta update(Resposta obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Resposta search(Long idObj) {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.find(Resposta.class, idResposta);
 	}
 
 	@Override
 	public void insertWithKey(Resposta obj, long idColaborador) {
-		// TODO Auto-generated method stub
-		
+		// NOT USE
+
 	}
 
 	@Override
 	public Resposta updateWithKey(Resposta obj, long idObj) throws SQLException {
-		// TODO Auto-generated method stub
+		// NOT USE
 		return null;
 	}
-
 
 }
