@@ -1,9 +1,11 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +66,12 @@ public class AtividadeDao implements GenericDao<Atividade> {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
 		atividade.setIdColaborador(colaborador);
 		return manager.merge(atividade);
+	}
+
+	@Override
+	public List<Atividade> listar(long idColaborador) { 
+		TypedQuery<Atividade> query = manager.createQuery("select a from Atividade a where a.idColaborador = :"+idColaborador, Atividade.class);
+		return query.getResultList();
 	}
 
 }

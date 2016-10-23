@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -42,6 +43,12 @@ public class EscalaDao implements GenericDao<Escala> {
 
 	@Override
 	public Escala updateWithKey(Escala obj, long idObj) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Escala> listar(long idObj) {
 		// TODO Auto-generated method stub
 		return null;
 	}

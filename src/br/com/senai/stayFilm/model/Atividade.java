@@ -20,7 +20,7 @@ public class Atividade {
 	private Periodo periodo;
 	
 	@ManyToOne
-	@JoinColumn(name = "colaborador_id")
+	@JoinColumn(name = "idColaborador")
 	private Colaborador idColaborador;
 
 	public Long getIdAtividade() {

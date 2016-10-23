@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -60,6 +61,12 @@ public class RespostaDao implements GenericDao<Resposta> {
 	@Override
 	public Resposta updateWithKey(Resposta obj, long idObj) throws SQLException {
 		// NOT USE
+		return null;
+	}
+
+	@Override
+	public List<Resposta> listar(long idObj) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

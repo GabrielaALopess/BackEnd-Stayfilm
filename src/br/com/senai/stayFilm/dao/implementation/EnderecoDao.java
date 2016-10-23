@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -64,6 +65,12 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
 		endereco.setIdColaborador(colaborador);
 		return manager.merge(endereco);
+	}
+
+	@Override
+	public List<Endereco> listar(long idObj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

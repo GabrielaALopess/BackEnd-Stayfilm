@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,6 +58,12 @@ public class TelefoneDao implements GenericDao<Telefone> {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
 		telefone.setIdColaborador(colaborador);
 		return manager.merge(telefone);
+	}
+
+	@Override
+	public List<Telefone> listar(long idObj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

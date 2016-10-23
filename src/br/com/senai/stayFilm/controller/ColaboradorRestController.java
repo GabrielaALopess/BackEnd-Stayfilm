@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Colaborador;
 
-
 /**
  * 23/10/2016
- * @author Equipe StayFilme
- * Controller de Colaborador
+ * 
+ * @author Equipe StayFilme Controller de Colaborador
  */
 
 @RestController

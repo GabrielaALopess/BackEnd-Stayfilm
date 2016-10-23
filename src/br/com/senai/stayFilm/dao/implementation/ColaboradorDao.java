@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,8 +14,9 @@ import br.com.senai.stayFilm.model.Colaborador;
 
 /**
  * 22/10/2016
- * @author Equipe Stayfilm
- * Classe utilizada para a persistência dos dados do colaborador.
+ * 
+ * @author Equipe Stayfilm Classe utilizada para a persistência dos dados do
+ *         colaborador.
  */
 
 @Repository
@@ -57,5 +59,15 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		// NOT USE
 		return null;
 	}
-	
+
+	@Override
+	public List<Colaborador> listar(long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+		
+
 }

@@ -3,6 +3,7 @@ package br.com.senai.stayFilm.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -59,4 +60,13 @@ public class AtividadeRestController {
 		return ResponseEntity.noContent().build();
 	}
 
+	/**
+	 * Metodo responsavel por listar as atividades quando o id do colaborador for determinado.
+	 * @return
+	 */
+	@RequestMapping(value="/lista/{idColaborador}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Atividade> listar(@PathVariable long idColaborador){
+		return atividadeDao.listar(idColaborador);
+	}
+	
 }

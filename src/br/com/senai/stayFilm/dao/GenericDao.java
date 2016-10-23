@@ -3,10 +3,6 @@ package br.com.senai.stayFilm.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.senai.stayFilm.model.Endereco;
-import br.com.senai.stayFilm.model.Escala;
-import br.com.senai.stayFilm.model.Resposta;
-
 /**
  * 22/10/2016
  * @author Equipe Stayfilm
@@ -27,5 +23,7 @@ public abstract interface GenericDao<T> {
 	void insertWithKey (T obj, long idObj);
 
 	T updateWithKey(T obj, long idObj) throws SQLException;
+	
+	public List<T> listar(long idObj);
 
 }
