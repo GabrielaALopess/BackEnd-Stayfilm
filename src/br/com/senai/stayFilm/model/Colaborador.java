@@ -1,13 +1,15 @@
 package br.com.senai.stayFilm.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.OneToMany;
 
 import br.com.senai.stayFilm.enumeration.Status;
 
@@ -23,7 +25,9 @@ public class Colaborador {
 	private String email;
 	private String senha;
 
-	
+	@OneToMany(mappedBy = "idColaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Atividade> atividades;
+
 	public Long getIdColaborador() {
 		return idColaborador;
 	}
@@ -71,6 +75,5 @@ public class Colaborador {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 }
