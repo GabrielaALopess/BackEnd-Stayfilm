@@ -1,13 +1,19 @@
-package br.com.senai.stayFilm.dao.implementation;
+package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Resposta;
 
 public class RespostaBO {
 	
-	private RespostaDao respostaDao;
+	@Autowired
+	@Qualifier("respostaDao")
+	private GenericDao<Resposta> respostaDao;
 	
 	public RespostaBO(){
 		respostaDao = new RespostaDao();

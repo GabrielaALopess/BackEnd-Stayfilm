@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.dao.implementation.RespostaBO;
+import br.com.senai.stayFilm.bo.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
 import br.com.senai.stayFilm.viewModel.CadastroViewModel;
 import br.com.senai.stayFilm.visualizacaoViewModel.VisualizacaoViewModel;
@@ -24,7 +24,6 @@ import br.com.senai.stayFilm.visualizacaoViewModel.VisualizacaoViewModel;
 @RestController
 public class RespostaRestController {
 
-	@Autowired
 	public RespostaBO respostaBo;
 	
 	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
