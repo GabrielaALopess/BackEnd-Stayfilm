@@ -3,21 +3,17 @@ package br.com.senai.stayFilm.dao.implementation;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
 
 @Repository
 public class EscalaDao implements GenericDao<Escala> {
 
-	@PersistenceContext
-	private EntityManager manager;
+//	@PersistenceContext
+//	private EntityManager manager;
 
 	@Override
 	public void insert(Escala obj) throws SQLException {
@@ -28,8 +24,8 @@ public class EscalaDao implements GenericDao<Escala> {
 	@Transactional
 	@Override
 	public void delete(Long idEscala) throws SQLException {
-		Escala escala = manager.find(Escala.class, idEscala);
-		manager.remove(escala);
+//		Escala escala = manager.find(Escala.class, idEscala);
+//		manager.remove(escala);
 
 	}
 
@@ -41,25 +37,25 @@ public class EscalaDao implements GenericDao<Escala> {
 
 	@Override
 	public Escala search(Long idEscala) {
-		return manager.find(Escala.class, idEscala);
-
+//		return manager.find(Escala.class, idEscala);
+		return null;
 	}
 
 	@Transactional
 	@Override
 	public void insertWithKey(Escala escala, long idColaborador) {
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		escala.setIdColaborador(colaborador);
-		manager.persist(escala);
+//		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+//		escala.setIdColaborador(colaborador);
+//		manager.persist(escala);
 	}
 
 	@Transactional
 	@Override
 	public Escala updateWithKey(Escala escala, long idColaborador) throws SQLException {
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		escala.setIdColaborador(colaborador);
-		return manager.merge(escala);
-
+//		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+//		escala.setIdColaborador(colaborador);
+//		return manager.merge(escala);
+		return null;
 	}
 
 	@Override

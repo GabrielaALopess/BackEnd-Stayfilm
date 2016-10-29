@@ -5,16 +5,15 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.controller.ViewModel.Resposta.CadastroViewModel;
+import br.com.senai.stayFilm.controller.ViewModel.Resposta.VisualizacaoViewModel;
+import br.com.senai.stayFilm.dao.implementation.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
 
 /**
@@ -26,16 +25,16 @@ import br.com.senai.stayFilm.model.Resposta;
 public class RespostaRestController {
 
 	@Autowired
-	@Qualifier("respostaDao")
-	private GenericDao<Resposta> respostaDao;
-
+	public RespostaBO respostaBo;
+	
 	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
-	public ResponseEntity<Resposta> inserir(@RequestBody Resposta resposta) throws SQLException {
+	public ResponseEntity<VisualizacaoViewModel> inserir(@RequestBody CadastroViewModel viewModel) throws SQLException {
 
 		try {
-			respostaDao.insert(resposta);
+			Resposta resposta = viewModel.toResposta();
+			respostaBo.insert(resposta);
 			URI location = new URI("/resposta" + resposta.getIdResposta());
-			return ResponseEntity.created(location).body(resposta);
+			return ResponseEntity.created(location).body(new VisualizacaoViewModel(resposta));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,21 +42,21 @@ public class RespostaRestController {
 
 	}
 
-	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
-		return respostaDao.search(idResposta);
-
-	}
-
-	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
-	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
-		return respostaDao.update(resposta);
-
-	}
-
-	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> remover(@PathVariable long idResposta) throws SQLException {
-		respostaDao.delete(idResposta);
-		return ResponseEntity.noContent().build();
-	}
+//	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
+//		return respostaDao.search(idResposta);
+//
+//	}
+//
+//	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
+//	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
+//		return respostaDao.update(resposta);
+//
+//	}
+//
+//	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.DELETE)
+//	public ResponseEntity<Void> remover(@PathVariable long idResposta) throws SQLException {
+//		respostaDao.delete(idResposta);
+//		return ResponseEntity.noContent().build();
+//	}
 }

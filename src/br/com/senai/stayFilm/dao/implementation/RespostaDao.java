@@ -42,7 +42,6 @@ public class RespostaDao implements GenericDao<Resposta> {
 	@Transactional
 	@Override
 	public Resposta update(Resposta resposta) throws SQLException {
-
 		return manager.merge(resposta);
 	}
 

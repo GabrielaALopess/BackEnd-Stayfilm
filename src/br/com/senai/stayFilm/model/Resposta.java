@@ -10,6 +10,17 @@ import br.com.senai.stayFilm.enumeration.Idioma;
 
 @Entity
 public class Resposta {
+	
+	public Resposta(){
+		
+	}
+	
+	public Resposta(String titulo, String resposta, Idioma idioma){
+		setTituloResposta(titulo);
+		setIdioma(idioma);
+		setResposta(resposta);
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idResposta;
