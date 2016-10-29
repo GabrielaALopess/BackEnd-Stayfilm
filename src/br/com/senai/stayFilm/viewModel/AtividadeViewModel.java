@@ -2,11 +2,13 @@ package br.com.senai.stayFilm.viewModel;
 
 import br.com.senai.stayFilm.enumeration.Periodo;
 import br.com.senai.stayFilm.model.Atividade;
+import br.com.senai.stayFilm.model.Colaborador;
 
 public class AtividadeViewModel {
 	private String instituicao;
 	private String atividade;
 	private Periodo periodo;
+	private Colaborador colaborador;
 
 	private Long idAtividade;
 
@@ -44,5 +46,13 @@ public class AtividadeViewModel {
 
 	public Atividade toAtividade() {
 		return new Atividade(getInstituicao(), getAtividade(), getPeriodo());
+	}
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 }
