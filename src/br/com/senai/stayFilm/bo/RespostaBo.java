@@ -1,15 +1,16 @@
-package br.com.senai.stayFilm.dao.implementation;
+package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Resposta;
 
-public class RespostaBO {
+public class RespostaBo {
 	
 	private RespostaDao respostaDao;
 	
-	public RespostaBO(){
+	public RespostaBo(){
 		respostaDao = new RespostaDao();
 	}
 	

@@ -1,47 +1,20 @@
-package br.com.senai.stayFilm.model;
+package br.com.senai.stayFilm.ViewModel;
 
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
-public class Escala {
-	
-	public Escala(){
-		
-	}
-	
-	public Escala(boolean comparecimento, String observacao, Date dataEscala, Date horaEscala, Colaborador idColaborador){
-		setComparecimento(comparecimento);
-		setObservacao(observacao);
-		setDataEscala(dataEscala);
-		setHoraEscala(horaEscala);
-		setIdColaborador(idColaborador);
-	}
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Escala;
+import br.com.senai.stayFilm.model.Resposta;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idEscala;
+public class EscalaViewModel {
+
 	private boolean comparecimento;
 	private String observacao;
 	private Date dataEscala;
 	private Date horaEscala;
-	@ManyToOne
-	@JoinColumn(name="colaborador_id")
 	private Colaborador idColaborador;
-
-	public Long getIdEscala() {
-		return idEscala;
-	}
-
-	public void setIdEscala(Long idEscala) {
-		this.idEscala = idEscala;
-	}
 
 	public boolean isComparecimento() {
 		return comparecimento;
@@ -83,5 +56,8 @@ public class Escala {
 		this.idColaborador = idColaborador;
 	}
 
+	public Escala toEscala() {
+		return new Escala(isComparecimento(), getObservacao(), getDataEscala(), getHoraEscala(), getIdColaborador());
+	}
 
 }

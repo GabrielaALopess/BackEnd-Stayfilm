@@ -1,9 +1,16 @@
-package br.com.senai.stayFilm.controller.ViewModel.Resposta;
+package br.com.senai.stayFilm.VizualizacaoViewModel;
 
 import br.com.senai.stayFilm.enumeration.Idioma;
 import br.com.senai.stayFilm.model.Resposta;
 
-public class CadastroViewModel {
+public class RespostaVisualizacaoViewModel {
+	
+	public RespostaVisualizacaoViewModel(Resposta resposta){
+		setTituloResposta(resposta.getTituloResposta());
+		setIdioma(resposta.getIdioma());
+		setResposta(resposta.getResposta());
+	}
+
 	private String tituloResposta;
 	private String resposta;
 	private Idioma idioma;
@@ -27,8 +34,4 @@ public class CadastroViewModel {
 		this.idioma = idioma;
 	}
 	
-	// transforma a view model em model
-	public Resposta toResposta(){
-		return new Resposta(getTituloResposta(), getResposta(), getIdioma());
-	}
 }

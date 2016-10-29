@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.controller.ViewModel.Resposta.CadastroViewModel;
-import br.com.senai.stayFilm.controller.ViewModel.Resposta.VisualizacaoViewModel;
-import br.com.senai.stayFilm.dao.implementation.RespostaBO;
+import br.com.senai.stayFilm.ViewModel.RespostaViewModel;
+import br.com.senai.stayFilm.VizualizacaoViewModel.RespostaVisualizacaoViewModel;
+import br.com.senai.stayFilm.bo.RespostaBo;
 import br.com.senai.stayFilm.model.Resposta;
 
 /**
@@ -25,16 +25,16 @@ import br.com.senai.stayFilm.model.Resposta;
 public class RespostaRestController {
 
 	@Autowired
-	public RespostaBO respostaBo;
+	public RespostaBo respostaBo;
 	
 	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
-	public ResponseEntity<VisualizacaoViewModel> inserir(@RequestBody CadastroViewModel viewModel) throws SQLException {
+	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody RespostaViewModel viewModel) throws SQLException {
 
 		try {
 			Resposta resposta = viewModel.toResposta();
 			respostaBo.insert(resposta);
 			URI location = new URI("/resposta" + resposta.getIdResposta());
-			return ResponseEntity.created(location).body(new VisualizacaoViewModel(resposta));
+			return ResponseEntity.created(location).body(new RespostaVisualizacaoViewModel(resposta));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);

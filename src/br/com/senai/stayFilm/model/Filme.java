@@ -11,6 +11,17 @@ import br.com.senai.stayFilm.enumeration.TemaFilme;
 
 @Entity
 public class Filme {
+	
+	public Filme(){
+		
+	}
+	
+	public Filme(String descricaoFilme, TemaFilme temaFilme, Avaliacao idAvaliacao){
+		setDescricaoFilme(descricaoFilme);
+		setTemaFilme(temaFilme);
+		setIdAvaliacao(idAvaliacao);	
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFilme;

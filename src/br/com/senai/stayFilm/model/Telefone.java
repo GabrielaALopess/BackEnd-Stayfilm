@@ -19,7 +19,17 @@ import br.com.senai.stayFilm.enumeration.TipoTelefone;
 
 @Entity
 public class Telefone {
-
+	
+	public Telefone(){
+		
+	}
+	
+	public Telefone(TipoTelefone tipotelefone, String numero, Colaborador idColaborador){
+		setTipoTelefone(tipotelefone);
+		setNumero(numero);
+		setIdColaborador(idColaborador);
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTelefone;

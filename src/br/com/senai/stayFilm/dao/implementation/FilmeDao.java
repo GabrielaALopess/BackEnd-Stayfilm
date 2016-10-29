@@ -36,13 +36,13 @@ public class FilmeDao implements GenericDao<Filme> {
 	}
 
 	@Override
-	public void insertWithKey(Filme obj, long idColaborador) {
+	public void insertWithKey(Filme Filme, long idColaborador) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Filme updateWithKey(Filme obj, long idObj) throws SQLException {
+	public Filme updateWithKey(Filme filme, long idObj) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

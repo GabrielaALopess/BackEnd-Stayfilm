@@ -27,7 +27,7 @@ import br.com.senai.stayFilm.model.Endereco;
 public class EnderecoRestController {
 
 	@Autowired
-	@Qualifier("enderecoDao")
+	
 	private GenericDao<Endereco> enderecoDao;
 
 	@RequestMapping(value = "/endereco/{idColaborador}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

@@ -1,47 +1,25 @@
-package br.com.senai.stayFilm.model;
+package br.com.senai.stayFilm.VizualizacaoViewModel;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Escala;
 
-@Entity
-public class Escala {
-	
-	public Escala(){
-		
-	}
-	
-	public Escala(boolean comparecimento, String observacao, Date dataEscala, Date horaEscala, Colaborador idColaborador){
-		setComparecimento(comparecimento);
-		setObservacao(observacao);
-		setDataEscala(dataEscala);
-		setHoraEscala(horaEscala);
-		setIdColaborador(idColaborador);
+public class EscalaVizualizacaoViewModel {
+
+	public EscalaVizualizacaoViewModel(Escala escala) {
+		setComparecimento(escala.isComparecimento());
+		setObservacao(escala.getObservacao());
+		setDataEscala(escala.getDataEscala());
+		setHoraEscala(escala.getHoraEscala());
+		setIdColaborador(escala.getIdColaborador());
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idEscala;
 	private boolean comparecimento;
 	private String observacao;
 	private Date dataEscala;
 	private Date horaEscala;
-	@ManyToOne
-	@JoinColumn(name="colaborador_id")
 	private Colaborador idColaborador;
-
-	public Long getIdEscala() {
-		return idEscala;
-	}
-
-	public void setIdEscala(Long idEscala) {
-		this.idEscala = idEscala;
-	}
 
 	public boolean isComparecimento() {
 		return comparecimento;
@@ -82,6 +60,5 @@ public class Escala {
 	public void setIdColaborador(Colaborador idColaborador) {
 		this.idColaborador = idColaborador;
 	}
-
 
 }
