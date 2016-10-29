@@ -16,6 +16,17 @@ import br.com.senai.stayFilm.enumeration.Status;
 @Entity
 public class Colaborador {
 
+	public Colaborador() {
+	}
+
+	public Colaborador(String nome, Date data, Status status, String email, String senha) {
+		this.nome = nome;
+		this.dataNasc = data;
+		this.status = status;
+		this.email = email;
+		this.senha = senha;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idColaborador;

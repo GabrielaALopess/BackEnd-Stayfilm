@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.controller.ViewModel.Resposta.CadastroViewModel;
-import br.com.senai.stayFilm.controller.ViewModel.Resposta.VisualizacaoViewModel;
 import br.com.senai.stayFilm.dao.implementation.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
+import br.com.senai.stayFilm.viewModel.CadastroViewModel;
+import br.com.senai.stayFilm.visualizacaoViewModel.VisualizacaoViewModel;
 
 /**
  * 23/10/2016

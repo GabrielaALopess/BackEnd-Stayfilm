@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.controller.ViewModel.Resposta;
+package br.com.senai.stayFilm.viewModel;
 
 import br.com.senai.stayFilm.enumeration.Idioma;
 import br.com.senai.stayFilm.model.Resposta;
