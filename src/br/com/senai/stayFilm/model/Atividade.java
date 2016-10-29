@@ -12,13 +12,22 @@ import br.com.senai.stayFilm.enumeration.Periodo;
 @Entity
 public class Atividade {
 
+	public Atividade() {
+	}
+
+	public Atividade(String instituicao, String atividade, Periodo periodo) {
+		this.instituicao = instituicao;
+		this.atividade = atividade;
+		this.periodo = periodo;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAtividade;
 	private String instituicao;
 	private String atividade;
 	private Periodo periodo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idColaborador")
 	private Colaborador idColaborador;

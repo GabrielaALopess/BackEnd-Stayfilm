@@ -13,16 +13,22 @@ import br.com.senai.stayFilm.enumeration.Status;
 @Entity
 public class Curadoria {
 
+	public Curadoria() {
+	}
+
+	public Curadoria(Colaborador idColaborador, Usuario idUsuario, Date dataCuradoria) {
+		this.idColaborador = idColaborador;
+		this.idUsuario = idUsuario;
+		this.dataCuradoria = dataCuradoria;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCuradoria;
-	
 	@OneToOne(orphanRemoval = true)
 	private Colaborador idColaborador;
-
 	@OneToOne(orphanRemoval = true)
 	private Usuario idUsuario;
-
 	private Date dataCuradoria;
 
 	public Long getIdCuradoria() {

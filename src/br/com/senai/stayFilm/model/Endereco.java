@@ -10,12 +10,23 @@ import br.com.senai.stayFilm.enumeration.Estado;
 
 /**
  * 22/10/2016
- * @author Equipe Stayfilm 
- * Classe modelo 
- * para o endereço do colaborador.
+ * 
+ * @author Equipe Stayfilm Classe modelo para o endereço do colaborador.
  */
 @Entity
 public class Endereco {
+
+	public Endereco() {
+	}
+
+	public Endereco(String endereco, String complemento, String bairro, Estado estado, String cidade, String cep) {
+		this.endereco = endereco;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.cep = cep;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
