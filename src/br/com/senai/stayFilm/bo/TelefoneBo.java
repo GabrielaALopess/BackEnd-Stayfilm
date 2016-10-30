@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.senai.stayFilm.dao.implementation.TelefoneDao;
-import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Telefone;
 
 public class TelefoneBo {

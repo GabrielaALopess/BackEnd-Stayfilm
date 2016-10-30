@@ -4,11 +4,13 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Resposta;
 
+@Component
 public class RespostaBO {
 	
 	@Autowired

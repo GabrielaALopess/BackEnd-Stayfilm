@@ -10,6 +10,11 @@ import org.springframework.stereotype.Component;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Atividade;
 
+/**
+ * BO de Atividades.
+ * @author Gabriela Lopes
+ *
+ */
 @Component
 public class AtividadeBo {
 

@@ -1,7 +1,6 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import br.com.senai.stayFilm.dao.implementation.EscalaDao;
 import br.com.senai.stayFilm.model.Escala;

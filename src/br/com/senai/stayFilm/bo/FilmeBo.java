@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.senai.stayFilm.dao.implementation.FilmeDao;
-import br.com.senai.stayFilm.dao.implementation.RespostaDao;
 import br.com.senai.stayFilm.model.Filme;
-import br.com.senai.stayFilm.model.Resposta;
 
 public class FilmeBo {
 
