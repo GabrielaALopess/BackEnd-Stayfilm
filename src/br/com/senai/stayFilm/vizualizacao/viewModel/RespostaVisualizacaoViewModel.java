@@ -1,11 +1,11 @@
-package br.com.senai.stayFilm.visualizacaoViewModel;
+package br.com.senai.stayFilm.vizualizacao.viewModel;
 
 import br.com.senai.stayFilm.enumeration.Idioma;
 import br.com.senai.stayFilm.model.Resposta;
 
-public class VisualizacaoViewModel {
+public class RespostaVisualizacaoViewModel {
 	
-	public VisualizacaoViewModel(Resposta resposta){
+	public RespostaVisualizacaoViewModel(Resposta resposta){
 		setTituloResposta(resposta.getTituloResposta());
 		setIdioma(resposta.getIdioma());
 		setResposta(resposta.getResposta());

@@ -54,7 +54,7 @@ public class ColaboradorViewModel {
 	}
 
 	public Colaborador toColaborador() {
-		return new Colaborador(getNome(), getDataNasc(), getStatus(), getEmail(), getSenha());
+		return new Colaborador(getNome(), getDataNasc(), getStatus());
 	}
 
 }

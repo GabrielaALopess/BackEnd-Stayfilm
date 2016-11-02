@@ -32,7 +32,8 @@ public class AtividadeDao implements GenericDao<Atividade> {
 		// NOT USE
 
 	}
-
+	
+	@Transactional
 	@Override
 	public void delete(Long idAtividade) throws SQLException {
 		Atividade atividade = manager.find(Atividade.class, idAtividade);

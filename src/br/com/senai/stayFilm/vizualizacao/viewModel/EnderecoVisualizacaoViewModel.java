@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.visualizacaoViewModel;
+package br.com.senai.stayFilm.vizualizacao.viewModel;
 
 import br.com.senai.stayFilm.enumeration.Estado;
 import br.com.senai.stayFilm.model.Endereco;

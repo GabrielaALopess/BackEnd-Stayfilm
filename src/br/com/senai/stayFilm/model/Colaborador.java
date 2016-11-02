@@ -19,12 +19,11 @@ public class Colaborador {
 	public Colaborador() {
 	}
 
-	public Colaborador(String nome, Date data, Status status, String email, String senha) {
+	public Colaborador(String nome, Date data, Status status) {
 		this.nome = nome;
 		this.dataNasc = data;
 		this.status = status;
-		this.email = email;
-		this.senha = senha;
+		
 	}
 
 	@Id
@@ -33,8 +32,6 @@ public class Colaborador {
 	private String nome;
 	private Date dataNasc;
 	private Status status;
-	private String email;
-	private String senha;
 
 	@OneToMany(mappedBy = "idColaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Atividade> atividades;
@@ -69,22 +66,6 @@ public class Colaborador {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }

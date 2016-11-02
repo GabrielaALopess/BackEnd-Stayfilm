@@ -31,20 +31,20 @@ public class AtividadeBo {
 	}
 
 	public Atividade edit(Atividade atividade, Long idColaborador) throws SQLException {
-		if (exist(atividade.getIdAtividade())) {
+//		if (exist(atividade.getIdAtividade())) {
 			return atividadeDao.updateWithKey(atividade, idColaborador);
-		}
-		return null;
+//		}
+//		return null;
 	}
 
 	public void remove(Long idAtividade) throws SQLException {
-		if (exist(idAtividade)) {
+//		if (exist(idAtividade)) {
 			atividadeDao.delete(idAtividade);
-		}
+//		}
 	}
 
-	public boolean exist(Long id) {
-		return search(id) != null;
-	}
+//	public boolean exist(Long id) {
+//		return search(id) != null;
+//	}
 
 }

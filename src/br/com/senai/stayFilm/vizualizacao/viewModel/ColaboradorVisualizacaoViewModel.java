@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.visualizacaoViewModel;
+package br.com.senai.stayFilm.vizualizacao.viewModel;
 
 import java.util.Date;
 
@@ -11,15 +11,11 @@ public class ColaboradorVisualizacaoViewModel {
 		setNome(colaborador.getNome());
 		setDataNasc(colaborador.getDataNasc());
 		setStatus(colaborador.getStatus());
-		setEmail(colaborador.getEmail());
-		setSenha(colaborador.getSenha());
 	}
 
 	private String nome;
 	private Date dataNasc;
 	private Status status;
-	private String email;
-	private String senha;
 
 	public String getNome() {
 		return nome;
@@ -45,19 +41,4 @@ public class ColaboradorVisualizacaoViewModel {
 		this.status = status;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 }
