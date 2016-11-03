@@ -1,5 +1,6 @@
 package br.com.senai.stayFilm.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +18,29 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
-	private String login;
-	private TipoPermissao permissao;
 	
+	@Column(unique=true)
+	private String login;
+	@Column
+	private TipoPermissao permissao;
+	@Column
 	private String senha;
-	@OneToOne
-	@JoinColumn(name = "colaborador_id")
-	private Colaborador idcolaborador;
+	//@OneToOne
+	//@JoinColumn(name = "colaborador_id")
+	//private Colaborador idcolaborador;
+	
+	
+	Usuario(){
+		
+	}
+	
+	Usuario(String login, TipoPermissao permissao, String senha){
+		this.login=login;
+		this.permissao=permissao;
+		this.senha=senha;
+		//this.idcolaborador=idcolaborador;
+		
+	}
 
 	
 	
@@ -61,13 +78,13 @@ public class Usuario {
 		this.senha = md5;
 	}
 
-	public Colaborador getIdcolaborador() {
+	/*public Colaborador getIdcolaborador() {
 		return idcolaborador;
 	}
 
 	public void setIdcolaborador(Colaborador idcolaborador) {
 		this.idcolaborador = idcolaborador;
-	}
+	}*/
 	
 	
 	

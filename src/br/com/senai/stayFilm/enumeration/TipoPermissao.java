@@ -2,7 +2,7 @@ package br.com.senai.stayFilm.enumeration;
 
 public enum TipoPermissao {
 	
-	ADMINISTRADOR("admin"),USUARIO("user");
+	ADMINISTRADOR("2"),USUARIO("1");
 
 	
 	private String permissao;
