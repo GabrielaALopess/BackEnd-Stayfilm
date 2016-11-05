@@ -3,17 +3,40 @@ package br.com.senai.stayFilm.dao.implementation;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
 public class AvaliacaoDao implements GenericDao<Avaliacao> {
 
+	
+	@PersistenceContext
+	private EntityManager manager;
+
+
+	
+	public void insert(Avaliacao avaliacao, long idColaborador,long idResposta) throws SQLException {
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		Resposta resposta = manager.find(Resposta.class, idResposta);
+		avaliacao.setIdColaborador(colaborador);
+		avaliacao.setIdResposta(resposta);
+		manager.persist(avaliacao);
+
+	}
+
+	
+	
 	@Override
 	public void insert(Avaliacao obj) throws SQLException {
-		// TODO Auto-generated method stub
+		//NOT USE 
 
 	}
 
@@ -35,9 +58,10 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		return null;
 	}
 
+	@Transactional
 	@Override
-	public void insertWithKey(Avaliacao obj, long idColaborador) {
-		// TODO Auto-generated method stub
+	public void insertWithKey(Avaliacao obj, long id) {
+		//NOT USE
 
 	}
 	
