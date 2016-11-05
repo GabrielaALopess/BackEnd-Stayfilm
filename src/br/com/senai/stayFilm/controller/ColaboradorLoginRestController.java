@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.stayFilm.bo.ColaboradorLoginBo;
 import br.com.senai.stayFilm.model.ColaboradorLogin;
 import br.com.senai.stayFilm.sendMail.SendMail;
+import br.com.senai.stayFilm.viewModel.ColaboradorLoginViewModel;
+import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorLoginVizualizacaoViewModel;
 
 @RestController
 public class ColaboradorLoginRestController {
@@ -25,12 +27,13 @@ public class ColaboradorLoginRestController {
 	public ColaboradorLoginBo colaboradorLoginBO;
 
 	@RequestMapping(value = "colaborador/colaboradorLogin/{idColaborador}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<ColaboradorLogin> inserir(@PathVariable Long idColaborador,
-			@RequestBody ColaboradorLogin colaboradorLogin) throws SQLException {
+	public ResponseEntity<ColaboradorLoginVizualizacaoViewModel> inserir(@PathVariable Long idColaborador,
+			@RequestBody ColaboradorLoginViewModel viewModel) throws SQLException {
 		try {
-			colaboradorLoginBO.insert(colaboradorLogin, idColaborador);
-			URI location = new URI("/colaborador" + colaboradorLogin.getIdLoginColaborador());
-			return ResponseEntity.created(location).body(colaboradorLogin);
+			ColaboradorLogin colaborador = viewModel.toColaboradorLoginViewModel();
+			colaboradorLoginBO.insert(colaborador, idColaborador);
+			URI location = new URI("/colaborador" + colaborador.getIdLoginColaborador());
+			return ResponseEntity.created(location).body(new ColaboradorLoginVizualizacaoViewModel(colaborador));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
