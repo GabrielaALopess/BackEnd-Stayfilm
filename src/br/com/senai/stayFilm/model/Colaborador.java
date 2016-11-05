@@ -23,13 +23,12 @@ public class Colaborador {
 	private String nome;
 	private Date dataNasc;
 	private Status status;
-	private String telefone_1;
-	private String telefone_2;
-	private String telefone_3;
+
+	@OneToMany
+	private List<Telefone> telefone;
 
 	@OneToOne
 	private Endereco endereco;
-
 
 	private String email;
 	private String senha;
@@ -41,42 +40,24 @@ public class Colaborador {
 		// NADA NADA NADA NADA ...
 	}
 
-	public Colaborador(String nome, Date data, Status status, String telefone_1, String telefone_2, String telefone_3,
-			String email, String senha, Endereco endereco, List<Atividade> atividade) {
+	public Colaborador(String nome, Date data, Status status, List<Telefone> telefone, String email, String senha,
+			Endereco endereco, List<Atividade> atividade) {
 		this.nome = nome;
 		this.dataNasc = data;
 		this.status = status;
-		this.telefone_1 = telefone_1;
-		this.telefone_2 = telefone_2;
-		this.telefone_3 = telefone_3;
+
 		this.email = email;
 		this.senha = senha;
 		this.endereco = endereco;
 		this.atividades = atividade;
 	}
 
-	public String getTelefone_1() {
-		return telefone_1;
+	public List<Telefone> getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefone_1(String telefone_1) {
-		this.telefone_1 = telefone_1;
-	}
-
-	public String getTelefone_2() {
-		return telefone_2;
-	}
-
-	public void setTelefone_2(String telefone_2) {
-		this.telefone_2 = telefone_2;
-	}
-
-	public String getTelefone_3() {
-		return telefone_3;
-	}
-
-	public void setTelefone_3(String telefone_3) {
-		this.telefone_3 = telefone_3;
+	public void setTelefone(List<Telefone> telefone) {
+		this.telefone = telefone;
 	}
 
 	public Endereco getEndereco() {
