@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.ViewModel;
+package br.com.senai.stayFilm.viewModel;
 
 import org.springframework.stereotype.Component;
 

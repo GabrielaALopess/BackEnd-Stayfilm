@@ -40,7 +40,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		// TODO Auto-generated method stub
 
 	}
-ASDGJEJ,EGRHHGEJ
 	
 //	@Override
 //	public void insertWithKey(Avaliacao obj, long idColaborador,long idResposta) {

@@ -1,4 +1,5 @@
-package br.com.senai.stayFilm.ViewModel;
+package br.com.senai.stayFilm.viewModel;
+
 import java.util.Date;
 
 import br.com.senai.stayFilm.enumeration.Status;

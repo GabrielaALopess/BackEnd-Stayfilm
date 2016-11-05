@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.ViewModel;
+package br.com.senai.stayFilm.viewModel;
 
 import br.com.senai.stayFilm.enumeration.TemaFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
