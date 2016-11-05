@@ -35,7 +35,8 @@ public class ColaboradorRestController {
 
 		try {
 			colaboradorDao.insert(colaborador);
-			URI location = new URI("/colaborador" + colaborador.getIdColaborador());
+			// teste de validacao # representa uma funcao protegida o filtro tem que acessar;
+			URI location = new URI("/#/colaborador" + colaborador.getIdColaborador());
 			return ResponseEntity.created(location).body(colaborador);
 		} catch (URISyntaxException e) {
 			e.printStackTrace();

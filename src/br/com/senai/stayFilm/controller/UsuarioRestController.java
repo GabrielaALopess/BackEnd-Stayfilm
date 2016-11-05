@@ -64,6 +64,7 @@ public class UsuarioRestController {
 				claims.put("iss",ISSUER);
 				claims.put("id_usuario", usuario.getIdUsuario());
 				//claims.put("id_colaborador", usuario.getIdcolaborador());
+				claims.put("id_colaborador", usuario.getIdcolaborador());
 				claims.put("permissao", usuario.getPermissao());
 				
 				//gerar o token

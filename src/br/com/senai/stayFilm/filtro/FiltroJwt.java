@@ -1,5 +1,4 @@
 package br.com.senai.stayFilm.filtro;
-/*
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,9 +17,9 @@ import org.springframework.http.HttpStatus;
 
 import com.auth0.jwt.JWTVerifier;
 
-import br.senai.sp.informatica.todolist.controller.UsuarioRestController;
+import br.com.senai.stayFilm.controller.UsuarioRestController;
 
-@WebFilter("/*")
+@WebFilter("/#*")
 public class FiltroJwt implements Filter {
 
 	@Override
@@ -67,4 +66,3 @@ public class FiltroJwt implements Filter {
 	
 
 }
-*/

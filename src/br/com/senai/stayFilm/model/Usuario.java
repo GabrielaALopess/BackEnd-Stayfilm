@@ -18,27 +18,27 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
-	
 	@Column(unique=true)
 	private String login;
 	@Column
 	private TipoPermissao permissao;
 	@Column
 	private String senha;
-	//@OneToOne
-	//@JoinColumn(name = "colaborador_id")
-	//private Colaborador idcolaborador;
+	
+	@OneToOne
+	@JoinColumn(name = "colaborador_id")
+	private Colaborador idcolaborador;
 	
 	
 	Usuario(){
 		
 	}
 	
-	Usuario(String login, TipoPermissao permissao, String senha){
+	Usuario(String login, TipoPermissao permissao, String senha, Colaborador idcolaborador){
 		this.login=login;
 		this.permissao=permissao;
 		this.senha=senha;
-		//this.idcolaborador=idcolaborador;
+		this.idcolaborador=idcolaborador;
 		
 	}
 
@@ -78,13 +78,13 @@ public class Usuario {
 		this.senha = md5;
 	}
 
-	/*public Colaborador getIdcolaborador() {
+	public Colaborador getIdcolaborador() {
 		return idcolaborador;
 	}
 
 	public void setIdcolaborador(Colaborador idcolaborador) {
 		this.idcolaborador = idcolaborador;
-	}*/
+	}
 	
 	
 	

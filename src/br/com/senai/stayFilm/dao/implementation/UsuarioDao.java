@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import br.com.senai.stayFilm.model.Usuario;
 @Repository
 public class UsuarioDao {
 
-	
+	@PersistenceContext
 	private EntityManager manager;
 	
 	
