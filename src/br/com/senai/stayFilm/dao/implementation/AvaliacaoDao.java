@@ -41,6 +41,14 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 
 	}
 
+	
+//	@Override
+//	public void insertWithKey(Avaliacao obj, long idColaborador,long idResposta) {
+//		// TODO Auto-generated method stub
+//
+//	}
+//	
+	
 	@Override
 	public Avaliacao updateWithKey(Avaliacao obj, long idObj) throws SQLException {
 		// TODO Auto-generated method stub
