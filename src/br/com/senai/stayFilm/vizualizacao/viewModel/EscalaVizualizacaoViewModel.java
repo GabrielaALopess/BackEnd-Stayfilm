@@ -11,14 +11,16 @@ public class EscalaVizualizacaoViewModel {
 		setComparecimento(escala.isComparecimento());
 		setObservacao(escala.getObservacao());
 		setDataEscala(escala.getDataEscala());
-		setHoraEscala(escala.getHoraEscala());
+		setHoraEscalaInicio(escala.getHoraEscalaInicio());
+		setHoraEscalaFim(escala.getHoraEscalaFim());
 		setIdColaborador(escala.getIdColaborador());
 	}
 
 	private boolean comparecimento;
 	private String observacao;
 	private Date dataEscala;
-	private Date horaEscala;
+	private Date horaEscalaInicio;
+	private Date horaEscalaFim;
 	private Colaborador idColaborador;
 
 	public boolean isComparecimento() {
@@ -45,20 +47,28 @@ public class EscalaVizualizacaoViewModel {
 		this.dataEscala = dataEscala;
 	}
 
-	public Date getHoraEscala() {
-		return horaEscala;
-	}
-
-	public void setHoraEscala(Date horaEscala) {
-		this.horaEscala = horaEscala;
-	}
-
 	public Colaborador getIdColaborador() {
 		return idColaborador;
 	}
 
 	public void setIdColaborador(Colaborador idColaborador) {
 		this.idColaborador = idColaborador;
+	}
+
+	public Date getHoraEscalaInicio() {
+		return horaEscalaInicio;
+	}
+
+	public void setHoraEscalaInicio(Date horaEscalaInicio) {
+		this.horaEscalaInicio = horaEscalaInicio;
+	}
+
+	public Date getHoraEscalaFim() {
+		return horaEscalaFim;
+	}
+
+	public void setHoraEscalaFim(Date horaEscalaFim) {
+		this.horaEscalaFim = horaEscalaFim;
 	}
 
 }

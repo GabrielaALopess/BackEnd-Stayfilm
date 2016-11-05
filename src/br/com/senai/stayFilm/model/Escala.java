@@ -11,16 +11,18 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Escala {
-	
-	public Escala(){
-		
+
+	public Escala() {
+
 	}
-	
-	public Escala(boolean comparecimento, String observacao, Date dataEscala, Date horaEscala, Colaborador idColaborador){
+
+	public Escala(boolean comparecimento, String observacao, Date dataEscala, Date horaEscalaInicio, Date horaEscalaFim,
+			Colaborador idColaborador) {
 		setComparecimento(comparecimento);
 		setObservacao(observacao);
 		setDataEscala(dataEscala);
-		setHoraEscala(horaEscala);
+		setHoraEscalaInicio(horaEscalaInicio);
+		setHoraEscalaFim(horaEscalaFim);
 		setIdColaborador(idColaborador);
 	}
 
@@ -30,9 +32,10 @@ public class Escala {
 	private boolean comparecimento;
 	private String observacao;
 	private Date dataEscala;
-	private Date horaEscala;
+	private Date horaEscalaInicio;
+	private Date horaEscalaFim;
 	@ManyToOne
-	@JoinColumn(name="colaborador_id")
+	@JoinColumn(name = "colaborador_id")
 	private Colaborador idColaborador;
 
 	public Long getIdEscala() {
@@ -67,14 +70,6 @@ public class Escala {
 		this.dataEscala = dataEscala;
 	}
 
-	public Date getHoraEscala() {
-		return horaEscala;
-	}
-
-	public void setHoraEscala(Date horaEscala) {
-		this.horaEscala = horaEscala;
-	}
-
 	public Colaborador getIdColaborador() {
 		return idColaborador;
 	}
@@ -83,5 +78,20 @@ public class Escala {
 		this.idColaborador = idColaborador;
 	}
 
+	public Date getHoraEscalaInicio() {
+		return horaEscalaInicio;
+	}
+
+	public void setHoraEscalaInicio(Date horaEscalaInicio) {
+		this.horaEscalaInicio = horaEscalaInicio;
+	}
+
+	public Date getHoraEscalaFim() {
+		return horaEscalaFim;
+	}
+
+	public void setHoraEscalaFim(Date horaEscalaFim) {
+		this.horaEscalaFim = horaEscalaFim;
+	}
 
 }

@@ -10,7 +10,8 @@ public class EscalaViewModel {
 	private boolean comparecimento;
 	private String observacao;
 	private Date dataEscala;
-	private Date horaEscala;
+	private Date horaEscalaInicio;
+	private Date horaEscalaFim;
 	private Colaborador idColaborador;
 
 	public boolean isComparecimento() {
@@ -37,14 +38,6 @@ public class EscalaViewModel {
 		this.dataEscala = dataEscala;
 	}
 
-	public Date getHoraEscala() {
-		return horaEscala;
-	}
-
-	public void setHoraEscala(Date horaEscala) {
-		this.horaEscala = horaEscala;
-	}
-
 	public Colaborador getIdColaborador() {
 		return idColaborador;
 	}
@@ -53,8 +46,24 @@ public class EscalaViewModel {
 		this.idColaborador = idColaborador;
 	}
 
-	public Escala toEscala() {
-		return new Escala(isComparecimento(), getObservacao(), getDataEscala(), getHoraEscala(), getIdColaborador());
+	public Date getHoraEscalaInicio() {
+		return horaEscalaInicio;
 	}
 
+	public void setHoraEscalaInicio(Date horaEscalaInicio) {
+		this.horaEscalaInicio = horaEscalaInicio;
+	}
+
+	public Date getHoraEscalaFim() {
+		return horaEscalaFim;
+	}
+
+	public void setHoraEscalaFim(Date horaEscalaFim) {
+		this.horaEscalaFim = horaEscalaFim;
+	}
+
+	public Escala toEscala() {
+		return new Escala(isComparecimento(), getObservacao(), getDataEscala(), getHoraEscalaInicio(),
+				getHoraEscalaFim(), getIdColaborador());
+	}
 }
