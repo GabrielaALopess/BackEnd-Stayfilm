@@ -36,6 +36,7 @@ public class ColaboradorRestController {
 		try {
 			Colaborador colaborador = viewModel.toColaborador();		
 			colaboradorBO.insert(colaborador);
+			
 			URI location = new URI("/colaborador" + colaborador.getIdColaborador());
 			return ResponseEntity.created(location).body(new ColaboradorVisualizacaoViewModel(colaborador));
 		} catch (URISyntaxException e) {
