@@ -41,7 +41,7 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 
 	}
 
-	
+	ASDFNMVLJH,R;EKLIJTLHORMY5ALIAFODHBA
 //	@Override
 //	public void insertWithKey(Avaliacao obj, long idColaborador,long idResposta) {
 //		// TODO Auto-generated method stub
