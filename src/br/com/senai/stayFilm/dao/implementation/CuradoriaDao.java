@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Curadoria;
 
 @Repository
@@ -57,6 +58,12 @@ public class CuradoriaDao implements GenericDao<Curadoria> {
 	public List<Curadoria> listar(long idCuradoria) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

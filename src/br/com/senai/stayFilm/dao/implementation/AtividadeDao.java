@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Atividade;
+import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 
 /**
@@ -75,6 +76,12 @@ public class AtividadeDao implements GenericDao<Atividade> {
 		TypedQuery<Atividade> query = manager.createQuery("select a from Atividade a where a.idColaborador.idColaborador = :idColaborador", Atividade.class);
 		query.setParameter("idColaborador", idColaborador);
 		return query.getResultList();
+	}
+
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

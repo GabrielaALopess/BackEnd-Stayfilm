@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
 
@@ -71,6 +72,12 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	public List<Endereco> listar(long idObj) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

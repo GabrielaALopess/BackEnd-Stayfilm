@@ -22,11 +22,11 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	private EntityManager manager;
 
 
-	
+	@Transactional
 	public void insert(Avaliacao avaliacao, long idColaborador,long idResposta) throws SQLException {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		avaliacao.setColaborador(colaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
-		avaliacao.setIdColaborador(colaborador);
 		avaliacao.setIdResposta(resposta);
 		manager.persist(avaliacao);
 
@@ -82,6 +82,19 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	public List<Avaliacao> listar(long idObj) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Transactional
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
+
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		avaliacao.setColaborador(colaborador);
+		Resposta resposta = manager.find(Resposta.class, idResposta);
+		avaliacao.setIdResposta(resposta);
+		manager.persist(avaliacao);
+
 	}
 
 }

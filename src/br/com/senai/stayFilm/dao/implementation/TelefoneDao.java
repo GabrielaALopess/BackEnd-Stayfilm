@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Telefone;
 
@@ -66,6 +67,12 @@ public class TelefoneDao implements GenericDao<Telefone> {
 		TypedQuery<Telefone> query = manager.createQuery("Select t from Telefone t where t.idColaborador = :idColaborador", Telefone.class);
 		query.setParameter("idColaborador", idColaborador);
 		return query.getResultList();
+	}
+
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

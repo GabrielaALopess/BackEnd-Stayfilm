@@ -1,51 +1,21 @@
-package br.com.senai.stayFilm.model;
+package br.com.senai.stayFilm.viewModel;
 
 import java.sql.Time;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import br.com.senai.stayFilm.enumeration.StatusAvaliacao;
+import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Resposta;
 
-@Entity
-public class Avaliacao {
+public class AvaliacaoViewModel {
 
-	public Avaliacao() {
-	}
-
-	public Avaliacao(Date data, Time hora, String observacao, StatusAvaliacao status, Colaborador idColaborador) {
-		this.data = data;
-		this.hora = hora;
-		this.observacao = observacao;
-		this.status = status;
-		this.setColaborador(colaborador);
-	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idAvaliacao;
 	private Date data;
 	private Time hora;
 	private String observacao;
 	private StatusAvaliacao status;
-	@ManyToOne
 	private Resposta idResposta;
-	@ManyToOne
-	@JoinColumn(name = "colaborador_id")
 	private Colaborador colaborador;
-
-	public Long getIdAvaliacao() {
-		return idAvaliacao;
-	}
-
-	public void setIdAvaliacao(Long idAvaliacao) {
-		this.idAvaliacao = idAvaliacao;
-	}
 
 	public Date getData() {
 		return data;
@@ -95,4 +65,7 @@ public class Avaliacao {
 		this.colaborador = colaborador;
 	}
 
+	public Avaliacao toAvaliacao() {
+		return new Avaliacao(getData(), getHora(), getObservacao(), getStatus(), getColaborador());
+	}
 }
