@@ -11,12 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.auth0.jwt.JWTSigner;
 
 import br.com.senai.stayFilm.dao.implementation.UsuarioDao;
 import br.com.senai.stayFilm.model.Usuario;
 
+
+@RestController
 public class UsuarioRestController {
 	public static final String SECRET="senaistayfilm";
 	public static final String ISSUER="http://www.sp.senai.br";
@@ -24,12 +27,12 @@ public class UsuarioRestController {
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
-	@RequestMapping(value="/usuario", method=RequestMethod.POST,
+	@RequestMapping(value="/criar/usuario", method=RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Usuario>inserir(@RequestBody Usuario usuario){
 		try{
 			usuarioDao.inserirUsuario(usuario);
-			URI location= new URI("/usuario");
+			URI location= new URI("/criar/usuario");
 			return ResponseEntity.created(location).body(usuario);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +63,10 @@ public class UsuarioRestController {
 				claims.put("exp", exp);
 				claims.put("iss",ISSUER);
 				claims.put("id_usuario", usuario.getIdUsuario());
+				//claims.put("id_colaborador", usuario.getIdcolaborador());
+				claims.put("id_colaborador", usuario.getIdcolaborador());
+				claims.put("permissao", usuario.getPermissao());
+				
 				//gerar o token
 				
 				String jwt = signer.sign(claims);

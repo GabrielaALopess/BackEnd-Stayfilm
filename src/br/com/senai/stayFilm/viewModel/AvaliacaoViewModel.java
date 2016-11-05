@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.viewModel;
+package br.com.senai.stayFilm.ViewModel;
 
 import java.util.Date;
 
