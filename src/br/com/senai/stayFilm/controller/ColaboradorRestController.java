@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.viewModel.ColaboradorViewModel;
+import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewModel;
 
 /**
  * 23/10/2016
@@ -29,12 +31,13 @@ public class ColaboradorRestController {
 	public ColaboradorBo colaboradorBO;
 
 	@RequestMapping(value = "/colaborador", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Colaborador> inserir(@RequestBody Colaborador colaborador) throws SQLException {
+	public ResponseEntity<ColaboradorVisualizacaoViewModel> inserir(@RequestBody ColaboradorViewModel viewModel) throws SQLException {
 
 		try {
+			Colaborador colaborador = viewModel.toColaborador();		
 			colaboradorBO.insert(colaborador);
 			URI location = new URI("/colaborador" + colaborador.getIdColaborador());
-			return ResponseEntity.created(location).body(colaborador);
+			return ResponseEntity.created(location).body(new ColaboradorVisualizacaoViewModel(colaborador));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
