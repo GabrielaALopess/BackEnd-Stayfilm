@@ -1,18 +1,10 @@
-package br.com.senai.stayFilm.vizualizacao.viewModel;
+package br.com.senai.stayFilm.viewModel;
 
 import br.com.senai.stayFilm.enumeration.Periodo;
 import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Colaborador;
 
-public class AtividadeVisualizacaoViewModel {
-
-	public AtividadeVisualizacaoViewModel(Atividade atividade) {
-		setInstituicao(atividade.getInstituicao());
-		setAtividade(atividade.getAtividade());
-		setPeriodo(atividade.getPeriodo());
-		setColaborador(atividade.getColaborador());
-
-	}
+public class AtividadeViewModel {
 
 	private String instituicao;
 	private String atividade;
@@ -43,6 +35,10 @@ public class AtividadeVisualizacaoViewModel {
 		this.periodo = periodo;
 	}
 
+	public Atividade toAtividade() {
+		return new Atividade(getInstituicao(), getAtividade(), getPeriodo(), getColaborador());
+	}
+
 	public Colaborador getColaborador() {
 		return colaborador;
 	}
@@ -50,4 +46,5 @@ public class AtividadeVisualizacaoViewModel {
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
 	}
+
 }

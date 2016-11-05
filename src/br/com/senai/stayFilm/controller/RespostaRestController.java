@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.viewModel.RespostaViewModel;
 import br.com.senai.stayFilm.bo.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
+import br.com.senai.stayFilm.viewModel.CadastroViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.RespostaVisualizacaoViewModel;
 
 /**
@@ -31,7 +31,7 @@ public class RespostaRestController {
 
 	
 	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
-	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody RespostaViewModel viewModel) throws SQLException {
+	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody CadastroViewModel viewModel) throws SQLException {
 
 		try {
 			Resposta resposta = viewModel.toResposta();

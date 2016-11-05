@@ -15,10 +15,11 @@ public class Atividade {
 	public Atividade() {
 	}
 
-	public Atividade(String instituicao, String atividade, Periodo periodo) {
+	public Atividade(String instituicao, String atividade, Periodo periodo, Colaborador colaborador) {
 		this.instituicao = instituicao;
 		this.atividade = atividade;
 		this.periodo = periodo;
+		this.colaborador = colaborador;
 	}
 
 	@Id
@@ -30,7 +31,7 @@ public class Atividade {
 
 	@ManyToOne
 	@JoinColumn(name = "idColaborador")
-	private Colaborador idColaborador;
+	private Colaborador colaborador;
 
 	public Long getIdAtividade() {
 		return idAtividade;
@@ -64,12 +65,12 @@ public class Atividade {
 		this.periodo = periodo;
 	}
 
-	public Colaborador getIdColaborador() {
-		return idColaborador;
+	public Colaborador getColaborador() {
+		return colaborador;
 	}
 
-	public void setIdColaborador(Colaborador idColaborador) {
-		this.idColaborador = idColaborador;
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 
 }

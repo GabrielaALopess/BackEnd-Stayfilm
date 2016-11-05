@@ -17,21 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.AtividadeBo;
 import br.com.senai.stayFilm.model.Atividade;
+import br.com.senai.stayFilm.viewModel.AtividadeViewModel;
+import br.com.senai.stayFilm.vizualizacao.viewModel.AtividadeVisualizacaoViewModel;
 
 @RestController
 public class AtividadeRestController {
+
 	@Autowired
 	public AtividadeBo atividadeBO;
 
 	@RequestMapping(value = "/atividade/{idColaborador}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Atividade> inserir(@PathVariable Long idColaborador, @RequestBody Atividade atividade)
-			throws SQLException {
-		System.out.println(atividadeBO);
-
+	public ResponseEntity<AtividadeVisualizacaoViewModel> inserir(@PathVariable Long idColaborador,
+			@RequestBody AtividadeViewModel viewModel) throws SQLException {
 		try {
-			atividadeBO.insert(atividade,idColaborador);
-			URI location = new URI("/atividade" + atividade.getIdColaborador());
-			return ResponseEntity.created(location).body(atividade);
+			Atividade atividade = viewModel.toAtividade();
+			atividadeBO.insert(atividade, idColaborador);
+			URI location = new URI("/atividade" + atividade.getColaborador().getIdColaborador());
+			return ResponseEntity.created(location).body(new AtividadeVisualizacaoViewModel(atividade));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,7 +45,6 @@ public class AtividadeRestController {
 	public List<Atividade> pesquisarAtividade(@PathVariable Long idAtividade) throws SQLException {
 		return atividadeBO.search(idAtividade);
 	}
-
 
 	@Transactional
 	@RequestMapping(value = "/atividade/editar/{idAtividade}/{idColaborador}", method = RequestMethod.PUT)
@@ -59,12 +60,14 @@ public class AtividadeRestController {
 	}
 
 	/**
-	 * Metodo responsavel por listar as atividades quando o id do colaborador for determinado.
+	 * Metodo responsavel por listar as atividades quando o id do colaborador
+	 * for determinado.
+	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/lista/{idColaborador}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Atividade> listar(@PathVariable long idColaborador){
+	@RequestMapping(value = "/lista/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Atividade> listar(@PathVariable long idColaborador) {
 		return atividadeBO.search(idColaborador);
 	}
-	
+
 }

@@ -33,7 +33,7 @@ public class Colaborador {
 	private Date dataNasc;
 	private Status status;
 
-	@OneToMany(mappedBy = "idColaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Atividade> atividades;
 
 	public Long getIdColaborador() {

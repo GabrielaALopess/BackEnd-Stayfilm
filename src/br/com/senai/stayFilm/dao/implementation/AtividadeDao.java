@@ -56,7 +56,7 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	@Override
 	public void insertWithKey(Atividade atividade, long idColaborador) {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		atividade.setIdColaborador(colaborador);
+		atividade.setColaborador(colaborador);
 		manager.persist(atividade);
 
 	}
@@ -65,7 +65,7 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	@Override
 	public Atividade updateWithKey(Atividade atividade, long idColaborador) throws SQLException {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		atividade.setIdColaborador(colaborador);
+		atividade.setColaborador(colaborador);
 		return manager.merge(atividade);
 	}
 
