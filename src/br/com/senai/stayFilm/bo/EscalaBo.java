@@ -2,16 +2,19 @@ package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.EscalaDao;
+import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Escala;
 
 public class EscalaBo {
 
-	EscalaDao escalaDao;
-
-	public EscalaBo() {
-		escalaDao = new EscalaDao();
-	}
+	@Autowired
+	@Qualifier("escalaDao")
+	private GenericDao<Escala> escalaDao;
 
 	public void insert(Escala escala) throws SQLException {
 		escalaDao.insert(escala);
@@ -29,6 +32,11 @@ public class EscalaBo {
 		return escalaDao.search(idEscala);
 	}
 
+	/**
+	 * Métod responsável por inserir a escala
+	 * @param escala
+	 * @param idColaborador
+	 */
 	public void insertWithKey(Escala escala, long idColaborador) {
 		escalaDao.insertWithKey(escala, idColaborador);
 	}

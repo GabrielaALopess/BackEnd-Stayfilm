@@ -3,18 +3,27 @@ package br.com.senai.stayFilm.dao.implementation;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
-
+/**
+ * 
+ * Classe responsável pela manipulaçao da escala no banco de dados.
+ * @author Gabriela Lopes
+ *
+ */
 @Repository
 public class EscalaDao implements GenericDao<Escala> {
 
-//	@PersistenceContext
-//	private EntityManager manager;
+	@PersistenceContext
+	private EntityManager manager;
 
 	@Override
 	public void insert(Escala obj) throws SQLException {
@@ -41,13 +50,17 @@ public class EscalaDao implements GenericDao<Escala> {
 //		return manager.find(Escala.class, idEscala);
 		return null;
 	}
-
+	
+	
+	/**
+	 * Método responsável por inserir a escala no banco de dados 
+	 */
 	@Transactional
 	@Override
 	public void insertWithKey(Escala escala, long idColaborador) {
-//		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-//		escala.setIdColaborador(colaborador);
-//		manager.persist(escala);
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		escala.setIdColaborador(colaborador);
+		manager.persist(escala);
 	}
 
 	@Transactional
