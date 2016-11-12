@@ -2,6 +2,8 @@ package br.com.senai.stayFilm.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,26 +20,32 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
+	
 	@Column(unique=true)
 	private String login;
+	
+	/**
+	 * ISSO AQUI PEGA A STRING DA ENUM
+	 */
 	@Column
+	@Enumerated(EnumType.STRING)
 	private TipoPermissao permissao;
-	@Column
-	private String senha;
 	
 	@OneToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador idcolaborador;
+	
+	@Column
+	private Colaborador colaborador;
 	
 	
 	Usuario(){
 		
 	}
 	
-	Usuario(String login, TipoPermissao permissao, String senha, Colaborador idcolaborador){
+	Usuario(String login, TipoPermissao permissao, Colaborador idcolaborador){
 		this.login=login;
 		this.permissao=permissao;
-		this.senha=senha;
 		this.idcolaborador=idcolaborador;
 		
 	}
@@ -69,13 +77,7 @@ public class Usuario {
 	}
 
 	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		String md5=encoder.encodePassword(senha, null);
-		this.senha = md5;
+		return colaborador.getSenha();
 	}
 
 	public Colaborador getIdcolaborador() {

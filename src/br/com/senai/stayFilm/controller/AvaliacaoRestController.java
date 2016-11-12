@@ -18,6 +18,13 @@ import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.viewModel.AvaliacaoViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.AvaliacaoVisualizacaoViewModel;
 
+
+
+/**
+ * FAZER O REDIRECT PARA A TELA DE RESPOSTA 
+ * @author Gustavo
+ *
+ */
 @RestController
 public class AvaliacaoRestController {
 

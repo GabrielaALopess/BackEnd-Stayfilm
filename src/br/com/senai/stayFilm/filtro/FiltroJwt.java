@@ -19,10 +19,29 @@ import com.auth0.jwt.JWTVerifier;
 
 import br.com.senai.stayFilm.controller.UsuarioRestController;
 
-@WebFilter("/#*")
+@WebFilter("/*")
 public class FiltroJwt implements Filter {
 
 	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
 	public void destroy() {
 
 	}
@@ -64,5 +83,5 @@ public class FiltroJwt implements Filter {
 
 	}
 	
-
+*/
 }

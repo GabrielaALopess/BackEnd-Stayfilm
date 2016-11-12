@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import br.com.senai.stayFilm.enumeration.Status;
 
@@ -23,16 +28,19 @@ public class Colaborador {
 	private String nome;
 	private Date dataNasc;
 	private Status status;
-
+	
 	@OneToMany
-	private List<Telefone> telefone;
+	private List<Telefone>telefone;
 
 	@OneToOne
 	private Endereco endereco;
-
 	private String email;
+	
+	@Column
 	private String senha;
 
+	
+	@Fetch(FetchMode.SELECT)
 	@OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Atividade> atividades;
 
@@ -80,8 +88,14 @@ public class Colaborador {
 		return senha;
 	}
 
+	/**
+	 * CRIPTOGRAFIA MD5
+	 * @param senha
+	 */
 	public void setSenha(String senha) {
-		this.senha = senha;
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5=encoder.encodePassword(senha, null);
+		this.senha = md5;
 	}
 
 	public List<Atividade> getAtividades() {

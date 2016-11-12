@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.senai.stayFilm.bo.EscalaBo;
 import br.com.senai.stayFilm.model.Escala;
 import br.com.senai.stayFilm.viewModel.EscalaViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaVizualizacaoViewModel;
@@ -21,9 +19,9 @@ import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaVizualizacaoViewModel;
 @RestController
 public class EscalaRestController {
 
-	@Autowired
+	/*@Autowired
 	private EscalaBo escalaBO;
-
+*/
 	
 	
 	/**
@@ -39,7 +37,7 @@ public class EscalaRestController {
 
 		try {
 			Escala escala = viewModel.toEscala();
-			escalaBO.insertWithKey(escala, idColaborador);
+		//	escalaBO.insertWithKey(escala, idColaborador);
 			URI location = new URI("/escala" + escala.getIdColaborador());
 			return ResponseEntity.created(location).body(new EscalaVizualizacaoViewModel(escala));
 		} catch (URISyntaxException e) {

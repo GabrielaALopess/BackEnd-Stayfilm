@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.bo;
+/*package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
 
@@ -32,11 +32,11 @@ public class EscalaBo {
 		return escalaDao.search(idEscala);
 	}
 
-	/**
+	*//**
 	 * Métod responsável por inserir a escala
 	 * @param escala
 	 * @param idColaborador
-	 */
+	 *//*
 	public void insertWithKey(Escala escala, long idColaborador) {
 		escalaDao.insertWithKey(escala, idColaborador);
 	}
@@ -49,3 +49,4 @@ public class EscalaBo {
 //		
 //	}
 }
+*/

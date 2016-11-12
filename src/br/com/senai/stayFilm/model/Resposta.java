@@ -8,6 +8,13 @@ import javax.persistence.Id;
 
 import br.com.senai.stayFilm.enumeration.Idioma;
 
+/**
+ * PREPARAR A RESPOSTA PARA SALVAR UMA RESPOSTA EM VÁRIOS IDIOMAS , NA MESMA TELA O MOTIVO, INGLES E ESPANHOL
+ * 
+ * NALISTAGEM MOSTRAR O MOTIVO E A RESPOSTA
+ * @author Gustavo
+ *
+ */
 @Entity
 public class Resposta {
 	

@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.enumeration.StatusFilme;
+import br.com.senai.stayFilm.enumeration.TemaFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
@@ -84,7 +88,19 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		return null;
 	}
 
-
+	
+	
+	
+	public List<Avaliacao> listarPorStatus(StatusFilme status) {
+		String hql = "select a from Avaliacao a where a.status = :status";
+		TypedQuery<Avaliacao> query = manager.createQuery(hql, Avaliacao.class);
+		query.setParameter("status", status);
+		return query.getResultList();
+	}
+	
+	
+	
+	
 	@Transactional
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {

@@ -10,35 +10,47 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import br.com.senai.stayFilm.enumeration.StatusAvaliacao;
-
 @Entity
 public class Avaliacao {
 
 	public Avaliacao() {
 	}
 
-	public Avaliacao(Date data, Time hora, String observacao, StatusAvaliacao status, Colaborador idColaborador) {
-		this.data = data;
-		this.hora = hora;
+	public Avaliacao(Date data, Time hora, String observacao, Boolean statusFilme,
+			Colaborador idColaborador) {
+		this.dataAvaliacao = data;
 		this.observacao = observacao;
-		this.status = status;
+		this.statusReport = statusFilme;
 		this.setColaborador(colaborador);
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAvaliacao;
-	private Date data;
-	private Time hora;
+	
+	private Date dataAvaliacao;
+
 	private String observacao;
-	private StatusAvaliacao status;
+	
+	/**
+	 * TRATA SE O FILME FOI FEITO OU NÃO
+	 */
+	private Boolean statusReport;
+	
+	@ManyToOne
+	@JoinColumn(name = "filme_id")
+	private Filme filme;
+	
 	@ManyToOne
 	private Resposta idResposta;
+	
 	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador colaborador;
 
+	
+	
+	
 	public Long getIdAvaliacao() {
 		return idAvaliacao;
 	}
@@ -48,20 +60,13 @@ public class Avaliacao {
 	}
 
 	public Date getData() {
-		return data;
+		return dataAvaliacao;
 	}
 
 	public void setData(Date data) {
-		this.data = data;
+		this.dataAvaliacao = data;
 	}
 
-	public Time getHora() {
-		return hora;
-	}
-
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
 
 	public String getObservacao() {
 		return observacao;
@@ -71,12 +76,12 @@ public class Avaliacao {
 		this.observacao = observacao;
 	}
 
-	public StatusAvaliacao getStatus() {
-		return status;
+	public Boolean isStatusReport() {
+		return statusReport;
 	}
 
-	public void setStatus(StatusAvaliacao status) {
-		this.status = status;
+	public void setStatusReport(Boolean statusReport) {
+		this.statusReport = statusReport;
 	}
 
 	public Resposta getIdResposta() {

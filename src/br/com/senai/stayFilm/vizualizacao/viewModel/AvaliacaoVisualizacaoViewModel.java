@@ -3,24 +3,22 @@ package br.com.senai.stayFilm.vizualizacao.viewModel;
 import java.sql.Time;
 import java.util.Date;
 
-import br.com.senai.stayFilm.enumeration.StatusAvaliacao;
+import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Resposta;
 
 public class AvaliacaoVisualizacaoViewModel {
 	
 	public AvaliacaoVisualizacaoViewModel(Avaliacao avaliacao){
-		setHora(avaliacao.getHora());
-		setHora(avaliacao.getHora());
+		
 		setObservacao(avaliacao.getObservacao());
-		setStatus(avaliacao.getStatus());
 		setIdResposta(avaliacao.getIdResposta());
 	}
 
 	private Date data;
 	private Time hora;
 	private String observacao;
-	private StatusAvaliacao status;
+	private StatusFilme status;
 	private Resposta idResposta;
 
 	public Date getData() {
@@ -47,11 +45,11 @@ public class AvaliacaoVisualizacaoViewModel {
 		this.observacao = observacao;
 	}
 
-	public StatusAvaliacao getStatus() {
+	public StatusFilme getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusAvaliacao status) {
+	public void setStatus(StatusFilme status) {
 		this.status = status;
 	}
 

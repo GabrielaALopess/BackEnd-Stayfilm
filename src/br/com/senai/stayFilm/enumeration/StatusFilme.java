@@ -1,12 +1,12 @@
 package br.com.senai.stayFilm.enumeration;
 
-public enum StatusAvaliacao {
+public enum StatusFilme {
 
-	APROVADO("Aprovado"), REPROVADO("Reprovado"), MONITORIA("Monidoria");
+	APROVADO("Aprovado"), REPROVADO("Reprovado"), MONITORIA("Monidoria"), FAVORITO("Favorito");
 
 	private String statusAvaliacao;
 
-	StatusAvaliacao(String statusAvaliacao) {
+	StatusFilme(String statusAvaliacao) {
 		this.statusAvaliacao = statusAvaliacao;
 	}
 
