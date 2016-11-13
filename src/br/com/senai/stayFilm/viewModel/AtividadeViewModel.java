@@ -1,9 +1,15 @@
 package br.com.senai.stayFilm.viewModel;
 
+import javax.persistence.Entity;
+
+import org.springframework.stereotype.Component;
+
 import br.com.senai.stayFilm.enumeration.Periodo;
 import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Colaborador;
 
+
+@Component
 public class AtividadeViewModel {
 
 	private String instituicao;

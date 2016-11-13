@@ -47,9 +47,8 @@ public class ColaboradorRestController {
 	}
 
 	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Colaborador pesquisarColaborador(@PathVariable Long idColaborador) throws SQLException {
-//		return colaboradorDao.search(idColaborador);
-		return null;
+	public ColaboradorVisualizacaoViewModel pesquisarColaborador(@PathVariable Long idColaborador) throws SQLException {
+		return new ColaboradorVisualizacaoViewModel(colaboradorBO.buscar(idColaborador));
 	}
 
 	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PUT)

@@ -28,23 +28,6 @@ public class FiltroJwt implements Filter {
 		
 	}
 
-	@Override
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2)
-			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*@Override
-	public void destroy() {
-
-	}
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -61,6 +44,7 @@ public class FiltroJwt implements Filter {
 			JWTVerifier verifier= new JWTVerifier(UsuarioRestController.SECRET);
 			
 			Map<String, Object>claims = verifier.verify(token);
+			claims.get("colaborador_id");
 			System.out.println(claims);
 			chain.doFilter(req, resp);
 			
@@ -83,5 +67,5 @@ public class FiltroJwt implements Filter {
 
 	}
 	
-*/
+
 }

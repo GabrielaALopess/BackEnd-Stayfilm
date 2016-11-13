@@ -31,4 +31,8 @@ public class ColaboradorBo {
 	public void insert(Colaborador colaborador) throws SQLException{
 		colaboradorDao.insert(colaborador);
 	}
+	
+	public Colaborador buscar(Long id) throws SQLException {
+		return colaboradorDao.search(id);
+	}
 }

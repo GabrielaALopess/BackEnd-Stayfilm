@@ -29,9 +29,8 @@ public class FilmeDao implements GenericDao<Filme> {
 	}
 
 	@Override
-	public void delete(Long idObj) throws SQLException {
-		// TODO Auto-generated method stub
-
+	public void delete(Long idBloqueiofixo) throws SQLException {
+		
 	}
 
 	@Override
