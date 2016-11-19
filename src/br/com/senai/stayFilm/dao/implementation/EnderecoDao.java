@@ -26,6 +26,30 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	@PersistenceContext
 	private EntityManager manager;
 
+	
+	/**
+	 * Metodo responsavel por inserir o endereco
+	 */
+	@Transactional
+	@Override
+	public void insertWithKey(Endereco endereco, long idColaborador) {
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		endereco.setIdColaborador(colaborador);
+		manager.persist(endereco);
+
+	}
+
+	/**
+	 * Metodo responsavel por buscar o endereco conforme o id
+	 */
+	@Override
+	public Endereco buscarPorId(Long idEndereco) {
+		return manager.find(Endereco.class, idEndereco);
+	}
+	
+	
+	
+	
 	@Override
 	public void insert(Endereco obj) throws SQLException {
 		// NOT USE
@@ -51,14 +75,7 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return manager.find(Endereco.class, idEndereco);
 	}
 
-	@Transactional
-	@Override
-	public void insertWithKey(Endereco endereco, long idColaborador) {
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		endereco.setIdColaborador(colaborador);
-		manager.persist(endereco);
 
-	}
 
 	@Transactional
 	@Override
@@ -79,5 +96,13 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Colaborador> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

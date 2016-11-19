@@ -1,111 +1,61 @@
 package br.com.senai.stayFilm.model;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-
-import br.com.senai.stayFilm.enumeration.Status;
+/**
+ * Modelo utilizado na persistencia do Colaborador
+ * 
+ * @author Gabriela Lopes
+ *
+ */
 
 @Entity
 public class Colaborador {
 
+	public Colaborador() {
+	}
+
+	public Colaborador(String nome, Date dataNasc, boolean status, String telefoneResidencial, String telefoneCelular,
+			Endereco endereco, String email, String senha) {
+
+		this.nome = nome;
+		this.dataNasc = dataNasc;
+		this.status = status;
+		this.telefoneResidencial = telefoneResidencial;
+		this.telefoneCelular = telefoneCelular;
+
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idColaborador;
-	private String nome;
-	private Date dataNasc;
-	private Status status;
-	
-	@OneToMany
-	private List<Telefone>telefone;
 
-	@OneToOne
-	private Endereco endereco;
+	private String nome;
+
+	private Date dataNasc;
+
+	private boolean status;
+
+	private String telefoneResidencial;
+
+	private String telefoneCelular;
+
 	private String email;
-	
+
 	@Column
 	private String senha;
 
-	
-	@Fetch(FetchMode.SELECT)
-	@OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Atividade> atividades;
-
-	public Colaborador() {
-		// NADA NADA NADA NADA ...
-	}
-
-	public Colaborador(String nome, Date data, Status status, List<Telefone> telefone, String email, String senha,
-			Endereco endereco, List<Atividade> atividade) {
-		this.nome = nome;
-		this.dataNasc = data;
-		this.status = status;
-
-		this.email = email;
-		this.senha = senha;
-		this.endereco = endereco;
-		this.atividades = atividade;
-	}
-
-	public List<Telefone> getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
 	/**
-	 * CRIPTOGRAFIA MD5
-	 * @param senha
+	 * id do colaborador
+	 * 
+	 * @return
 	 */
-	public void setSenha(String senha) {
-		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-		String md5=encoder.encodePassword(senha, null);
-		this.senha = md5;
-	}
-
-	public List<Atividade> getAtividades() {
-		return atividades;
-	}
-
-	public void setAtividades(List<Atividade> atividades) {
-		this.atividades = atividades;
-	}
-
 	public Long getIdColaborador() {
 		return idColaborador;
 	}
@@ -114,6 +64,11 @@ public class Colaborador {
 		this.idColaborador = idColaborador;
 	}
 
+	/**
+	 * Entende-se por nome completo do colaborador
+	 * 
+	 * @return
+	 */
 	public String getNome() {
 		return nome;
 	}
@@ -122,6 +77,11 @@ public class Colaborador {
 		this.nome = nome;
 	}
 
+	/**
+	 * A data de nascimento do colaborador para consulta futura
+	 * 
+	 * @return
+	 */
 	public Date getDataNasc() {
 		return dataNasc;
 	}
@@ -130,11 +90,77 @@ public class Colaborador {
 		this.dataNasc = dataNasc;
 	}
 
-	public Status getStatus() {
+	/**
+	 * E realizada a inclusao do telefone residencial para posterior consulta do
+	 * colaborador
+	 * 
+	 * @return
+	 */
+	public String getTelefoneResidencial() {
+		return telefoneResidencial;
+	}
+
+	public void setTelefoneResidencial(String telefoneResidencial) {
+		this.telefoneResidencial = telefoneResidencial;
+	}
+
+	/**
+	 * E realizado a inclusao do telefone celular para posterior consulta do
+	 * colaborador
+	 * 
+	 * @return
+	 */
+	public String getTelefoneCelular() {
+		return telefoneCelular;
+	}
+
+	public void setTelefoneCelular(String telefoneCelular) {
+		this.telefoneCelular = telefoneCelular;
+	}
+
+	/**
+	 * O email sera utilizado para realizar o login para a curadoria e e
+	 * utilizado tambem no envio de emails para a recuperacao de senha
+	 * 
+	 * @return
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * Senha do colaborador que ira logar para realizar a curadoria
+	 * 
+	 * @return
+	 */
+
+	public String getSenha() {
+		return senha;
+	}
+
+	/**
+	 * CRIPTOGRAFIA MD5
+	 * 
+	 * @param senha
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	/**
+	 * O status representa a quao o colaborador e ativo ou inativo no sistema
+	 * 
+	 * @return
+	 */
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 

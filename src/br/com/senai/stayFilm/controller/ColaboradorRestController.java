@@ -3,10 +3,12 @@ package br.com.senai.stayFilm.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,12 @@ public class ColaboradorRestController {
 	@Autowired
 	public ColaboradorBo colaboradorBO;
 
+	/**
+	 * Método para cadastrar um colaborador 
+	 * @param viewModel
+	 * @return
+	 * @throws SQLException
+	 */
 	@RequestMapping(value = "/colaborador", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ColaboradorVisualizacaoViewModel> inserir(@RequestBody ColaboradorViewModel viewModel) throws SQLException {
 
@@ -45,23 +53,40 @@ public class ColaboradorRestController {
 		}
 
 	}
-
-	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ColaboradorVisualizacaoViewModel pesquisarColaborador(@PathVariable Long idColaborador) throws SQLException {
-		return new ColaboradorVisualizacaoViewModel(colaboradorBO.buscar(idColaborador));
+	
+	/**
+	 * Para listar todos os colaboradores que estao salvos
+	 * @return
+	 */
+	@RequestMapping(value = "/listarColaboradores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Colaborador> listarTodosColaboradores(){
+		return colaboradorBO.listarTodos();
 	}
-
+	
+	
+	/**
+	 * Alterar os dados do colaborador
+	 * @param colaborador
+	 * @param idColaborador
+	 * @throws SQLException
+	 */
+	@Transactional
 	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PUT)
-	public Colaborador altera(@RequestBody Colaborador colaborador, @PathVariable long idColaborador)
-			throws SQLException {
-//		return colaboradorDao.update(colaborador);
-	return null;
+	public void altera(@RequestBody Colaborador colaborador, @PathVariable Long idColaborador) throws SQLException {
+		colaboradorBO.atualizar(colaborador, idColaborador);
 	}
-
-	@RequestMapping(value = "/colaborador/{idColaborador}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> remover(@PathVariable long idColaborador) throws SQLException {
-//		colaboradorDao.delete(idColaborador);
-		return ResponseEntity.noContent().build();
+	
+	
+	/**
+	 * Metodo para preencher os dados dos colaboradores 
+	 * (tela de transicao entre a lista de colaboradores e a acao do alterar)
+	 * @param idColaborador
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/colaborador/busca/{idColaborador}", method = RequestMethod.GET)
+	public Colaborador buscarPorId(@PathVariable Long idColaborador) throws SQLException {
+		return colaboradorBO.buscarPorId(idColaborador);
 	}
-
+	
 }

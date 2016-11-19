@@ -26,6 +26,13 @@ public class AtividadeRestController {
 	@Autowired
 	public AtividadeBo atividadeBO;
 
+	/**
+	 * Metodo para inserir as atividade de um colaborador
+	 * @param idColaborador
+	 * @param viewModel
+	 * @return
+	 * @throws SQLException
+	 */
 	@RequestMapping(value = "/atividade/{idColaborador}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<AtividadeVisualizacaoViewModel> inserir(@PathVariable Long idColaborador,
 			@RequestBody AtividadeViewModel viewModel) throws SQLException {
@@ -41,24 +48,20 @@ public class AtividadeRestController {
 
 	}
 
-	@RequestMapping(value = "/atividade/{idAtividade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Atividade> pesquisarAtividade(@PathVariable Long idAtividade) throws SQLException {
-		return atividadeBO.search(idAtividade);
-	}
-
+	/**
+	 * Editar as atividades de um colaborador
+	 * @param atividade
+	 * @param idColaborador
+	 * @return
+	 * @throws SQLException
+	 */
 	@Transactional
 	@RequestMapping(value = "/atividade/editar/{idAtividade}/{idColaborador}", method = RequestMethod.PUT)
 	public Atividade altera(@RequestBody Atividade atividade, @PathVariable Long idColaborador) throws SQLException {
 		return atividadeBO.edit(atividade, idColaborador);
 	}
 
-	@Transactional
-	@RequestMapping(value = "/atividade/{idAtividade}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> remover(@PathVariable long idAtividade) throws SQLException {
-		atividadeBO.remove(idAtividade);
-		return ResponseEntity.noContent().build();
-	}
-
+	
 	/**
 	 * Metodo responsavel por listar as atividades quando o id do colaborador
 	 * for determinado.
@@ -69,5 +72,48 @@ public class AtividadeRestController {
 	public List<Atividade> listar(@PathVariable long idColaborador) {
 		return atividadeBO.search(idColaborador);
 	}
+	
+	/**
+	 * Metodo responsavel por preencher os campos de atividade
+	 * Alteracao entre a lista de atividades e a acao alterar
+	 * @param idAtividade
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/atividade/busca/{idAtividade}", method = RequestMethod.GET)
+	public Atividade buscarPorId(@PathVariable Long idAtividade) throws SQLException {
+		return atividadeBO.buscarPorId(idAtividade);
+	}
+
+	
+	/**
+	 * Metodo responsavel por remover a atividade de um colaborador
+	 * @param idAtividade
+	 * @return
+	 * @throws SQLException
+	 */
+	@Transactional
+	@RequestMapping(value = "/atividade/{idAtividade}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable long idAtividade) throws SQLException {
+		atividadeBO.remove(idAtividade);
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	/**
+	 * Metodo implementado porem nao usado
+	 * @param idAtividade
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/atividade/{idAtividade}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Atividade> pesquisarAtividade(@PathVariable Long idAtividade) throws SQLException {
+		return atividadeBO.search(idAtividade);
+	}
+
+
+
+
+	
 
 }

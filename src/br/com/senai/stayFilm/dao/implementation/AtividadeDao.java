@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,31 +27,9 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	@PersistenceContext
 	private EntityManager manager;
 
-	@Override
-	public void insert(Atividade atividade) throws SQLException {
-		// NOT USE
-
-	}
-	
-	@Transactional
-	@Override
-	public void delete(Long idAtividade) throws SQLException {
-		Atividade atividade = manager.find(Atividade.class, idAtividade);
-		manager.remove(atividade);
-
-	}
-
-	@Override
-	public Atividade update(Atividade atividade) throws SQLException {
-		// NOT USE
-		return null;
-	}
-
-	@Override
-	public Atividade search(Long idAtividade) {
-		return manager.find(Atividade.class, idAtividade);
-	}
-
+	/**
+	 * Inserir as atividades do colaborador
+	 */
 	@Transactional
 	@Override
 	public void insertWithKey(Atividade atividade, long idColaborador) {
@@ -62,6 +39,28 @@ public class AtividadeDao implements GenericDao<Atividade> {
 
 	}
 
+	/**
+	 * Esse metodo e responsaver por listar todas as atividades de um colaborador
+	 */
+	@Override
+	public List<Atividade> listar(long idColaborador) { 
+		return manager.createQuery("select a.atividade, a.instituicao, a.periodo from Atividade a where a.colaborador.idColaborador = "+idColaborador).getResultList();
+	}	
+
+
+	/**
+	 * Esse metodo e responsavel por preencher os campos de uma determinada atividade 
+	 * transicao entre a lista das atividades e a acao de alterar
+	 */
+	@Override
+	public Atividade buscarPorId(Long idAtividade) {
+		return manager.find(Atividade.class, idAtividade);
+	}
+
+	
+	/**
+	 * Metodo para editar os dados da atividade do colaborador
+	 */
 	@Transactional
 	@Override
 	public Atividade updateWithKey(Atividade atividade, long idColaborador) throws SQLException {
@@ -69,19 +68,57 @@ public class AtividadeDao implements GenericDao<Atividade> {
 		atividade.setColaborador(colaborador);
 		return manager.merge(atividade);
 	}
+	
 
+	/**
+	 * Metodo responsaver por remover atividade de um colaborador
+	 */
+	@Transactional
+	@Override
+	public void delete(Long idAtividade) throws SQLException {
+		Atividade atividade = manager.find(Atividade.class, idAtividade);
+		manager.remove(atividade);
+
+	}
+
+	
+	
+	
+	@Override
+	public void insert(Atividade atividade) throws SQLException {
+		// NOT USE
+
+	}
+	
 
 	@Override
-	public List<Atividade> listar(long idColaborador) { 
-		TypedQuery<Atividade> query = manager.createQuery("select a from Atividade a where a.colaborador.idColaborador = :idColaborador", Atividade.class);
-		query.setParameter("idColaborador", idColaborador);
-		return query.getResultList();
+	public Atividade update(Atividade atividade) throws SQLException {
+		// NOT USE
+		return null;
 	}
+
+
+	/**
+	 * Metodo implementado porem nao utilizado
+	 */
+	@Override
+	public Atividade search(Long idAtividade) {
+		return manager.find(Atividade.class, idAtividade);
+	}
+
 
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
-		// TODO Auto-generated method stub
+		// NOT USE
 		
 	}
+
+	@Override
+	public List<Colaborador> listarTodos() {
+		//NOT USE
+		return null;
+	}
+
+	
 
 }

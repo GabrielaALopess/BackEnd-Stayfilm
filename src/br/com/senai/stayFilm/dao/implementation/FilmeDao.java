@@ -14,6 +14,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.enumeration.TemaFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Filme;
 
 @Repository
@@ -100,5 +101,17 @@ public class FilmeDao implements GenericDao<Filme> {
 	public void mudarStatus(long idFilme, StatusFilme statusFilme){
 		Filme filme = manager.find(Filme.class, statusFilme);
 		manager.merge(filme);
+	}
+
+	@Override
+	public List<Colaborador> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Filme buscarPorId(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

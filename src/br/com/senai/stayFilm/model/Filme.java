@@ -24,52 +24,43 @@ import br.com.senai.stayFilm.enumeration.TemaFilme;
 
 @Entity
 public class Filme {
-	
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idFilme;
-	
+
 	private String descricaoFilme;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TemaFilme temaFilme;
-	
+
 	@Enumerated(EnumType.STRING)
 	private StatusFilme statusFilme;
-	
-	@Fetch(FetchMode.SELECT)// para evitar o produto cartesiano.
-	@OneToMany(mappedBy="filme", cascade= CascadeType.ALL,
-			orphanRemoval=true, fetch=FetchType.EAGER)
+
+	@Fetch(FetchMode.SELECT) // para evitar o produto cartesiano.
+	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Attachment> attachments;
 
 	@Column
 	private Date dataCriacao;
-	
-	@OneToMany(mappedBy="filme",cascade=CascadeType.ALL,
-			orphanRemoval=true,fetch= FetchType.EAGER)
+
+	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
 
-	
+	public Filme() {
 
-	public Filme(){
-		
 	}
-	
-	
-	public Filme(String descricaoFilme, TemaFilme temaFilme,
-				 StatusFilme statusFilme, Date dataCriacao, List<Avaliacao> idAvaliacoes){
+
+	public Filme(String descricaoFilme, TemaFilme temaFilme, StatusFilme statusFilme, Date dataCriacao,
+			List<Avaliacao> idAvaliacoes) {
 		setDescricaoFilme(descricaoFilme);
 		setTemaFilme(temaFilme);
-		
+
 		setStatus(statusFilme);
 		setDataCriacao(dataCriacao);
-		setAvaliacoes(idAvaliacoes);	
+		setAvaliacoes(idAvaliacoes);
 	}
-	
-	
-	
+
 	public Long getIdFilme() {
 		return idFilme;
 	}
@@ -94,7 +85,6 @@ public class Filme {
 		this.temaFilme = temaFilme;
 	}
 
-
 	public StatusFilme getStatus() {
 		return statusFilme;
 	}
@@ -118,21 +108,21 @@ public class Filme {
 	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
-	 
-	//public LocalDateTime isData(){LocalDateTime now = LocalDateTime.now(); }
-	public Date isData(){
-		//posso usar LocalDateTime now = LocalDateTime.now(); 
-		Date data= new Date(System.currentTimeMillis());
+
+	// public LocalDateTime isData(){LocalDateTime now = LocalDateTime.now(); }
+	public Date isData() {
+		// posso usar LocalDateTime now = LocalDateTime.now();
+		Date data = new Date(System.currentTimeMillis());
 		return setDataCriacao(data);
-	} 	
-	
+	}
+
 	@JsonProperty("statusReport")
-	public Boolean isAvaliado(){
-		for(Avaliacao avaliacao: avaliacoes){
-			if(!avaliacao.isStatusReport()){
+	public Boolean isAvaliado() {
+		for (Avaliacao avaliacao : avaliacoes) {
+			if (!avaliacao.isStatusReport()) {
 				return false;
-				}
 			}
+		}
 		return true;
 	}
 }

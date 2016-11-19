@@ -75,4 +75,16 @@ public class TelefoneDao implements GenericDao<Telefone> {
 		
 	}
 
+	@Override
+	public List<Colaborador> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Telefone buscarPorId(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

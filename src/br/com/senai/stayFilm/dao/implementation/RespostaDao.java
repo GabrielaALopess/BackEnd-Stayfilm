@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Resposta;
 
 /**
@@ -74,6 +75,18 @@ public class RespostaDao implements GenericDao<Resposta> {
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Colaborador> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resposta buscarPorId(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

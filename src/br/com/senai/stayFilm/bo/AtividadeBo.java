@@ -26,25 +26,52 @@ public class AtividadeBo {
 		atividadeDao.insertWithKey(atividade, idColaborador);
 	}
 
+	/**
+	 * Metodo que lista todas as atividade de um colaborador
+	 * @param id
+	 * @return
+	 */
 	public List<Atividade> search(Long id) {
 		return atividadeDao.listar(id);
 	}
 
+	/**
+	 * Metodo usado para alterar as as informacoes de atividade
+	 * @param atividade
+	 * @param idColaborador
+	 * @return
+	 * @throws SQLException
+	 */
 	public Atividade edit(Atividade atividade, Long idColaborador) throws SQLException {
-//		if (exist(atividade.getIdAtividade())) {
 			return atividadeDao.updateWithKey(atividade, idColaborador);
-//		}
-//		return null;
 	}
 
+	/**
+	 * Metodo utilizado para preencher os campos de atividade
+	 * Transicao entre a lista de atividades e a acao de alterar
+	 * @param idAtividade
+	 * @return
+	 * @throws SQLException
+	 */
+	public Atividade buscarPorId(Long idAtividade) throws SQLException {
+		return atividadeDao.buscarPorId(idAtividade);
+	}
+	
+
+	/**
+	 * Metodo responsavel por remover uma atividade de um colaborador 
+	 * @param idAtividade
+	 * @throws SQLException
+	 */
 	public void remove(Long idAtividade) throws SQLException {
-//		if (exist(idAtividade)) {
 			atividadeDao.delete(idAtividade);
-//		}
 	}
 
 //	public boolean exist(Long id) {
 //		return search(id) != null;
 //	}
 
+	
+	
+	
 }

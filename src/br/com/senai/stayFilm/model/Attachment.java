@@ -12,25 +12,21 @@ import javax.persistence.ManyToOne;
 
 import br.com.senai.stayFilm.enumeration.TypeAttachment;
 
-
 @Entity
 public class Attachment {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAttachment;
 	@Column
 	private String caminhoUri;
-	
 	@Enumerated(EnumType.STRING)
 	private TypeAttachment typeAttachments;
-	
+
 	@ManyToOne
-	@JoinColumn(name="filme_id")
+	@JoinColumn(name = "filme_id")
 	private Filme filme;
 
-
-	
 	public Long getIdAttachment() {
 		return idAttachment;
 	}
@@ -62,8 +58,5 @@ public class Attachment {
 	public void setFilme(Filme filme) {
 		this.filme = filme;
 	}
-	
-	
-	
 
 }

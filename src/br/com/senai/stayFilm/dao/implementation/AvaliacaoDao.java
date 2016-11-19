@@ -12,10 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.enumeration.StatusFilme;
-import br.com.senai.stayFilm.enumeration.TemaFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
@@ -111,6 +109,22 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		avaliacao.setIdResposta(resposta);
 		manager.persist(avaliacao);
 
+	}
+
+
+
+	@Override
+	public List<Colaborador> listarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Avaliacao buscarPorId(Long idObj) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

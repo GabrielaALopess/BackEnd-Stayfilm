@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
 
 /**
  * 22/10/2016
@@ -30,4 +31,7 @@ public abstract interface GenericDao<T> {
 
 	void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta);
 
+	List<Colaborador> listarTodos();
+
+	T buscarPorId (Long idObj);
 }

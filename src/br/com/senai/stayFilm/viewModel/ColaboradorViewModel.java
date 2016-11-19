@@ -1,75 +1,33 @@
 package br.com.senai.stayFilm.viewModel;
 
 import java.util.Date;
-import java.util.List;
 
-import br.com.senai.stayFilm.enumeration.Status;
-import br.com.senai.stayFilm.model.Atividade;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
-import br.com.senai.stayFilm.model.Telefone;
 
+/**
+ * ViewModel de colaborador
+ * 
+ * @author Gabriela Lopes
+ *
+ */
 public class ColaboradorViewModel {
 
 	private String nome;
 	private Date dataNasc;
-	private Status status;
-	private List<Telefone> telefone;
+	private boolean status;
+	private String telefoneResidencial;
+	private String telefoneCelular;
 	private Endereco endereco;
-	private List<Atividade> atividade;
 	private String email;
-
-
-	public List<Telefone> getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Atividade> getAtividade() {
-		return atividade;
-	}
-
-	public void setAtividade(List<Atividade> atividade) {
-		this.atividade = atividade;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public List<Atividade> getAtividades() {
-		return atividades;
-	}
-
-	public void setAtividades(List<Atividade> atividades) {
-		this.atividades = atividades;
-	}
-
 	private String senha;
-	private List<Atividade> atividades;
+
+	public Colaborador toColaborador() {
+		return new Colaborador(getNome(), getDataNasc(), isStatus(), getTelefoneResidencial(), getTelefoneCelular(),
+				getEndereco(), getEmail(), getSenha());
+	}
 
 	public String getNome() {
 		return nome;
@@ -87,24 +45,62 @@ public class ColaboradorViewModel {
 		this.dataNasc = dataNasc;
 	}
 
-	public Status getStatus() {
+	public String getTelefoneResidencial() {
+		return telefoneResidencial;
+	}
+
+	public void setTelefoneResidencial(String telefoneResidencial) {
+		this.telefoneResidencial = telefoneResidencial;
+	}
+
+	public String getTelefoneCelular() {
+		return telefoneCelular;
+	}
+
+	public void setTelefoneCelular(String telefoneCelular) {
+		this.telefoneCelular = telefoneCelular;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+	
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(senha, null);
+		
+		
+		this.senha = md5;
+	}
+
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public Colaborador toColaborador() {
-		return new Colaborador(
-				getNome(), 
-				getDataNasc(),
-				getStatus(),
-				getTelefone(),
-				getEmail(),
-				getSenha(),
-				getEndereco(),
-				getAtividades());
+	/**
+	 * status sempre ira ser true , o que significa que o colaborador esta
+	 * ativo(e alterado quando ha update)
+	 * @param status
+	 */
+	public void setStatus(boolean status) {
+		this.status = true;
 	}
 
 }
