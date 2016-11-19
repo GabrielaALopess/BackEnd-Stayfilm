@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -29,5 +30,8 @@ public class EscalaBloqueioFixoBo {
 		return escalaBloqueioFixoDao.search(id);
 	}
 	
+	public List<EscalaBloqueioFixo>ListarEscalaBloqueio(){
+		return escalaBloqueioFixoDao.ListarEscalaBloqueio();
+	}
 
 }
