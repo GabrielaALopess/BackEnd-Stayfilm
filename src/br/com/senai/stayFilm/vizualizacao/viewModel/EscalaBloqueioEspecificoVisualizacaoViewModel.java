@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
 
-@Component
+
 public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 
 	private Date data;

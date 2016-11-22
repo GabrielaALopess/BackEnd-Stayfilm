@@ -1,6 +1,6 @@
 package br.com.senai.stayFilm.dao.implementation;
 
-import javax.persistence.EntityManager;
+/*import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -27,7 +27,7 @@ public class UsuarioDao {
 	
 	/**
 	 * Metodo responsavel por realizar o login
-	 */
+	 *//*
 	public Usuario logar(Usuario usuario){
 		TypedQuery<Usuario>query =
 				manager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email and "
@@ -41,4 +41,4 @@ public class UsuarioDao {
 		}
 		
 	}
-}
+}*/

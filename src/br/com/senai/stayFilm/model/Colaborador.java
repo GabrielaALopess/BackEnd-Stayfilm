@@ -3,12 +3,15 @@ package br.com.senai.stayFilm.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -27,19 +30,19 @@ public class Colaborador {
 	public Colaborador() {
 	}
 
-	public Colaborador(String nome, Date dataNasc, boolean status, String telefoneResidencial, String telefoneCelular,
-			String email, String senha, TipoPermissao permissao) {
+	public Colaborador(String nome, Date dataNasc, boolean status, String telefoneResidencial, String telefoneCelular,String email, String senha, TipoPermissao permissao) {
 
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.status = status;
 		this.telefoneResidencial = telefoneResidencial;
 		this.telefoneCelular = telefoneCelular;
-		this.email = email;
-		this.senha = senha;
-		this.permissao = permissao;
-
+		this.email= email;
+		this.senha= senha;
+		this.permissao=permissao;
+//		this.usuario = usuario;
 	}
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +58,9 @@ public class Colaborador {
 	private String telefoneResidencial;
 
 	private String telefoneCelular;
+	
+//	@Embedded
+//	private Usuario usuario;
 
 	private String email;
 	
@@ -163,7 +169,9 @@ public class Colaborador {
 	 * @param senha
 	 */
 	public void setSenha(String senha) {
-		this.senha = senha;
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(senha, null);
+		this.senha = md5;
 	}
 
 	/**
@@ -191,6 +199,21 @@ public class Colaborador {
 		this.permissao = permissao;
 	}
 	
+
+	
+//
+//	public Usuario getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
+//	}
+	
+	
 }
+
+	
+
 
 

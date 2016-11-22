@@ -124,6 +124,8 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 	 * Metodo responsavel por realizar o login
 	 */
 	public  Colaborador realizaLogin(Colaborador colaborador)throws SQLException{
+		System.out.println(colaborador.getEmail());
+		System.out.println(colaborador.getSenha());
 		TypedQuery<Colaborador>query =
 				manager.createQuery("SELECT c FROM Colaborador c WHERE c.email = :email and "
 						+"c.senha= :senha",Colaborador.class);
@@ -132,6 +134,7 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		try{
 			return query.getSingleResult();
 		}catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 		

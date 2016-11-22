@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWTSigner;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
+import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.dao.implementation.ColaboradorDao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.viewModel.ColaboradorViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewModel;
@@ -34,10 +37,13 @@ import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewM
 @RestController
 public class ColaboradorRestController {
 	
-	
+	public static final String SECRET="senaistayfilm";
+	public static final String ISSUER="http://www.sp.senai.br";
 
 	@Autowired
 	public ColaboradorBo colaboradorBO;
+	
+	
 
 	/**
 	 * Método para cadastrar um colaborador 
@@ -97,6 +103,46 @@ public class ColaboradorRestController {
 	}
 	
 	
+	@RequestMapping(value="/login", method=RequestMethod.POST, 
+    		consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
+    		produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> logar(@RequestBody Colaborador colaborador){
+		try {
+			
+			colaborador = colaboradorBO.realizaLogin(colaborador);
+			
+			if(colaborador !=null){
+				//data de emissao do token "issured at"
+				long iat = System.currentTimeMillis() / 10000;
+				
+				//data de expiracao do token
+				long  exp = iat + 36400000;
+				
+				// objeto qye ura gerar o token
+				JWTSigner signer= new JWTSigner(SECRET);
+				HashMap<String, Object> claims = new HashMap<>();
+				
+				claims.put("iat",iat);
+				claims.put("exp", exp);
+				claims.put("iss",ISSUER);
+				claims.put("id_colaborador", colaborador.getIdColaborador());
+				claims.put("email", colaborador.getEmail());
+				claims.put("permissao", colaborador.getPermissao());
+				
+				//gerar o token
+				String jwt = signer.sign(claims);
+				JSONObject token = new JSONObject();
+				token.put("token", jwt);
+				return  ResponseEntity.ok(token.toString());
+				
+			}else{
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	
 }

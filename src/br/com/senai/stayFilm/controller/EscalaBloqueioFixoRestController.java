@@ -40,7 +40,7 @@ public class EscalaBloqueioFixoRestController {
 	public ResponseEntity<EscalaBloqueioFixoVisualizacaoViewModel> inserir(@RequestBody EscalaBloqueioFixoViewModel viewModel, HttpServletRequest request) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, SignatureException, IOException, JWTVerifyException {
 		String token = request.getHeader("Authorization");
 		try {
-			JWTVerifier verifier= new JWTVerifier(UsuarioRestController.SECRET);
+			JWTVerifier verifier= new JWTVerifier(ColaboradorRestController.SECRET);
 			Map<String, Object>claims = verifier.verify(token);
 			Long colaboradorId = (Long)claims.get("colaborador_id");
 			
