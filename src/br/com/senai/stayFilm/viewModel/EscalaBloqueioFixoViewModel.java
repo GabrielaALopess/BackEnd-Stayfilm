@@ -1,7 +1,5 @@
 package br.com.senai.stayFilm.viewModel;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.enumeration.DiaSemana;
@@ -13,8 +11,8 @@ import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 public class EscalaBloqueioFixoViewModel {
 
 	private Long idBloqueiofixo;
-	private Date horaInicio;
-	private Date horaFim;
+	private int horaInicio;
+	private int horaFim;
 	private Long colaboradorId;
 	private DiaSemana diaSemana;
 	public Long getIdBloqueiofixo() {
@@ -23,16 +21,16 @@ public class EscalaBloqueioFixoViewModel {
 	public void setIdBloqueiofixo(Long idBloqueiofixo) {
 		this.idBloqueiofixo = idBloqueiofixo;
 	}
-	public Date getHoraInicio() {
+	public int getHoraInicio() {
 		return horaInicio;
 	}
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(int horaInicio) {
 		this.horaInicio = horaInicio;
 	}
-	public Date getHoraFim() {
+	public int getHoraFim() {
 		return horaFim;
 	}
-	public void setHoraFim(Date horaFim) {
+	public void setHoraFim(int horaFim) {
 		this.horaFim = horaFim;
 	}
 	public Long getColaboradorId() {

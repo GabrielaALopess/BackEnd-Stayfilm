@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import br.com.senai.stayFilm.model.Escala;
 import br.com.senai.stayFilm.viewModel.EscalaViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaVizualizacaoViewModel;
 
+@CrossOrigin
 @RestController
 public class EscalaRestController {
 

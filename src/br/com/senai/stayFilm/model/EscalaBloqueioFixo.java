@@ -23,8 +23,8 @@ public class EscalaBloqueioFixo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idBloqueiofixo;
-	private Date horaInicio;
-	private Date HoraFim;
+	private int horaInicio;
+	private int HoraFim;
 	
 	@Enumerated(EnumType.ORDINAL)
 	private DiaSemana diaSemana;
@@ -35,22 +35,22 @@ public class EscalaBloqueioFixo {
 	private Colaborador colaborador;
 
 
-	public Date getHoraInicio() {
+	public int getHoraInicio() {
 		return horaInicio;
 	}
 
 
-	public void setHoraInicio(Date horaInicio) {
+	public void setHoraInicio(int horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
 
-	public Date getHoraFim() {
+	public int getHoraFim() {
 		return HoraFim;
 	}
 
 
-	public void setHoraFim(Date horaFim) {
+	public void setHoraFim(int horaFim) {
 		HoraFim = horaFim;
 	}
 

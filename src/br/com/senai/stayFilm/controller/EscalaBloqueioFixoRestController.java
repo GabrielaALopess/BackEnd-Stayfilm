@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +30,8 @@ import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 import br.com.senai.stayFilm.viewModel.EscalaBloqueioFixoViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaBloqueioFixoVisualizacaoViewModel;
 
+
+@CrossOrigin
 @RestController
 public class EscalaBloqueioFixoRestController {
 	
@@ -50,12 +53,11 @@ public class EscalaBloqueioFixoRestController {
 			escalaBloqueioFixoBo.insert(escala);
 			
 			URI location = new URI("/escalabloqueiofixo" + escala.getIdBloqueiofixo());
-			//return ResponseEntity.created(location).body(new EscalaBloqueioFixoVisualizacaoViewModel(escala));
+			return ResponseEntity.created(location).body(new EscalaBloqueioFixoVisualizacaoViewModel(escala));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return null;
 
 	}
 

@@ -7,23 +7,23 @@ import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 public class EscalaBloqueioFixoVisualizacaoViewModel {
 
 	private String dia;
-	private String horario;
+	private int horario;
 	public String getDia() {
 		return dia;
 	}
 	public void setDia(String dia) {
 		this.dia = dia;
 	}
-	public String getHorario() {
+	public int getHorario() {
 		return horario;
 	}
-	public void setHorario(String horario) {
+	public void setHorario(int horario) {
 		this.horario = horario;
 	}
 	
 	public EscalaBloqueioFixoVisualizacaoViewModel(EscalaBloqueioFixo escalaBloqueioFixo){
 		setDia(escalaBloqueioFixo.getDiaSemana().getDiaSemana());
-		String horario = escalaBloqueioFixo.getHoraInicio().toString() + escalaBloqueioFixo.getHoraFim().toString();
+		int horario = escalaBloqueioFixo.getHoraInicio() + escalaBloqueioFixo.getHoraFim();
 		setHorario(horario);
 	}
 	

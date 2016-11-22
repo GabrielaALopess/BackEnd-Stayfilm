@@ -8,11 +8,11 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWTSigner;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
-import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.dao.implementation.ColaboradorDao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.viewModel.ColaboradorViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewModel;
@@ -33,7 +31,7 @@ import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewM
  * 
  * @author Equipe StayFilme Controller de Colaborador
  */
-
+@CrossOrigin
 @RestController
 public class ColaboradorRestController {
 	
