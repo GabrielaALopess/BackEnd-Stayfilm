@@ -4,8 +4,8 @@ import java.util.Date;
 
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
+import br.com.senai.stayFilm.enumeration.TipoPermissao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Endereco;
 
 /**
  * ViewModel de colaborador
@@ -20,13 +20,14 @@ public class ColaboradorViewModel {
 	private boolean status;
 	private String telefoneResidencial;
 	private String telefoneCelular;
-	private Endereco endereco;
 	private String email;
 	private String senha;
+	private TipoPermissao permissao;
 
+	
 	public Colaborador toColaborador() {
-		return new Colaborador(getNome(), getDataNasc(), isStatus(), getTelefoneResidencial(), getTelefoneCelular(),
-				getEndereco(), getEmail(), getSenha());
+		return new Colaborador(getNome(), getDataNasc(), isStatus(), getTelefoneResidencial(), getTelefoneCelular()
+				,getEmail(), getSenha(), getPermissao());
 	}
 
 	public String getNome() {
@@ -61,13 +62,6 @@ public class ColaboradorViewModel {
 		this.telefoneCelular = telefoneCelular;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
 
 	public String getEmail() {
 		return email;
@@ -85,8 +79,6 @@ public class ColaboradorViewModel {
 	
 		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
 		String md5 = encoder.encodePassword(senha, null);
-		
-		
 		this.senha = md5;
 	}
 
@@ -102,5 +94,15 @@ public class ColaboradorViewModel {
 	public void setStatus(boolean status) {
 		this.status = true;
 	}
+
+	public TipoPermissao getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(TipoPermissao permissao) {
+		this.permissao = permissao;
+	}
+	
+	
 
 }

@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.EscalaBloqueioEspecificoDao;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
@@ -13,7 +15,8 @@ import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 public class EscalaBloqueioEspecificoBo {
 
 	@Autowired
-	private EscalaBloqueioEspecificoDao escalaBloqueioEspecificoDao;
+	@Qualifier("escalaBloqueioEspecificoDao")
+	private GenericDao<EscalaBloqueioEspecifico> escalaBloqueioEspecificoDao;
 	
 	
 	EscalaBloqueioEspecificoBo(){
@@ -34,6 +37,6 @@ public class EscalaBloqueioEspecificoBo {
 	}
 	
 	public List<EscalaBloqueioEspecifico>ListarEscalaBloqueioEspecifico(){
-		return escalaBloqueioEspecificoDao.ListarEscalaBloqueioEspecifico();
+		return ((EscalaBloqueioEspecificoDao) escalaBloqueioEspecificoDao).ListarEscalaBloqueioEspecifico();
 	}
 }

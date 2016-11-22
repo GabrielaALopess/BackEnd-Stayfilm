@@ -1,34 +1,18 @@
 package br.com.senai.stayFilm.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import br.com.senai.stayFilm.enumeration.TipoPermissao;
 
-@Entity
 public class Usuario {
 
-	@Id
-	@GeneratedValue
-	private String idUsuario;
 	private String email;
 	private String senha;
-	private String idColaborador;
+	private TipoPermissao permissao;
 
 	public Usuario() {
-	}
-
-	public Usuario(String email, String senha, String idColaborador) {
-		this.email = email;
-		this.senha = senha;
-		this.idColaborador = idColaborador;
-	}
-
-	public String getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
+		Colaborador colaborador = new Colaborador();
+		email=colaborador.getEmail();
+		senha=colaborador.getSenha();
+		permissao=colaborador.getPermissao();
 	}
 
 	public String getEmail() {
@@ -47,12 +31,18 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public String getIdColaborador() {
-		return idColaborador;
+	public TipoPermissao getPermissao() {
+		return permissao;
 	}
 
-	public void setIdColaborador(String idColaborador) {
-		this.idColaborador = idColaborador;
+	public void setPermissao(TipoPermissao permissao) {
+		this.permissao = permissao;
 	}
+
+	
+
+	
+
+	
 
 }

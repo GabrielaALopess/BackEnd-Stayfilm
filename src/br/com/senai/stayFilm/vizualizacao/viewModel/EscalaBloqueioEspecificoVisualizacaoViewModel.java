@@ -11,27 +11,27 @@ import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 @Component
 public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 
-//	private Date data;
-//	private String horario;
-//	
-//	
-//	public Date getData() {
-//		return data;
-//	}
-//	public void setData(Date data) {
-//		this.data = data;
-//	}
-//	public String getHorario() {
-//		return horario;
-//	}
-//	public void setHorario(String horario) {
-//		this.horario = horario;
-//	}
-//	
-//	public EscalaBloqueioEspecificoVisualizacaoViewModel(EscalaBloqueioEspecifico escala){
-//		setData(escala.getData());
-//		String horario = escala.getHoraInicio().toString() + escala.getHoraFim().toString();
-//		setHorario(horario);
-//	}
+	private Date data;
+	private String horario;
+	
+	
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+	
+	public EscalaBloqueioEspecificoVisualizacaoViewModel(EscalaBloqueioEspecifico escala){
+		setData(escala.getData());
+		String horario = escala.getHoraInicio().toString() + escala.getHoraFim().toString();
+		setHorario(horario);
+	}
 	
 }

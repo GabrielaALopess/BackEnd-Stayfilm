@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,7 +77,6 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 	 */
 	@Override
 	public List<Colaborador> listarTodos() {
-
 		return manager.createQuery("select c.nome, c.email, c.telefoneCelular from Colaborador c order by c.nome")
 				.getResultList();
 	}
@@ -120,4 +120,22 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		// NOT USE
 	}
 
+	/**
+	 * Metodo responsavel por realizar o login
+	 */
+	public  Colaborador realizaLogin(Colaborador colaborador)throws SQLException{
+		TypedQuery<Colaborador>query =
+				manager.createQuery("SELECT c FROM Colaborador c WHERE c.email = :email and "
+						+"c.senha= :senha",Colaborador.class);
+		query.setParameter("email",colaborador.getEmail());
+		query.setParameter("senha", colaborador.getSenha());
+		try{
+			return query.getSingleResult();
+		}catch (Exception e) {
+			return null;
+		}
+		
+	}
+	
+	
 }

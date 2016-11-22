@@ -1,15 +1,13 @@
 package br.com.senai.stayFilm.enumeration;
 
-import java.util.List;
-
 public enum TipoPermissao {
 	
-	ADMINISTRADOR(1),
-	USUARIO(0);
 
+	USUARIO(0),
+	ADMINISTRADOR(1);
 	
 	private int permissao;
-	private List<String> urisAcessiveis;
+//	private List<String> urisAcessiveis;
 	
 	 TipoPermissao(int permissao){
 	 	this.permissao=permissao;
@@ -19,9 +17,9 @@ public enum TipoPermissao {
 		return permissao;
 	}
 	
-	public boolean possuiPermissao(String uri) {
-		return this.urisAcessiveis.contains(uri);
-	}
+//	public boolean possuiPermissao(String uri) {
+//		return this.urisAcessiveis.contains(uri);
+//	}
 	
 	
 }

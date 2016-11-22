@@ -53,11 +53,11 @@ public class EscalaBloqueioEspecificoDao  implements GenericDao<EscalaBloqueioEs
 		return query.getResultList();
 	}
 	
-	// TUDO ABAIXO NAO É USADO NESTE CENÁRIO	
+//	 TUDO ABAIXO NAO É USADO NESTE CENÁRIO	
 
 	@Override
 	public EscalaBloqueioEspecifico update(EscalaBloqueioEspecifico obj) throws SQLException {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		return null;
 	}
 
@@ -65,37 +65,37 @@ public class EscalaBloqueioEspecificoDao  implements GenericDao<EscalaBloqueioEs
 
 	@Override
 	public void insertWithKey(EscalaBloqueioEspecifico obj, long idObj) {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public EscalaBloqueioEspecifico updateWithKey(EscalaBloqueioEspecifico obj, long idObj) throws SQLException {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<EscalaBloqueioEspecifico> listar(long idObj) {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public List<Colaborador> listarTodos() {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public EscalaBloqueioEspecifico buscarPorId(Long idObj) {
-		// TODO Auto-generated method stub
+//		 TODO Auto-generated method stub
 		return null;
 	}
 

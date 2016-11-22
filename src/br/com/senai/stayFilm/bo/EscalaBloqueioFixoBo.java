@@ -3,8 +3,11 @@ package br.com.senai.stayFilm.bo;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.EscalaBloqueioFixoDao;
 import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 
@@ -12,7 +15,9 @@ import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 @Component
 public class EscalaBloqueioFixoBo {
 	
-	private EscalaBloqueioFixoDao escalaBloqueioFixoDao;
+	@Autowired
+	@Qualifier("escalaBloqueioFixoDao")
+	private GenericDao<EscalaBloqueioFixo> escalaBloqueioFixoDao;
 	
 	public EscalaBloqueioFixoBo(){
 		escalaBloqueioFixoDao = new EscalaBloqueioFixoDao();
@@ -31,7 +36,7 @@ public class EscalaBloqueioFixoBo {
 	}
 	
 	public List<EscalaBloqueioFixo>ListarEscalaBloqueio(){
-		return escalaBloqueioFixoDao.ListarEscalaBloqueio();
+		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio();
 	}
 
 }

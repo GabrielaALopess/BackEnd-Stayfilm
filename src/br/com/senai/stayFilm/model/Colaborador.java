@@ -4,9 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.senai.stayFilm.enumeration.TipoPermissao;
 
 /**
  * Modelo utilizado na persistencia do Colaborador
@@ -22,13 +28,16 @@ public class Colaborador {
 	}
 
 	public Colaborador(String nome, Date dataNasc, boolean status, String telefoneResidencial, String telefoneCelular,
-			Endereco endereco, String email, String senha) {
+			String email, String senha, TipoPermissao permissao) {
 
 		this.nome = nome;
 		this.dataNasc = dataNasc;
 		this.status = status;
 		this.telefoneResidencial = telefoneResidencial;
 		this.telefoneCelular = telefoneCelular;
+		this.email = email;
+		this.senha = senha;
+		this.permissao = permissao;
 
 	}
 
@@ -38,6 +47,7 @@ public class Colaborador {
 
 	private String nome;
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dataNasc;
 
 	private boolean status;
@@ -47,9 +57,14 @@ public class Colaborador {
 	private String telefoneCelular;
 
 	private String email;
-
+	
 	@Column
 	private String senha;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private TipoPermissao permissao;
+	
+
 
 	/**
 	 * id do colaborador
@@ -164,4 +179,18 @@ public class Colaborador {
 		this.status = status;
 	}
 
+	/**
+	 * tipoPermissao representa  se é admin / usuario 
+	 * @return
+	 */
+	public TipoPermissao getPermissao() {
+		return permissao;
+	}
+
+	public void setPermissao(TipoPermissao permissao) {
+		this.permissao = permissao;
+	}
+	
 }
+
+

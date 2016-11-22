@@ -3,9 +3,12 @@ package br.com.senai.stayFilm.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.auth0.jwt.JWTSigner;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
 import br.com.senai.stayFilm.model.Colaborador;
@@ -28,6 +33,8 @@ import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewM
 
 @RestController
 public class ColaboradorRestController {
+	
+	
 
 	@Autowired
 	public ColaboradorBo colaboradorBO;
@@ -88,5 +95,8 @@ public class ColaboradorRestController {
 	public Colaborador buscarPorId(@PathVariable Long idColaborador) throws SQLException {
 		return colaboradorBO.buscarPorId(idColaborador);
 	}
+	
+	
+	
 	
 }

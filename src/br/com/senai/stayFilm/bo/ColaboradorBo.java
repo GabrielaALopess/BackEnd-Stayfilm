@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.dao.implementation.ColaboradorDao;
 import br.com.senai.stayFilm.model.Colaborador;
 
 /**
@@ -68,4 +69,10 @@ public class ColaboradorBo {
 	public Colaborador buscarPorId(Long idColaborador) throws SQLException {
 		return colaboradorDao.buscarPorId(idColaborador);
 	}
+	
+	
+	public Colaborador realizaLogin(Colaborador colaborador) throws SQLException{
+			return ((ColaboradorDao) colaboradorDao).realizaLogin(colaborador);
+	}
+	
 }
