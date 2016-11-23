@@ -15,6 +15,8 @@ public class EscalaBloqueioFixoViewModel {
 	private int horaFim;
 	private Long colaboradorId;
 	private DiaSemana diaSemana;
+	
+	
 	public Long getIdBloqueiofixo() {
 		return idBloqueiofixo;
 	}

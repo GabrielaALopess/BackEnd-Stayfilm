@@ -95,7 +95,7 @@ public class ColaboradorRestController {
 	 * @return
 	 * @throws SQLException
 	 */
-	@RequestMapping(value = "/colaborador/busca/{idColaborador}", method = RequestMethod.GET)
+	@RequestMapping(value = "private/colaborador/busca/{idColaborador}", method = RequestMethod.GET)
 	public Colaborador buscarPorId(@PathVariable Long idColaborador) throws SQLException {
 		return colaboradorBO.buscarPorId(idColaborador);
 	}
@@ -111,10 +111,10 @@ public class ColaboradorRestController {
 			
 			if(colaborador !=null){
 				//data de emissao do token "issured at"
-				long iat = System.currentTimeMillis() / 10000;
+				long iat = System.currentTimeMillis() / 1000;
 				
 				//data de expiracao do token
-				long  exp = iat + 36400000;
+				long  exp = iat + 36400;
 				
 				// objeto qye ura gerar o token
 				JWTSigner signer= new JWTSigner(SECRET);

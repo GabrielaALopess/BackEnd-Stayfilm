@@ -37,38 +37,45 @@ public class FiltroJwt implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-	//primeiro passo dofilter
-	if (request.getRequestURI().contains("login")){
-		chain.doFilter(req, resp);
-		return;//ultimo passo doFilter
-	}
-	
-	String token = request.getHeader("Authorization");
+		// primeiro passo dofilter
+
+		System.out.println("passou aqui " + request);
+		if (request.getRequestURI().contains("login")) {
+			chain.doFilter(req, resp);
+			return;// ultimo passo doFilter
+		}
+
+		String token = request.getHeader("Authorization");
 		try {
-			JWTVerifier verifier= new JWTVerifier(ColaboradorRestController.SECRET);			
-			Map<String, Object>claims = verifier.verify(token);
-			//claims.get("colaborador_id");
-			//System.out.println(claims);			
-			// pegar o id do usuário no payload do token (criar o token com o id do usuario)
-			if(request.getRequestURI().contains("/curadoria") || 
-					request.getRequestURI().contains("/escala") || 
-					request.getRequestURI().contains("/colaborador")){
+			System.out.println("token" + token);
+			JWTVerifier verifier = new JWTVerifier(ColaboradorRestController.SECRET);
+			Map<String, Object> claims = verifier.verify(token);
+			long colaboradorId = (int) claims.get("id_colaborador");
+			request.setAttribute("id_colaborador", colaboradorId);
+
+			if (!request.getRequestURI().contains("private")) {
 				chain.doFilter(req, resp);
 				return;
-			}
-					
-			TipoPermissao permissao = (TipoPermissao) claims.get("permissao");
-			if(permissao == TipoPermissao.ADMINISTRADOR){
-				chain.doFilter(req, resp);
-				return;
-			}else{
-				response.sendError(HttpStatus.FORBIDDEN.value());
-				return;
+			} else {
+				TipoPermissao permissao = TipoPermissao.valueOf(claims.get("permissao").toString());
+
+				if (permissao == TipoPermissao.ADMINISTRADOR) {
+					chain.doFilter(req, resp);
+					System.out.println("caiu aqui 1");
+					return;
+				} else {
+					response.sendError(HttpStatus.FORBIDDEN.value());
+					System.out.println("caiu aqui depois");
+					return;
+				}
 			}
 		} catch (Exception e) {
-			if(token ==null){
+			if (token == null) {
+				e.printStackTrace();
 				response.sendError(HttpStatus.UNAUTHORIZED.value());
-			}else{
+			} else {
+				System.out.println("veio pra ca direto");
+				e.printStackTrace();
 				response.sendError(HttpStatus.FORBIDDEN.value());
 			}
 		}
