@@ -50,7 +50,6 @@ public class EscalaBloqueioFixoRestController {
 //			long colaboradorId = (int)claims.get("id_colaborador");
 			long colaboradorId =(long) request.getAttribute("id_colaborador");
 			
-			
 			Colaborador colaborador = colaboradorBo.buscar(colaboradorId);
 			EscalaBloqueioFixo escala = viewModel.toEscala(colaborador);
 			escalaBloqueioFixoBo.insert(escala);

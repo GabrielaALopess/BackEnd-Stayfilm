@@ -100,7 +100,13 @@ public class ColaboradorRestController {
 		return colaboradorBO.buscarPorId(idColaborador);
 	}
 	
-	
+	/**
+	 * metodo responsavel por realizar o login, e criar o token para navegação:
+	 * token gerado por:
+	 * id_colaborador, nome, email, permissao. 						
+	 * @param colaborador
+	 * @return
+	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST, 
     		consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
     		produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -124,6 +130,7 @@ public class ColaboradorRestController {
 				claims.put("exp", exp);
 				claims.put("iss",ISSUER);
 				claims.put("id_colaborador", colaborador.getIdColaborador());
+				claims.put("nome", colaborador.getNome());
 				claims.put("email", colaborador.getEmail());
 				claims.put("permissao", colaborador.getPermissao());
 				

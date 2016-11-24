@@ -8,6 +8,7 @@ public class EscalaBloqueioFixoVisualizacaoViewModel {
 
 	private String dia;
 	private String horario;
+	
 	public String getDia() {
 		return dia;
 	}

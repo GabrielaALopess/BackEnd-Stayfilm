@@ -5,8 +5,10 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
-import br.com.senai.stayFilm.viewModel.CadastroViewModel;
+import br.com.senai.stayFilm.viewModel.RespostaViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.RespostaVisualizacaoViewModel;
 
 /**
@@ -33,11 +35,12 @@ public class RespostaRestController {
 
 	
 	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
-	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody CadastroViewModel viewModel) throws SQLException {
+	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody RespostaViewModel viewModel) throws SQLException {
 
 		try {
 			Resposta resposta = viewModel.toResposta();
 			respostaBo.insert(resposta);
+			
 			URI location = new URI("/resposta" + resposta.getIdResposta());
 			return ResponseEntity.created(location).body(new RespostaVisualizacaoViewModel(resposta));
 		} catch (URISyntaxException e) {
@@ -47,21 +50,21 @@ public class RespostaRestController {
 
 	}
 
-//	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
-//		return respostaDao.search(idResposta);
-//
-//	}
-//
-//	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
-//	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
-//		return respostaDao.update(resposta);
-//
-//	}
-//
-//	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.DELETE)
-//	public ResponseEntity<Void> remover(@PathVariable long idResposta) throws SQLException {
-//		respostaDao.delete(idResposta);
-//		return ResponseEntity.noContent().build();
-//	}
+	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
+		return respostaBo.search(idResposta);
+
+	}
+
+	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
+	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
+		return respostaBo.update(resposta);
+
+	}
+
+	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable long idResposta) throws SQLException {
+		respostaBo.delete(idResposta);
+		return ResponseEntity.noContent().build();
+	}
 }

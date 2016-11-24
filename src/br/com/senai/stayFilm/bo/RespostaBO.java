@@ -21,6 +21,7 @@ public class RespostaBO {
 		respostaDao = new RespostaDao();
 	}
 	
+	
 	public void insert(Resposta resposta) throws SQLException{
 		respostaDao.insert(resposta);
 	}
@@ -35,6 +36,15 @@ public class RespostaBO {
 		}
 		return null;
 	}
+	
+	public Resposta update(Resposta resposta) throws SQLException{
+		return respostaDao.update(resposta);
+	}
+	
+	public void delete(Long idResposta) throws SQLException {
+		respostaDao.delete(idResposta);
+	}
+	
 	
 	public boolean exist(Long id){
 		return search(id) != null;
