@@ -2,6 +2,8 @@ package br.com.senai.stayFilm.viewModel;
 
 import java.util.Date;
 
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+
 import br.com.senai.stayFilm.enumeration.TipoPermissao;
 import br.com.senai.stayFilm.model.Colaborador;
 
@@ -74,6 +76,12 @@ public class ColaboradorViewModel {
 	}
 
 
+
+	public void setSenha(String senha) {
+		Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+		String md5 = encoder.encodePassword(senha, null);
+		this.senha = md5;
+	}
 
 	public boolean isStatus() {
 		return status;
