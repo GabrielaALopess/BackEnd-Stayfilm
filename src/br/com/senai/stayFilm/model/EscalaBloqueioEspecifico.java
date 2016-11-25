@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,10 +24,10 @@ public class EscalaBloqueioEspecifico {
 	private Long idBloqueioEspecifico;
 	
 	private int horaInicio;
-	private int HoraFim;
 	
-	@DateTimeFormat(pattern="dd-MM-yyyy")
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
+	private int horaFim;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date data;
 	
 	@Fetch(FetchMode.SELECT)
@@ -56,11 +55,11 @@ public class EscalaBloqueioEspecifico {
 	}
 
 	public int getHoraFim() {
-		return HoraFim;
+		return horaFim;
 	}
 
 	public void setHoraFim(int horaFim) {
-		HoraFim = horaFim;
+		this.horaFim = horaFim;
 	}
 
 	public Date getData() {

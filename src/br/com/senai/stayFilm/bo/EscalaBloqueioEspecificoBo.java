@@ -19,9 +19,9 @@ public class EscalaBloqueioEspecificoBo {
 	private GenericDao<EscalaBloqueioEspecifico> escalaBloqueioEspecificoDao;
 	
 	
-	EscalaBloqueioEspecificoBo(){
+/*	EscalaBloqueioEspecificoBo(){
 		escalaBloqueioEspecificoDao = new EscalaBloqueioEspecificoDao();
-	}
+	}*/
 	
 	
 	public void insert(EscalaBloqueioEspecifico escalaBloqueioEspecifico) throws SQLException {
