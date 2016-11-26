@@ -11,7 +11,6 @@ public class AvaliacaoVisualizacaoViewModel {
 	
 	public AvaliacaoVisualizacaoViewModel(Avaliacao avaliacao){
 		
-		setObservacao(avaliacao.getObservacao());
 		setIdResposta(avaliacao.getIdResposta());
 	}
 

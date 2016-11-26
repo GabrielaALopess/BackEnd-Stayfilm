@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,6 +46,10 @@ public class RespostaBO {
 		respostaDao.delete(idResposta);
 	}
 	
+	
+	public List<Resposta> ListarTodos(){
+		return ((RespostaDao) respostaDao).listarRespostas();
+	}
 	
 	public boolean exist(Long id){
 		return search(id) != null;
