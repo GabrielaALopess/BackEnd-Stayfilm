@@ -33,9 +33,6 @@ public class Filme {
 	@Enumerated(EnumType.STRING)
 	private TemaFilme temaFilme;
 
-	@Enumerated(EnumType.STRING)
-	private StatusFilme statusFilme;
-
 	@Fetch(FetchMode.SELECT) // para evitar o produto cartesiano.
 	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Attachment> attachments;
@@ -58,7 +55,6 @@ public class Filme {
 		setDescricaoFilme(descricaoFilme);
 		setTemaFilme(temaFilme);
 
-		setStatus(statusFilme);
 		setDataCriacao(dataCriacao);
 		setAvaliacoes(idAvaliacoes);
 	}
@@ -87,13 +83,6 @@ public class Filme {
 		this.temaFilme = temaFilme;
 	}
 
-	public StatusFilme getStatus() {
-		return statusFilme;
-	}
-
-	public void setStatus(StatusFilme statusFilme) {
-		this.statusFilme = statusFilme;
-	}
 
 	public Date getDataCriacao() {
 		return dataCriacao;
