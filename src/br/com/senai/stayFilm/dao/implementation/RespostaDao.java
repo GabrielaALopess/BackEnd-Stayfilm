@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,10 +50,20 @@ public class RespostaDao implements GenericDao<Resposta> {
 
 	@Override
 	public Resposta search(Long idResposta) {
-
 		return manager.find(Resposta.class, idResposta);
 	}
 
+	
+	public List<Resposta> listarRespostas(){
+		String hql= "SELECT	r FROM Resposta r ORDER BY r.tituloResposta ASC";
+		TypedQuery<Resposta> query = manager.createQuery(hql, Resposta.class);
+		return query.getResultList();
+		
+	}
+	
+	
+	
+	
 	@Override
 	public void insertWithKey(Resposta obj, long idColaborador) {
 		// NOT USE

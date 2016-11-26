@@ -3,6 +3,7 @@ package br.com.senai.stayFilm.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -53,8 +54,16 @@ public class RespostaRestController {
 	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
 		return respostaBo.search(idResposta);
-
 	}
+	
+	
+	
+@RequestMapping(value="/respostas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
+	public List<Resposta> pesquisar(){
+		return respostaBo.ListarTodos();
+		
+	}
+	
 
 	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
 	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
