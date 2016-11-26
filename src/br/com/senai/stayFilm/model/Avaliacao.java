@@ -10,17 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import br.com.senai.stayFilm.enumeration.StatusFilme;
+
 @Entity
 public class Avaliacao {
 
 	public Avaliacao() {
 	}
 
-	public Avaliacao(Date data, Time hora, String observacao, Boolean statusFilme,
+	
+	public Avaliacao(Date data, Time hora, String observacao, StatusFilme statusFilme,
 			Colaborador idColaborador) {
 		this.dataAvaliacao = data;
 		this.observacao = observacao;
-		this.statusReport = statusFilme;
+		this.statusFilme = statusFilme;
 		this.setColaborador(colaborador);
 	}
 
@@ -32,23 +35,20 @@ public class Avaliacao {
 
 	private String observacao;
 	
-	/**
-	 * TRATA SE O FILME FOI FEITO OU NÃO
-	 */
-	private Boolean statusReport;
 	
 	@ManyToOne
 	@JoinColumn(name = "filme_id")
 	private Filme filme;
-	
 	@ManyToOne
 	private Resposta idResposta;
-	
 	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador colaborador;
-
 	
+	/**
+	 * se o filme esta em monitoria, aprovado , etc.S
+	 */
+	private StatusFilme statusFilme;
 	
 	
 	public Long getIdAvaliacao() {
@@ -76,14 +76,6 @@ public class Avaliacao {
 		this.observacao = observacao;
 	}
 
-	public Boolean isStatusReport() {
-		return statusReport;
-	}
-
-	public void setStatusReport(Boolean statusReport) {
-		this.statusReport = statusReport;
-	}
-
 	public Resposta getIdResposta() {
 		return idResposta;
 	}
@@ -98,6 +90,14 @@ public class Avaliacao {
 
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
+	}
+
+	public StatusFilme getStatusFilme() {
+		return statusFilme;
+	}
+
+	public void setStatusFilme(StatusFilme statusFilme) {
+		this.statusFilme = statusFilme;
 	}
 
 }

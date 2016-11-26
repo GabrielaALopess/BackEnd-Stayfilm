@@ -47,6 +47,7 @@ public class Filme {
 	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
 
+
 	public Filme() {
 
 	}
@@ -116,13 +117,13 @@ public class Filme {
 		return setDataCriacao(data);
 	}
 
-	@JsonProperty("statusReport")
-	public Boolean isAvaliado() {
-		for (Avaliacao avaliacao : avaliacoes) {
-			if (!avaliacao.isStatusReport()) {
-				return false;
-			}
-		}
-		return true;
-	}
+//	@JsonProperty("statusReport")
+//	public Boolean isAvaliado() {
+//		for (Avaliacao avaliacao : avaliacoes) {
+//			if (!avaliacao.isStatusReport()) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 }
