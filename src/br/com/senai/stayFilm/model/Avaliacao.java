@@ -18,11 +18,8 @@ public class Avaliacao {
 	public Avaliacao() {
 	}
 
-	
-	public Avaliacao(Date data, Time hora, String observacao, StatusFilme statusFilme,
-			Colaborador idColaborador) {
+	public Avaliacao(Date data, Time hora, StatusFilme statusFilme, Colaborador idColaborador) {
 		this.dataAvaliacao = data;
-		this.observacao = observacao;
 		this.statusFilme = statusFilme;
 		this.setColaborador(colaborador);
 	}
@@ -30,12 +27,10 @@ public class Avaliacao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAvaliacao;
-	
+
 	private Date dataAvaliacao;
 
-	private String observacao;
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "filme_id")
 	private Filme filme;
@@ -44,13 +39,12 @@ public class Avaliacao {
 	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
 	private Colaborador colaborador;
-	
+
 	/**
 	 * se o filme esta em monitoria, aprovado , etc.S
 	 */
 	private StatusFilme statusFilme;
-	
-	
+
 	public Long getIdAvaliacao() {
 		return idAvaliacao;
 	}
@@ -65,15 +59,6 @@ public class Avaliacao {
 
 	public void setData(Date data) {
 		this.dataAvaliacao = data;
-	}
-
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
 	}
 
 	public Resposta getIdResposta() {
@@ -98,6 +83,14 @@ public class Avaliacao {
 
 	public void setStatusFilme(StatusFilme statusFilme) {
 		this.statusFilme = statusFilme;
+	}
+
+	public Filme getFilme() {
+		return filme;
+	}
+
+	public void setFilme(Filme filme) {
+		this.filme = filme;
 	}
 
 }

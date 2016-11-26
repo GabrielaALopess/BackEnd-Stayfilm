@@ -13,6 +13,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
+import br.com.senai.stayFilm.model.Filme;
 
 /**
  * 22/10/2016
@@ -103,6 +104,11 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return null;
 	}
 
-	
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long filme) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

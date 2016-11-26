@@ -17,8 +17,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.auth0.jwt.internal.com.fasterxml.jackson.annotation.JsonProperty;
-
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.enumeration.TemaFilme;
 

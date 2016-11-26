@@ -14,6 +14,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
@@ -33,7 +34,25 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		manager.persist(avaliacao);
 
 	}
+	
+	
+	/**
+	 * Esse metodo e utilizado para persistir a atualizacao
+	 */
+	@Transactional
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long idFilme) {
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		Resposta resposta = manager.find(Resposta.class, idResposta);
+		Filme filme = manager.find(Filme.class, idFilme);
+		avaliacao.setColaborador(colaborador);
+		avaliacao.setIdResposta(resposta);
+		avaliacao.setFilme(filme);
+		manager.persist(avaliacao);
+	}
 
+	
+	
 	
 	
 	@Override
@@ -126,5 +145,7 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

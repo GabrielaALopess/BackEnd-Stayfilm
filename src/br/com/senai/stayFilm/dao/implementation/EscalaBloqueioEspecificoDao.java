@@ -14,6 +14,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
+import br.com.senai.stayFilm.model.Filme;
 
 @Repository
 public class EscalaBloqueioEspecificoDao  implements GenericDao<EscalaBloqueioEspecifico> {
@@ -98,5 +99,13 @@ public class EscalaBloqueioEspecificoDao  implements GenericDao<EscalaBloqueioEs
 //		 TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long filme) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
