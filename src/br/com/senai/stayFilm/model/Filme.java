@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
@@ -45,6 +46,8 @@ public class Filme {
 	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
 
+	@ManyToOne
+	private UsuarioStayFilm idUsuarioStay;
 
 	public Filme() {
 
@@ -114,6 +117,16 @@ public class Filme {
 		Date data = new Date(System.currentTimeMillis());
 		return setDataCriacao(data);
 	}
+
+	public UsuarioStayFilm getIdUsuarioStay() {
+		return idUsuarioStay;
+	}
+
+	public void setIdUsuarioStay(UsuarioStayFilm idUsuarioStay) {
+		this.idUsuarioStay = idUsuarioStay;
+	}
+
+
 
 //	@JsonProperty("statusReport")
 //	public Boolean isAvaliado() {
