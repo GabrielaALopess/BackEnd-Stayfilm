@@ -23,17 +23,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	
 	@PersistenceContext
 	private EntityManager manager;
-
-
-	@Transactional
-	public void insert(Avaliacao avaliacao, long idColaborador,long idResposta) throws SQLException {
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		Resposta resposta = manager.find(Resposta.class, idResposta);
-		avaliacao.setIdResposta(resposta);
-		manager.persist(avaliacao);
-
-	}
-	
 	
 	/**
 	 * Esse metodo e utilizado para persistir a atualizacao
@@ -44,14 +33,11 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
 		Filme filme = manager.find(Filme.class, idFilme);
+		avaliacao.setColaborador(colaborador);
 		avaliacao.setIdResposta(resposta);
-		avaliacao.setFilme(filme);
-		System.out.println("PASSOU AQUI");
+		avaliacao.setIdFilme(filme);
 		manager.persist(avaliacao);
-	}
-
-	
-	
+	}	
 	
 	
 	@Override

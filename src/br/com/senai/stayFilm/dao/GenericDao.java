@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Filme;
 
 /**
  * 22/10/2016

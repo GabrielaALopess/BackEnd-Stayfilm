@@ -13,7 +13,6 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
-import br.com.senai.stayFilm.model.Filme;
 
 /**
  * 22/10/2016

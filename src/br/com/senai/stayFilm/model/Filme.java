@@ -40,7 +40,7 @@ public class Filme {
 	@Column
 	private Date dataCriacao;
 
-	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "idFilme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
 
 	@ManyToOne

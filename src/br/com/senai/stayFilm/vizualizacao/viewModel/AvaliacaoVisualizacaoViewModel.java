@@ -12,26 +12,16 @@ public class AvaliacaoVisualizacaoViewModel {
 
 	public AvaliacaoVisualizacaoViewModel(Avaliacao avaliacao) {
 		setDataAvaliacao(avaliacao.getDataAvaliacao());
-		setStatus(avaliacao.getStatusFilme());
+		setStatusfilme(avaliacao.getStatusFilme());
 		setIdResposta(avaliacao.getIdResposta());
-		setFilme(avaliacao.getFilme());
+		setIdFilme(avaliacao.getIdFilme());
 	}
 
 	private Date dataAvaliacao;
-	private StatusFilme status;
+	private StatusFilme statusfilme;
 	private Resposta idResposta;
 	private Colaborador colaborador;
-	private Filme filme;
-
-
-
-	public StatusFilme getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusFilme status) {
-		this.status = status;
-	}
+	private Filme idFilme;
 
 	public Resposta getIdResposta() {
 		return idResposta;
@@ -49,20 +39,28 @@ public class AvaliacaoVisualizacaoViewModel {
 		this.colaborador = colaborador;
 	}
 
-	public Filme getFilme() {
-		return filme;
-	}
-
-	public void setFilme(Filme filme) {
-		this.filme = filme;
-	}
-
 	public Date getDataAvaliacao() {
 		return dataAvaliacao;
 	}
 
 	public void setDataAvaliacao(Date dataAvaliacao) {
 		this.dataAvaliacao = dataAvaliacao;
+	}
+
+	public StatusFilme getStatusfilme() {
+		return statusfilme;
+	}
+
+	public void setStatusfilme(StatusFilme statusfilme) {
+		this.statusfilme = statusfilme;
+	}
+
+	public Filme getIdFilme() {
+		return idFilme;
+	}
+
+	public void setIdFilme(Filme idFilme) {
+		this.idFilme = idFilme;
 	}
 
 }

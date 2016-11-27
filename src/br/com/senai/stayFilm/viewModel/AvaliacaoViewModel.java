@@ -4,26 +4,17 @@ import java.util.Date;
 
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 public class AvaliacaoViewModel {
 
 	private Date dataAvaliacao;
-	private StatusFilme status;
+	private StatusFilme statusFilme;
+	private Colaborador idColaborador;
 	private Resposta idResposta;
-	private Filme filme;
-	
-	
-
-
-	public StatusFilme getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusFilme status) {
-		this.status = status;
-	}
+	private Filme idFilme;
 
 	public Resposta getIdResposta() {
 		return idResposta;
@@ -35,16 +26,7 @@ public class AvaliacaoViewModel {
 
 
 	public Avaliacao toAvaliacao() {
-		System.out.println("QUE SE FODA"+dataAvaliacao);
-		return new Avaliacao(getDataAvaliacao(),getStatus(),getIdResposta(),getFilme());
-	}
-
-	public Filme getFilme() {
-		return filme;
-	}
-
-	public void setFilme(Filme filme) {
-		this.filme = filme;
+		return new Avaliacao(getDataAvaliacao(),getStatusFilme(),getIdColaborador(),getIdResposta(),getIdFilme());
 	}
 
 	public Date getDataAvaliacao() {
@@ -53,5 +35,29 @@ public class AvaliacaoViewModel {
 
 	public void setDataAvaliacao(Date dataAvaliacao) {
 		this.dataAvaliacao = dataAvaliacao;
+	}
+
+	public StatusFilme getStatusFilme() {
+		return statusFilme;
+	}
+
+	public void setStatusFilme(StatusFilme statusFilme) {
+		this.statusFilme = statusFilme;
+	}
+
+	public Filme getIdFilme() {
+		return idFilme;
+	}
+
+	public void setIdFilme(Filme idFilme) {
+		this.idFilme = idFilme;
+	}
+
+	public Colaborador getIdColaborador() {
+		return idColaborador;
+	}
+
+	public void setIdColaborador(Colaborador idColaborador) {
+		this.idColaborador = idColaborador;
 	}
 }
