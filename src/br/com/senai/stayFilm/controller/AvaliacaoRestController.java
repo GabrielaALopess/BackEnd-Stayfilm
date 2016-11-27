@@ -43,12 +43,12 @@ public class AvaliacaoRestController {
 	 * @throws SQLException
 	 * @throws URISyntaxException
 	 */
-	@RequestMapping(value = "/avaliacao/{idColaborador}/{idResposta}/{idFilme}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/avaliacao/{idResposta}/{idFilme}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<AvaliacaoVisualizacaoViewModel> inserir(@RequestBody AvaliacaoViewModel viewModel,
-			@PathVariable Long idColaborador, @PathVariable Long idResposta,@PathVariable Long idFilme) throws SQLException, URISyntaxException {
+			 @PathVariable Long idResposta,@PathVariable Long idFilme) throws SQLException, URISyntaxException {
 		try {
 			Avaliacao avaliacao = viewModel.toAvaliacao();
-			avaliacaoBO.insert(avaliacao, idColaborador, idResposta, idFilme);
+			avaliacaoBO.insert(avaliacao, idResposta, idFilme);
 			URI location = new URI("/avaliacao/resposta/filme" + avaliacao.getIdResposta());
 			return ResponseEntity.created(location).body(new AvaliacaoVisualizacaoViewModel(avaliacao));
 		} catch (SQLException e) {

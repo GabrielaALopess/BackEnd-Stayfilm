@@ -30,8 +30,8 @@ public class AvaliacaoBo {
 	 * @param idFilme
 	 * @throws SQLException
 	 */
-	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta,Long idFilme) throws SQLException {
-		avaliacaoDao.insert(avaliacao, idColaborador, idResposta, idFilme);
+	public void insert(Avaliacao avaliacao, Long idResposta,Long idFilme) throws SQLException {
+		avaliacaoDao.insert(avaliacao, idResposta, idFilme);
 	}
 	
 

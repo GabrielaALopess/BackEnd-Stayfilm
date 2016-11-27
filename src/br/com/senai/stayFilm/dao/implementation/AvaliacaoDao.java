@@ -28,7 +28,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	@Transactional
 	public void insert(Avaliacao avaliacao, long idColaborador,long idResposta) throws SQLException {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		avaliacao.setColaborador(colaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
 		avaliacao.setIdResposta(resposta);
 		manager.persist(avaliacao);
@@ -45,9 +44,9 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
 		Filme filme = manager.find(Filme.class, idFilme);
-		avaliacao.setColaborador(colaborador);
 		avaliacao.setIdResposta(resposta);
 		avaliacao.setFilme(filme);
+		System.out.println("PASSOU AQUI");
 		manager.persist(avaliacao);
 	}
 
@@ -122,8 +121,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
 
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		avaliacao.setColaborador(colaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
 		avaliacao.setIdResposta(resposta);
 		manager.persist(avaliacao);

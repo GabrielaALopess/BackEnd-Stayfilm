@@ -1,48 +1,29 @@
 package br.com.senai.stayFilm.vizualizacao.viewModel;
 
-import java.sql.Time;
 import java.util.Date;
 
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 public class AvaliacaoVisualizacaoViewModel {
-	
-	public AvaliacaoVisualizacaoViewModel(Avaliacao avaliacao){
-		
+
+	public AvaliacaoVisualizacaoViewModel(Avaliacao avaliacao) {
+		setDataAvaliacao(avaliacao.getDataAvaliacao());
+		setStatus(avaliacao.getStatusFilme());
 		setIdResposta(avaliacao.getIdResposta());
+		setFilme(avaliacao.getFilme());
 	}
 
-	private Date data;
-	private Time hora;
-	private String observacao;
+	private Date dataAvaliacao;
 	private StatusFilme status;
 	private Resposta idResposta;
+	private Colaborador colaborador;
+	private Filme filme;
 
-	public Date getData() {
-		return data;
-	}
 
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public Time getHora() {
-		return hora;
-	}
-
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
 
 	public StatusFilme getStatus() {
 		return status;
@@ -58,6 +39,30 @@ public class AvaliacaoVisualizacaoViewModel {
 
 	public void setIdResposta(Resposta idResposta) {
 		this.idResposta = idResposta;
+	}
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
+	}
+
+	public Filme getFilme() {
+		return filme;
+	}
+
+	public void setFilme(Filme filme) {
+		this.filme = filme;
+	}
+
+	public Date getDataAvaliacao() {
+		return dataAvaliacao;
+	}
+
+	public void setDataAvaliacao(Date dataAvaliacao) {
+		this.dataAvaliacao = dataAvaliacao;
 	}
 
 }
