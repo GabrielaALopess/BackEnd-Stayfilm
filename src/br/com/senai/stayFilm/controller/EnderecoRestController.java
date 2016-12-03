@@ -3,6 +3,7 @@ package br.com.senai.stayFilm.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.EnderecoBo;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EnderecoVisualizacaoViewModel;
 
@@ -66,6 +68,27 @@ public class EnderecoRestController {
 		return enderecoBO.buscarPorId(idEndereco);
 	}
 
+	
+	/**
+	 * Esse  metodo e responsavel por retornar o endereco preenchido para edicao
+	 * @param idColaborador
+	 * @return
+	 * @throws SQLException/endereco/{idColaborador}
+	 */
+	@RequestMapping(value = "/buscarEndereco/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Endereco >pesquisarEnderecoColaborador(@PathVariable Colaborador idColaborador) throws SQLException {
+			
+			Endereco endereco = enderecoBO.buscarEnderecoColab(idColaborador);
+		try{
+			URI location = new URI("/buscarEndereco");
+			return ResponseEntity.created(location).body(endereco);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+	}
+	
 
 	/**
 	 * Metodo para alterar os dados do endereco do colaborador

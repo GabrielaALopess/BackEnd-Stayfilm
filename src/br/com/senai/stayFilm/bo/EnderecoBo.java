@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
+import br.com.senai.stayFilm.dao.implementation.EnderecoDao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
 
 @Component
@@ -17,6 +19,8 @@ public class EnderecoBo {
 	@Qualifier("enderecoDao")
 	private GenericDao<Endereco> enderecoDao;
 	
+	@Autowired
+	private GenericDao<Colaborador>colaboradorDao;
 	
 	/**
 	 * Metodo responsavel por inserir o endereco do colaborador
@@ -49,4 +53,11 @@ public class EnderecoBo {
 	public Endereco edit(Endereco endereco, Long idColaborador) throws SQLException {
 		return enderecoDao.updateWithKey(endereco, idColaborador);
 }
+	
+	
+	
+	public Endereco buscarEnderecoColab(Colaborador idColaborador)throws SQLException {
+		return ((EnderecoDao) enderecoDao).buscarEnderecoColaborador( idColaborador);
+	}
+	
 }

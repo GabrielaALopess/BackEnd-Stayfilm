@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,6 +74,16 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	@Override
 	public Endereco search(Long idEndereco) {
 		return manager.find(Endereco.class, idEndereco);
+	}
+	
+	
+
+	public Endereco buscarEnderecoColaborador(Colaborador idColaborador) {
+		TypedQuery<Endereco> query=manager.createQuery("SELECT e FROM Endereco e "
+				+ "WHERE e.idcolaborador.idColaborador=:idcolaborador",Endereco.class);
+		query.setParameter("idcolaborador", idColaborador.getIdColaborador());
+		return query.getSingleResult();
+		
 	}
 
 
