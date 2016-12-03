@@ -23,6 +23,7 @@ import com.auth0.jwt.JWTSigner;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.sendMail.SendMail;
 import br.com.senai.stayFilm.viewModel.ColaboradorViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewModel;
 
@@ -34,28 +35,28 @@ import br.com.senai.stayFilm.vizualizacao.viewModel.ColaboradorVisualizacaoViewM
 @CrossOrigin
 @RestController
 public class ColaboradorRestController {
-	
-	public static final String SECRET="senaistayfilm";
-	public static final String ISSUER="http://www.sp.senai.br";
+
+	public static final String SECRET = "senaistayfilm";
+	public static final String ISSUER = "http://www.sp.senai.br";
 
 	@Autowired
 	public ColaboradorBo colaboradorBO;
-	
-	
 
 	/**
-	 * Método para cadastrar um colaborador 
+	 * Método para cadastrar um colaborador
+	 * 
 	 * @param viewModel
 	 * @return
 	 * @throws SQLException
 	 */
 	@RequestMapping(value = "/private/colaborador", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<ColaboradorVisualizacaoViewModel> inserir(@RequestBody ColaboradorViewModel viewModel) throws SQLException {
+	public ResponseEntity<ColaboradorVisualizacaoViewModel> inserir(@RequestBody ColaboradorViewModel viewModel)
+			throws SQLException {
 
 		try {
-			Colaborador colaborador = viewModel.toColaborador();		
+			Colaborador colaborador = viewModel.toColaborador();
 			colaboradorBO.insert(colaborador);
-			
+
 			URI location = new URI("/colaborador" + colaborador.getIdColaborador());
 			return ResponseEntity.created(location).body(new ColaboradorVisualizacaoViewModel(colaborador));
 		} catch (URISyntaxException e) {
@@ -64,58 +65,58 @@ public class ColaboradorRestController {
 		}
 
 	}
-	
-//	/**
-//	 * Para listar todos os colaboradores que estao salvos
-//	 * @return
-//	 */
-//	
-//	@RequestMapping(value = "/listarColaboradores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//	public List<Colaborador> listarTodosColaboradores(){
-//		
-//		return colaboradorBO.listarTodos();
-//	}
-//	
-	
+
+	// /**
+	// * Para listar todos os colaboradores que estao salvos
+	// * @return
+	// */
+	//
+	// @RequestMapping(value = "/listarColaboradores", method =
+	// RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	// public List<Colaborador> listarTodosColaboradores(){
+	//
+	// return colaboradorBO.listarTodos();
+	// }
+	//
+
 	/**
 	 * Para listar todos os colaboradores que estao salvos
+	 * 
 	 * @return
 	 */
-	
+
 	@RequestMapping(value = "/listarColaboradores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<List<Colaborador>> listarTodosColaboradores(){
+	public ResponseEntity<List<Colaborador>> listarTodosColaboradores() {
 		try {
-			List<Colaborador> lista= colaboradorBO.listarTodos();
-			
+			List<Colaborador> lista = colaboradorBO.listarTodos();
+
 			URI location = new URI("/Colaboradores");
 			return ResponseEntity.created(location).body(lista);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	
+
 	}
-	
-	
-	
-	
+
 	/**
 	 * Alterar os dados do colaborador
+	 * 
 	 * @param colaborador
 	 * @param idColaborador
 	 * @throws SQLException
 	 */
 	@Transactional
-	
+
 	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PATCH)
 	public void altera(@RequestBody Colaborador colaborador, @PathVariable Long idColaborador) throws SQLException {
 		colaboradorBO.atualizar(colaborador, idColaborador);
 	}
-	
-	
+
 	/**
-	 * Metodo para preencher os dados dos colaboradores 
-	 * (tela de transicao entre a lista de colaboradores e a acao do alterar)
+	 * Metodo para preencher os dados dos colaboradores (tela de transicao entre
+	 * a lista de colaboradores e a acao do alterar)
+	 * 
 	 * @param idColaborador
 	 * @return
 	 * @throws SQLException
@@ -124,48 +125,46 @@ public class ColaboradorRestController {
 	public Colaborador buscarPorId(@PathVariable Long idColaborador) throws SQLException {
 		return colaboradorBO.buscarPorId(idColaborador);
 	}
-	
+
 	/**
 	 * metodo responsavel por realizar o login, e criar o token para navegação:
-	 * token gerado por:
-	 * id_colaborador, nome, email, permissao. 						
+	 * token gerado por: id_colaborador, nome, email, permissao.
+	 * 
 	 * @param colaborador
 	 * @return
 	 */
-	@RequestMapping(value="/login", method=RequestMethod.POST, 
-    		consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
-    		produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<String> logar(@RequestBody Colaborador colaborador){
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<String> logar(@RequestBody Colaborador colaborador) {
 		try {
-			
+
 			colaborador = colaboradorBO.realizaLogin(colaborador);
-			
-			if(colaborador !=null){
-				//data de emissao do token "issured at"
+
+			if (colaborador != null) {
+				// data de emissao do token "issured at"
 				long iat = System.currentTimeMillis() / 1000;
-				
-				//data de expiracao do token
-				long  exp = iat + 364000;
-				
+
+				// data de expiracao do token
+				long exp = iat + 364000;
+
 				// objeto qye ura gerar o token
-				JWTSigner signer= new JWTSigner(SECRET);
+				JWTSigner signer = new JWTSigner(SECRET);
 				HashMap<String, Object> claims = new HashMap<>();
-				
-				claims.put("iat",iat);
+
+				claims.put("iat", iat);
 				claims.put("exp", exp);
-				claims.put("iss",ISSUER);
+				claims.put("iss", ISSUER);
 				claims.put("id_colaborador", colaborador.getIdColaborador());
 				claims.put("nome", colaborador.getNome());
 				claims.put("email", colaborador.getEmail());
 				claims.put("permissao", colaborador.getPermissao());
-				
-				//gerar o token
+
+				// gerar o token
 				String jwt = signer.sign(claims);
 				JSONObject token = new JSONObject();
 				token.put("token", jwt);
-				return  ResponseEntity.ok(token.toString());
-				
-			}else{
+				return ResponseEntity.ok(token.toString());
+
+			} else {
 				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} catch (Exception e) {
@@ -173,6 +172,32 @@ public class ColaboradorRestController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
+
+	/**
+	 * Metodo utilizado na recuperacao de senha
+	 * 
+	 * @param viewModel
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/recuperarSenha", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public void recuperarSenha(@RequestBody String email) throws SQLException {
+		new Thread() {
+			public void run() {
+				super.run();
+				
+				
+				SendMail sendMail = new SendMail();
+				String from = "correo.stayfilm@gmail.com";
+				String to = "sf-senai@googlegroups.com";
+				String subject = "I Love this app";
+				String message = "I LOVE THIS APP";
+				sendMail.sendMail(from, to, subject, message);
+				System.out.println("Email enviado");
+
+			}
+		}.start();
+		
+
+	}
+
 }

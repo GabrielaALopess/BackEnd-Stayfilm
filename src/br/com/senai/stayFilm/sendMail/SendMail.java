@@ -41,7 +41,7 @@ public class SendMail {
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.socketFactory.fallback", "false");
 		SimpleAuth auth = null;
-		auth = new SimpleAuth("seuemail", "suasenha");
+		auth = new SimpleAuth("correo.stayfilm@gmail.com", "stayfilm123");
 
 		Session session = Session.getDefaultInstance(props, auth);
 		session.setDebug(true);
@@ -58,7 +58,7 @@ public class SendMail {
 		Transport tr;
 		try {
 			tr = session.getTransport("smtp");
-			tr.connect(mailSMTPServer, "seuemail", "suasenha");
+			tr.connect(mailSMTPServer, "correo.stayfilm@gmail.com", "stayfilm123");
 			msg.saveChanges();
 
 			tr.sendMessage(msg, msg.getAllRecipients());
@@ -71,8 +71,8 @@ public class SendMail {
 }
 
 class SimpleAuth extends Authenticator {
-	public String username = null;
-	public String password = null;
+	public String username = "correo.stayfilm@gmail.com";
+	public String password = "stayfilm123";
 
 	public SimpleAuth(String user, String pwd) {
 		username = user;

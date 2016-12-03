@@ -39,5 +39,6 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 		<tx:annotation-driven proxy-target-class="true"/>
+		
 </beans>
 

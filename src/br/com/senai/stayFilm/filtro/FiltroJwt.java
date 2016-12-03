@@ -36,6 +36,10 @@ public class FiltroJwt implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
+//		chain.doFilter(req, resp);
+		
+		
+		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		// primeiro passo dofilter

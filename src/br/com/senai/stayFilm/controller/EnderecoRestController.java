@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.EnderecoBo;
-import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Endereco;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EnderecoVisualizacaoViewModel;
 
