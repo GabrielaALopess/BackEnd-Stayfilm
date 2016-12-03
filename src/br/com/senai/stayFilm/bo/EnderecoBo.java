@@ -39,7 +39,7 @@ public class EnderecoBo {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Endereco buscarPorId(Long idEndereco) throws SQLException {
+	public Endereco buscarPorId(long idEndereco) throws SQLException {
 		return enderecoDao.buscarPorId(idEndereco);
 	}
 	
@@ -56,8 +56,8 @@ public class EnderecoBo {
 	
 	
 	
-	public Endereco buscarEnderecoColab(Colaborador idColaborador)throws SQLException {
-		return ((EnderecoDao) enderecoDao).buscarEnderecoColaborador( idColaborador);
-	}
+	public Endereco buscarEnderecoColab(Long idColaborador)throws SQLException {
+		return ((EnderecoDao)enderecoDao).buscarEnderecoColaborador(idColaborador);
+		}
 	
 }

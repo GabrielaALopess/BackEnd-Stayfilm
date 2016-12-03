@@ -44,8 +44,11 @@ public class EnderecoDao implements GenericDao<Endereco> {
 	 * Metodo responsavel por buscar o endereco conforme o id
 	 */
 	@Override
-	public Endereco buscarPorId(Long idEndereco) {
-		return manager.find(Endereco.class, idEndereco);
+	public Endereco buscarPorId(Long idColaborador) {
+		Endereco endereco = new Endereco();
+		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
+		endereco.setIdColaborador(colaborador);		
+		return manager.find(Endereco.class, idColaborador);
 	}
 	
 	
@@ -76,13 +79,19 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return manager.find(Endereco.class, idEndereco);
 	}
 	
-	
 
-	public Endereco buscarEnderecoColaborador(Colaborador idColaborador) {
+
+	public Endereco buscarEnderecoColaborador(long idColaborador) {
+		
 		TypedQuery<Endereco> query=manager.createQuery("SELECT e FROM Endereco e "
-				+ "WHERE e.idcolaborador.idColaborador=:idcolaborador",Endereco.class);
-		query.setParameter("idcolaborador", idColaborador.getIdColaborador());
-		return query.getSingleResult();
+				+ "WHERE e.idColaborador.idColaborador = :idcolaborador",Endereco.class);
+		query.setParameter("idcolaborador", idColaborador);
+		List<Endereco> lista = query.getResultList();
+		if(!lista.isEmpty()){
+			return lista.get(0);
+		}
+		return null;
+		
 		
 	}
 
@@ -120,5 +129,6 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		
 	}
 
+	
 
 }

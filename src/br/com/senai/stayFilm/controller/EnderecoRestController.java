@@ -76,17 +76,8 @@ public class EnderecoRestController {
 	 * @throws SQLException/endereco/{idColaborador}
 	 */
 	@RequestMapping(value = "/buscarEndereco/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Endereco >pesquisarEnderecoColaborador(@PathVariable Colaborador idColaborador) throws SQLException {
-			
-			Endereco endereco = enderecoBO.buscarEnderecoColab(idColaborador);
-		try{
-			URI location = new URI("/buscarEndereco");
-			return ResponseEntity.created(location).body(endereco);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	
+	public Endereco pesquisarEnderecoColaborador(@PathVariable long idColaborador) throws SQLException {
+		return enderecoBO.buscarEnderecoColab(idColaborador);
 	}
 	
 
