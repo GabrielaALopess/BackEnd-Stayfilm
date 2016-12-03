@@ -1,7 +1,6 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.viewModel.ColaboradorListaViewModel;
 
 /**
  * 22/10/2016

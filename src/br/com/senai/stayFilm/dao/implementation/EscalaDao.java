@@ -14,8 +14,6 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
-import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
-import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaVisualizacaoViewModel;
 
 @Repository
 public class EscalaDao implements GenericDao<Escala> {
