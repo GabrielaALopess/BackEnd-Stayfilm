@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.EscalaBloqueioEspecificoDao;
+import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
 @Component
@@ -17,6 +18,8 @@ public class EscalaBloqueioEspecificoBo {
 	@Autowired
 	@Qualifier("escalaBloqueioEspecificoDao")
 	private GenericDao<EscalaBloqueioEspecifico> escalaBloqueioEspecificoDao;
+	
+	
 	
 	
 /*	EscalaBloqueioEspecificoBo(){
@@ -38,5 +41,9 @@ public class EscalaBloqueioEspecificoBo {
 	
 	public List<EscalaBloqueioEspecifico>ListarEscalaBloqueioEspecifico(){
 		return ((EscalaBloqueioEspecificoDao) escalaBloqueioEspecificoDao).ListarEscalaBloqueioEspecifico();
+	}
+	
+	public List<EscalaBloqueioEspecifico>listarPorMesPorColaborador(Colaborador idColaborador,int mes,int ano){
+		return( (EscalaBloqueioEspecificoDao)escalaBloqueioEspecificoDao).listaEscalaMes(idColaborador,mes,ano);
 	}
 }

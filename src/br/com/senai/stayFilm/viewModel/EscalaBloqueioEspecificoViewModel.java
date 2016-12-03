@@ -4,6 +4,8 @@ package br.com.senai.stayFilm.viewModel;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
@@ -15,6 +17,7 @@ public class EscalaBloqueioEspecificoViewModel {
 	private int horaInicio;
 	private int horaFim;
 	private Long colaboradorId;
+	
 	private Date data;
 	
 	public Long getIdBloqueioEspecifico() {
@@ -41,6 +44,8 @@ public class EscalaBloqueioEspecificoViewModel {
 	public void setColaboradorId(Long colaboradorId) {
 		this.colaboradorId = colaboradorId;
 	}
+	
+	
 	public Date getData() {
 		return data;
 	}
@@ -48,12 +53,12 @@ public class EscalaBloqueioEspecificoViewModel {
 		this.data =data;
 	}
 	
-	public EscalaBloqueioEspecifico toEscala(Colaborador colaborador){
+	public EscalaBloqueioEspecifico toEscala(Colaborador colaboradorId){
 		EscalaBloqueioEspecifico escala = new EscalaBloqueioEspecifico();
 		escala.setData(getData());
 		escala.setHoraInicio(getHoraInicio());
 		escala.setHoraFim(getHoraFim());
-		escala.setColaborador(colaborador);
+		escala.setColaboradorId(colaboradorId);
 		return escala;
 	}
 	

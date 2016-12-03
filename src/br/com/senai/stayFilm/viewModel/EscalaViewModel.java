@@ -9,10 +9,11 @@ public class EscalaViewModel {
 
 	private boolean comparecimento;
 	private String observacao;
+	
 	private Date dataEscala;
-	private Date horaEscalaInicio;
-	private Date horaEscalaFim;
-	private Colaborador idColaborador;
+	private int horaEscalaInicio;
+	private int horaEscalaFim;
+	private Long colaboradorId;
 
 	public boolean isComparecimento() {
 		return comparecimento;
@@ -38,33 +39,43 @@ public class EscalaViewModel {
 		this.dataEscala = dataEscala;
 	}
 
-	public Date getHoraEscalaInicio() {
+	
+
+	public int getHoraEscalaInicio() {
 		return horaEscalaInicio;
 	}
 
-	public void setHoraEscalaInicio(Date horaEscalaInicio) {
+	public void setHoraEscalaInicio(int horaEscalaInicio) {
 		this.horaEscalaInicio = horaEscalaInicio;
 	}
 
-	public Date getHoraEscalaFim() {
+	public int getHoraEscalaFim() {
 		return horaEscalaFim;
 	}
 
-	public void setHoraEscalaFim(Date horaEscalaFim) {
+	public void setHoraEscalaFim(int horaEscalaFim) {
 		this.horaEscalaFim = horaEscalaFim;
 	}
 
-	public Colaborador getIdColaborador() {
-		return idColaborador;
+	public Long getIdColaborador() {
+		return colaboradorId;
 	}
 
-	public void setIdColaborador(Colaborador idColaborador) {
-		this.idColaborador = idColaborador;
+	public void setIdColaborador(Long colaboradorId) {
+		this.colaboradorId = colaboradorId;
 	}
 
-	public Escala toEscala() {
-		return new Escala(isComparecimento(), getObservacao(), getDataEscala(), getHoraEscalaInicio(),
-				getHoraEscalaFim(), getIdColaborador());
+	public Escala toEscala(Colaborador colaborador) {
+		Escala escala= new Escala();
+		
+		escala.setDataEscala(getDataEscala());
+		escala.setComparecimento(isComparecimento());
+		escala.setObservacao(getObservacao());
+		escala.setHoraEscalaInicio(getHoraEscalaInicio());
+		escala.setHoraEscalaFim(getHoraEscalaFim());
+		escala.setColaborador(colaborador);
+		
+		return escala;
 	}
 
 }

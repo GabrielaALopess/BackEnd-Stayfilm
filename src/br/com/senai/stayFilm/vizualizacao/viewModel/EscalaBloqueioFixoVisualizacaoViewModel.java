@@ -26,6 +26,7 @@ public class EscalaBloqueioFixoVisualizacaoViewModel {
 		setDia(escalaBloqueioFixo.getDiaSemana().getDiaSemana());
 		String horario = escalaBloqueioFixo.getHoraInicio()+" - "+ escalaBloqueioFixo.getHoraFim();
 		setHorario(horario);
+		
 	}
 	
 }

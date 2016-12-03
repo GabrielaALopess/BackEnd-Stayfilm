@@ -46,6 +46,7 @@ public class Filme {
 
 	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
+	
 
 	public Filme() {
 

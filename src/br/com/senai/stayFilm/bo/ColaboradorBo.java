@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.ColaboradorDao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.viewModel.ColaboradorListaViewModel;
 
 /**
  * Bo de Colaborador
@@ -48,6 +49,8 @@ public class ColaboradorBo {
 		return colaboradorDao.listarTodos();
 	}
 
+	
+	
 	/**
 	 * Atualizar os  dados do colaborador quando o mesmo e selecionado
 	 * @param colaborador

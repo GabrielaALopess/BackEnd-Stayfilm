@@ -9,35 +9,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Escala {
 
-	public Escala() {
 
-	}
-
-	public Escala(boolean comparecimento, String observacao, Date dataEscala, Date horaEscalaInicio, Date horaEscalaFim,
-			Colaborador idColaborador) {
-		setComparecimento(comparecimento);
-		setObservacao(observacao);
-		setDataEscala(dataEscala);
-		setHoraEscalaInicio(horaEscalaInicio);
-		setHoraEscalaFim(horaEscalaFim);
-		setIdColaborador(idColaborador);
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEscala;
 	private boolean comparecimento;
 	private String observacao;
+	
+	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date dataEscala;
-	private Date horaEscalaInicio;
-	private Date horaEscalaFim;
+	
+	private int horaEscalaInicio;
+	private int horaEscalaFim;
+	
+	@Fetch(FetchMode.SELECT)
 	@ManyToOne
 	@JoinColumn(name = "colaborador_id")
-	private Colaborador idColaborador;
+	private Colaborador colaborador;
 
+	
 	public Long getIdEscala() {
 		return idEscala;
 	}
@@ -70,28 +70,30 @@ public class Escala {
 		this.dataEscala = dataEscala;
 	}
 
-	public Colaborador getIdColaborador() {
-		return idColaborador;
+	public Colaborador getColaborador() {
+		return colaborador;
 	}
 
-	public void setIdColaborador(Colaborador idColaborador) {
-		this.idColaborador = idColaborador;
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
 	}
 
-	public Date getHoraEscalaInicio() {
+	public int getHoraEscalaInicio() {
 		return horaEscalaInicio;
 	}
 
-	public void setHoraEscalaInicio(Date horaEscalaInicio) {
+	public void setHoraEscalaInicio(int horaEscalaInicio) {
 		this.horaEscalaInicio = horaEscalaInicio;
 	}
 
-	public Date getHoraEscalaFim() {
+	public int getHoraEscalaFim() {
 		return horaEscalaFim;
 	}
 
-	public void setHoraEscalaFim(Date horaEscalaFim) {
+	public void setHoraEscalaFim(int horaEscalaFim) {
 		this.horaEscalaFim = horaEscalaFim;
 	}
+
+	
 
 }

@@ -2,6 +2,7 @@ package br.com.senai.stayFilm.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,13 +28,14 @@ public class EscalaBloqueioEspecifico {
 	
 	private int horaFim;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
+	@Column(name="dataEspecifica")
 	private Date data;
 	
 	@Fetch(FetchMode.SELECT)
 	@ManyToOne
-	@JoinColumn(name =  "colaborador_id")
-	private Colaborador colaborador;
+	@JoinColumn(name="colaboradorId")
+	private Colaborador colaboradorId;
 	
 	
 	
@@ -70,13 +72,16 @@ public class EscalaBloqueioEspecifico {
 		this.data = data;
 	}
 
-	public Colaborador getColaborador() {
-		return colaborador;
+	public Colaborador getColaboradorId() {
+		return colaboradorId;
 	}
 
-	public void setColaborador(Colaborador colaborador) {
-		this.colaborador = colaborador;
+	public void setColaboradorId(Colaborador colaboradorId) {
+		this.colaboradorId = colaboradorId;
 	}
+
+	
+
 
 	
 	

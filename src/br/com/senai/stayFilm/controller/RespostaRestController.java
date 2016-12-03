@@ -34,14 +34,19 @@ public class RespostaRestController {
 	public RespostaBO respostaBo;
 
 
-	
-	@RequestMapping(value = "/resposta", method = RequestMethod.POST)
+	/**
+	 *  metodo responsavel por cadastrar uma resposta 
+	 * @param viewModel
+	 * @return Resposta resposta; return 201 created 
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/private/resposta", method = RequestMethod.POST)
 	public ResponseEntity<RespostaVisualizacaoViewModel> inserir(@RequestBody RespostaViewModel viewModel) throws SQLException {
 
 		try {
 			Resposta resposta = viewModel.toResposta();
 			respostaBo.insert(resposta);
-			
+
 			URI location = new URI("/resposta" + resposta.getIdResposta());
 			return ResponseEntity.created(location).body(new RespostaVisualizacaoViewModel(resposta));
 		} catch (URISyntaxException e) {
@@ -50,28 +55,49 @@ public class RespostaRestController {
 		}
 
 	}
+	
+	/**
+	 * metodo responsavel por realizar o 
+	 * @param idResposta
+	 * @return
+	 * @throws SQLException
+	 */
 
 	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Resposta pesquisarResposta(@PathVariable Long idResposta) throws SQLException {
 		return respostaBo.search(idResposta);
 	}
-	
-	
-	
-@RequestMapping(value="/respostas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
+
+
+	/**
+	 * metodo responsavel por listar todas as respostas cadastradas, ordenada por titulo em ordem alfabetica
+	 * @return
+	 */
+	@RequestMapping(value="/respostas", method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE) 
 	public List<Resposta> pesquisar(){
 		return respostaBo.ListarTodos();
-		
 	}
-	
 
-	@RequestMapping(value = "/resposta/editar/{idResposta}", method = RequestMethod.PUT)
+	/**
+	 *  Metodo responsavel por realizar o editar a resposta passando o id no body e no  uri
+	 * @param resposta
+	 * @return 200 sucess ! -> resposta do front- alterado com sucsso .
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/private/resposta/editar/{idResposta}", method = RequestMethod.PUT)
 	public Resposta altera(@RequestBody Resposta resposta) throws SQLException {
 		return respostaBo.update(resposta);
 
 	}
 
-	@RequestMapping(value = "/resposta/{idResposta}", method = RequestMethod.DELETE)
+	/**
+	 * metodo responsavel por excluir uma reposta.
+	 * @param idResposta
+	 * @return  null <- 204 no contest <- indicar uma resposta no front-como removido com sucesso!
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/private/resposta/remove/{idResposta}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable long idResposta) throws SQLException {
 		respostaBo.delete(idResposta);
 		return ResponseEntity.noContent().build();

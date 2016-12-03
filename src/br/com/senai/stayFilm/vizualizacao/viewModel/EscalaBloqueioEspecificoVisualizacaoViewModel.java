@@ -11,7 +11,7 @@ import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
 public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date data;
 	private String horario;
 	
@@ -37,7 +37,7 @@ public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 	
 	public EscalaBloqueioEspecificoVisualizacaoViewModel(EscalaBloqueioEspecifico escala){
 		setData(escala.getData());
-		String horario = escala.getHoraInicio()+"-"+ escala.getHoraFim();
+		String horario = escala.getHoraInicio()+" - "+ escala.getHoraFim();
 		setHorario(horario);
 	}
 	

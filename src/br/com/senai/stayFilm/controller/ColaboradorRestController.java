@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,14 +66,38 @@ public class ColaboradorRestController {
 
 	}
 	
+//	/**
+//	 * Para listar todos os colaboradores que estao salvos
+//	 * @return
+//	 */
+//	
+//	@RequestMapping(value = "/listarColaboradores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public List<Colaborador> listarTodosColaboradores(){
+//		
+//		return colaboradorBO.listarTodos();
+//	}
+//	
+	
 	/**
 	 * Para listar todos os colaboradores que estao salvos
 	 * @return
 	 */
+	
 	@RequestMapping(value = "/listarColaboradores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Colaborador> listarTodosColaboradores(){
-		return colaboradorBO.listarTodos();
+	public ResponseEntity<List<Colaborador>> listarTodosColaboradores(){
+		try {
+			List<Colaborador> lista= colaboradorBO.listarTodos();
+			
+			URI location = new URI("/Colaboradores");
+			return ResponseEntity.created(location).body(lista);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
 	}
+	
+	
 	
 	
 	/**
@@ -82,7 +107,8 @@ public class ColaboradorRestController {
 	 * @throws SQLException
 	 */
 	@Transactional
-	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PUT)
+	
+	@RequestMapping(value = "/colaborador/editar/{idColaborador}", method = RequestMethod.PATCH)
 	public void altera(@RequestBody Colaborador colaborador, @PathVariable Long idColaborador) throws SQLException {
 		colaboradorBO.atualizar(colaborador, idColaborador);
 	}
@@ -120,7 +146,7 @@ public class ColaboradorRestController {
 				long iat = System.currentTimeMillis() / 1000;
 				
 				//data de expiracao do token
-				long  exp = iat + 36400;
+				long  exp = iat + 364000;
 				
 				// objeto qye ura gerar o token
 				JWTSigner signer= new JWTSigner(SECRET);
