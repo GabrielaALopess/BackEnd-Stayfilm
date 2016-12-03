@@ -4,8 +4,6 @@ package br.com.senai.stayFilm.viewModel;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
