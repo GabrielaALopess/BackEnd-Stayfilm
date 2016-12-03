@@ -22,7 +22,6 @@ import br.com.senai.stayFilm.bo.EscalaBo;
 import br.com.senai.stayFilm.bo.EscalaMensalBo;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
-import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.model.EscalaMensal;
 import br.com.senai.stayFilm.viewModel.EscalaViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaVisualizacaoViewModel;

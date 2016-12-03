@@ -1,7 +1,6 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;

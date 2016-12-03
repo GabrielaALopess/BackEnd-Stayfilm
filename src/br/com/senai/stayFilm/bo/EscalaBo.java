@@ -8,12 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.dao.implementation.EscalaBloqueioEspecificoDao;
 import br.com.senai.stayFilm.dao.implementation.EscalaDao;
 import br.com.senai.stayFilm.model.Colaborador;
 import br.com.senai.stayFilm.model.Escala;
-import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
-import br.com.senai.stayFilm.model.EscalaMensal;
 
 @Component
 public class EscalaBo {

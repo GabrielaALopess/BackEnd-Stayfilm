@@ -1,6 +1,5 @@
 package br.com.senai.stayFilm.vizualizacao.viewModel;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
