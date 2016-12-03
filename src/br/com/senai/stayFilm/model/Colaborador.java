@@ -172,6 +172,16 @@ public class Colaborador {
 		String md5 = encoder.encodePassword(senha, null);
 		this.senha = md5;
 	}
+	
+	/**
+	 * CRIPTOGRAFIA MD5
+	 * 
+	 * @param senha
+	 */
+	public void setSenhaEdit(String senha) {
+		this.senha = senha;
+	}
+	
 
 	/**
 	 * O status representa a quao o colaborador e ativo ou inativo no sistema
