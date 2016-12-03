@@ -80,7 +80,7 @@ public class EnderecoDao implements GenericDao<Endereco> {
 
 	public Endereco buscarEnderecoColaborador(Colaborador idColaborador) {
 		TypedQuery<Endereco> query=manager.createQuery("SELECT e FROM Endereco e "
-				+ "WHERE e.idcolaborador.idColaborador=:idcolaborador",Endereco.class);
+				+ "WHERE e.idcolaborador =:idcolaborador",Endereco.class);
 		query.setParameter("idcolaborador", idColaborador.getIdColaborador());
 		return query.getSingleResult();
 		
