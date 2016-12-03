@@ -31,6 +31,9 @@ public abstract interface GenericDao<T> {
 
 	void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta);
 
+	void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta,Long filme);
+
+	
 	List<Colaborador> listarTodos();
 
 	T buscarPorId (Long idObj);

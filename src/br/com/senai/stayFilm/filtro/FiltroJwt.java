@@ -23,10 +23,10 @@ import com.auth0.jwt.JWTVerifier;
 import br.com.senai.stayFilm.controller.ColaboradorRestController;
 import br.com.senai.stayFilm.enumeration.TipoPermissao;
 
-//import br.com.senai.stayFilm.controller.UsuarioRestController;
 
 @WebFilter("/*")
 public class FiltroJwt implements Filter {
+
 
 	@Override
 	public void destroy() {

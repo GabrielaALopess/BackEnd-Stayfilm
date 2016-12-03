@@ -12,12 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
-import com.auth0.jwt.internal.com.fasterxml.jackson.annotation.JsonProperty;
 
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.enumeration.TemaFilme;
@@ -34,9 +33,6 @@ public class Filme {
 	@Enumerated(EnumType.STRING)
 	private TemaFilme temaFilme;
 
-	@Enumerated(EnumType.STRING)
-	private StatusFilme statusFilme;
-
 	@Fetch(FetchMode.SELECT) // para evitar o produto cartesiano.
 	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Attachment> attachments;
@@ -44,9 +40,12 @@ public class Filme {
 	@Column
 	private Date dataCriacao;
 
-	@OneToMany(mappedBy = "filme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "idFilme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<Avaliacao> avaliacoes;
 	
+
+	@ManyToOne
+	private UsuarioStayFilm idUsuarioStay;
 
 	public Filme() {
 
@@ -57,7 +56,6 @@ public class Filme {
 		setDescricaoFilme(descricaoFilme);
 		setTemaFilme(temaFilme);
 
-		setStatus(statusFilme);
 		setDataCriacao(dataCriacao);
 		setAvaliacoes(idAvaliacoes);
 	}
@@ -86,13 +84,6 @@ public class Filme {
 		this.temaFilme = temaFilme;
 	}
 
-	public StatusFilme getStatus() {
-		return statusFilme;
-	}
-
-	public void setStatus(StatusFilme statusFilme) {
-		this.statusFilme = statusFilme;
-	}
 
 	public Date getDataCriacao() {
 		return dataCriacao;
@@ -117,13 +108,23 @@ public class Filme {
 		return setDataCriacao(data);
 	}
 
-	@JsonProperty("statusReport")
-	public Boolean isAvaliado() {
-		for (Avaliacao avaliacao : avaliacoes) {
-			if (!avaliacao.isStatusReport()) {
-				return false;
-			}
-		}
-		return true;
+	public UsuarioStayFilm getIdUsuarioStay() {
+		return idUsuarioStay;
 	}
+
+	public void setIdUsuarioStay(UsuarioStayFilm idUsuarioStay) {
+		this.idUsuarioStay = idUsuarioStay;
+	}
+
+
+
+//	@JsonProperty("statusReport")
+//	public Boolean isAvaliado() {
+//		for (Avaliacao avaliacao : avaliacoes) {
+//			if (!avaliacao.isStatusReport()) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 }

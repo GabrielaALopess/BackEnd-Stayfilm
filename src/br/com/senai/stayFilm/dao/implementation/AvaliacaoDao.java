@@ -14,6 +14,7 @@ import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 @Repository
@@ -22,18 +23,21 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	
 	@PersistenceContext
 	private EntityManager manager;
-
-
+	
+	/**
+	 * Esse metodo e utilizado para persistir a atualizacao
+	 */
 	@Transactional
-	public void insert(Avaliacao avaliacao, long idColaborador,long idResposta) throws SQLException {
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long idFilme) {
 		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		avaliacao.setColaborador(colaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
+		Filme filme = manager.find(Filme.class, idFilme);
+		avaliacao.setColaborador(colaborador);
 		avaliacao.setIdResposta(resposta);
+		avaliacao.setIdFilme(filme);
 		manager.persist(avaliacao);
-
-	}
-
+	}	
 	
 	
 	@Override
@@ -103,8 +107,6 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
 
-		Colaborador colaborador = manager.find(Colaborador.class, idColaborador);
-		avaliacao.setColaborador(colaborador);
 		Resposta resposta = manager.find(Resposta.class, idResposta);
 		avaliacao.setIdResposta(resposta);
 		manager.persist(avaliacao);
@@ -126,5 +128,7 @@ public class AvaliacaoDao implements GenericDao<Avaliacao> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

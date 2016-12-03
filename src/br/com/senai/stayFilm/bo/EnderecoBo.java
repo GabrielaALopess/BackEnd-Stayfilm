@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
-import br.com.senai.stayFilm.model.Atividade;
 import br.com.senai.stayFilm.model.Endereco;
 
 @Component

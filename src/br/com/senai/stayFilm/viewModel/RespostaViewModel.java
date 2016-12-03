@@ -11,6 +11,12 @@ public class RespostaViewModel {
 	private String respostaESP;
 
 	
+	
+	// transforma a view model em model
+		public Resposta toResposta(){
+			return new Resposta(getTituloResposta(), getRespostaBRA(),getRespostaUSA(),getRespostaESP());
+		}
+	
 	public String getTituloResposta() {
 		return tituloResposta;
 	}
@@ -38,8 +44,5 @@ public class RespostaViewModel {
 	}
 
 	
-	// transforma a view model em model
-	public Resposta toResposta(){
-		return new Resposta(getTituloResposta(), getRespostaBRA(),getRespostaUSA(),getRespostaESP());
-	}
+	
 }

@@ -1,7 +1,6 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,12 +9,10 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PatchMapping;
 
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.viewModel.ColaboradorListaViewModel;
 
 /**
  * 22/10/2016
@@ -25,7 +22,7 @@ import br.com.senai.stayFilm.viewModel.ColaboradorListaViewModel;
  */
 
 @Repository
-public class ColaboradorDao implements GenericDao<Colaborador> {
+public class ColaboradorDao2 implements GenericDao<Colaborador> {
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -73,16 +70,6 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		return null;
 	}
 
-//	/**
-//	 * Lista todos os colaboradores cadastrados no banco , segundo a
-//	 * especificacao (nome,email e telefone) por ordem alfabetica
-//	 * 
-//	 */
-//	@Override
-//	public List<Colaborador> listarTodos() {
-//		return manager.createQuery("select c.nome, c.email, c.telefoneCelular from Colaborador c order by c.nome")
-//				.getResultList();
-//	}
 	/**
 	 * Lista todos os colaboradores cadastrados no banco , segundo a
 	 * especificacao (nome,email e telefone) por ordem alfabetica
@@ -90,11 +77,11 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 	 */
 	@Override
 	public List<Colaborador> listarTodos() {
-		return manager.createQuery("select c from Colaborador c order by c.nome ASC")
+		return manager.createQuery("select c.nome, c.email, c.telefoneCelular from Colaborador c order by c.nome")
 				.getResultList();
 	}
 
-
+	
 	/**
 	 * Método utilizado para preencher os dados de um colaborador.
 	 * (usado na atualizacao, para ver os dados que serao alterados)
@@ -118,7 +105,6 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 	/**
 	 * atualiza os dados do colaborador (step 1)
 	 */
-	@PatchMapping
 	@Transactional
 	@Override
 	public Colaborador update(Colaborador colaborador) throws SQLException {

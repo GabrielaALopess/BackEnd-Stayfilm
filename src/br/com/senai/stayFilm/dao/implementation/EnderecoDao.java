@@ -103,6 +103,11 @@ public class EnderecoDao implements GenericDao<Endereco> {
 		return null;
 	}
 
-	
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long filme) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

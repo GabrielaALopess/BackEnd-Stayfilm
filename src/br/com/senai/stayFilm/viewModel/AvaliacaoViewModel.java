@@ -1,53 +1,20 @@
 package br.com.senai.stayFilm.viewModel;
 
-import java.sql.Time;
 import java.util.Date;
 
 import br.com.senai.stayFilm.enumeration.StatusFilme;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.Filme;
 import br.com.senai.stayFilm.model.Resposta;
 
 public class AvaliacaoViewModel {
 
-	private Date data;
-	private Time hora;
-	private String observacao;
-	private StatusFilme status;
+	private Date dataAvaliacao;
+	private StatusFilme statusFilme;
+	private Colaborador idColaborador;
 	private Resposta idResposta;
-	private Colaborador colaborador;
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public Time getHora() {
-		return hora;
-	}
-
-	public void setHora(Time hora) {
-		this.hora = hora;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public StatusFilme getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusFilme status) {
-		this.status = status;
-	}
+	private Filme idFilme;
 
 	public Resposta getIdResposta() {
 		return idResposta;
@@ -57,15 +24,40 @@ public class AvaliacaoViewModel {
 		this.idResposta = idResposta;
 	}
 
-	public Colaborador getColaborador() {
-		return colaborador;
-	}
-
-	public void setColaborador(Colaborador colaborador) {
-		this.colaborador = colaborador;
-	}
 
 	public Avaliacao toAvaliacao() {
-		return new Avaliacao();
+		return new Avaliacao(getDataAvaliacao(),getStatusFilme(),getIdColaborador(),getIdResposta(),getIdFilme());
+	}
+
+	public Date getDataAvaliacao() {
+		return dataAvaliacao;
+	}
+
+	public void setDataAvaliacao(Date dataAvaliacao) {
+		this.dataAvaliacao = dataAvaliacao;
+	}
+
+	public StatusFilme getStatusFilme() {
+		return statusFilme;
+	}
+
+	public void setStatusFilme(StatusFilme statusFilme) {
+		this.statusFilme = statusFilme;
+	}
+
+	public Filme getIdFilme() {
+		return idFilme;
+	}
+
+	public void setIdFilme(Filme idFilme) {
+		this.idFilme = idFilme;
+	}
+
+	public Colaborador getIdColaborador() {
+		return idColaborador;
+	}
+
+	public void setIdColaborador(Colaborador idColaborador) {
+		this.idColaborador = idColaborador;
 	}
 }

@@ -22,8 +22,18 @@ public class AvaliacaoBo {
 	@Qualifier("avaliacaoDao")
 	private GenericDao<Avaliacao> avaliacaoDao;
 
-	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) throws SQLException {
-		avaliacaoDao.insert(avaliacao, idColaborador, idResposta);
+	/**
+	 * Metodo utilizado para salvar uma avaliacao
+	 * @param avaliacao
+	 * @param idColaborador
+	 * @param idResposta
+	 * @param idFilme
+	 * @throws SQLException
+	 */
+	public void insert(Avaliacao avaliacao,Long idColaborador,Long idResposta,Long idFilme) throws SQLException {
+		
+		avaliacaoDao.insert(avaliacao,idColaborador,idResposta, idFilme);
 	}
+
 
 }
