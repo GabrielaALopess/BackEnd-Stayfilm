@@ -93,7 +93,7 @@ public class ColaboradorViewModel {
 	 * @param status
 	 */
 	public void setStatus(boolean status) {
-		this.status = true;
+		this.status=status;
 	}
 
 	public TipoPermissao getPermissao() {

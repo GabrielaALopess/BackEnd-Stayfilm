@@ -52,14 +52,14 @@ public class Colaborador {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private Date dataNasc;
 
+	
 	private boolean status;
 
 	private String telefoneResidencial;
 
 	private String telefoneCelular;
 	
-//	@Embedded
-//	private Usuario usuario;
+
 
 	private String email;
 	
