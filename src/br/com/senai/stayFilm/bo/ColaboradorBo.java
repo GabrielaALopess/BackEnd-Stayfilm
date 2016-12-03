@@ -58,6 +58,10 @@ public class ColaboradorBo {
 	 * @throws SQLException
 	 */
 	public Colaborador atualizar(Colaborador colaborador, Long idColaborador) throws SQLException {
+		if(colaborador.getSenha()==null || colaborador.getSenha().isEmpty()){
+		Colaborador colaboradorbusca = colaboradorDao.buscarPorId(idColaborador);
+		colaborador.setSenha(colaboradorbusca.getSenha());
+		}
 		return colaboradorDao.updateWithKey(colaborador, idColaborador);
 	}
 	

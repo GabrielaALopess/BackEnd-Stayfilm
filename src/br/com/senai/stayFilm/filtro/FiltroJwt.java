@@ -39,6 +39,12 @@ public class FiltroJwt implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		// primeiro passo dofilter
+		
+		
+		if(request.getMethod().equals("OPTIONS")){
+			chain.doFilter(request, response);
+			return;
+		}
 
 		System.out.println("passou aqui " + request);
 		if (request.getRequestURI().contains("login")) {
