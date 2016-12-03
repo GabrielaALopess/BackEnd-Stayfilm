@@ -1,7 +1,31 @@
 package br.com.senai.stayFilm.controller;
 
+import java.io.IOException;
+import java.net.URI;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
+import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.auth0.jwt.JWTVerifyException;
+
+import br.com.senai.stayFilm.bo.ColaboradorBo;
+import br.com.senai.stayFilm.bo.EscalaBloqueioFixoBo;
+import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
+import br.com.senai.stayFilm.viewModel.EscalaBloqueioFixoViewModel;
+import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaBloqueioFixoVisualizacaoViewModel;
 
 
 @CrossOrigin
@@ -36,5 +60,5 @@ public class EscalaBloqueioFixoRestController {
 		}
 
 		
-
+	}
 }

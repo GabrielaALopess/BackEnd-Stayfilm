@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -22,13 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.stayFilm.bo.ColaboradorBo;
 import br.com.senai.stayFilm.bo.EscalaBloqueioEspecificoBo;
 import br.com.senai.stayFilm.model.Colaborador;
-import br.com.senai.stayFilm.model.Escala;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.viewModel.EscalaBloqueioEspecificoViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaBloqueioEspecificoVisualizacaoViewModel;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
