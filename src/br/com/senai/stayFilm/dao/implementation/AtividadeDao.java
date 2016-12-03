@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,11 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	 */
 	@Override
 	public List<Atividade> listar(long idColaborador) { 
-		return manager.createQuery("select a where a.colaborador.idColaborador = "+  idColaborador).getResultList();
+		String hql="select a from Atividade a where a.colaborador.idColaborador=:idColaborador";
+		 TypedQuery<Atividade> query= manager.createQuery(hql,Atividade.class);
+		 query.setParameter("idColaborador", idColaborador);
+		 return query.getResultList();
+		 
 	}	
 
 
