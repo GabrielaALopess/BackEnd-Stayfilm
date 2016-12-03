@@ -44,7 +44,7 @@ public class AtividadeDao implements GenericDao<Atividade> {
 	 */
 	@Override
 	public List<Atividade> listar(long idColaborador) { 
-		return manager.createQuery("select a.atividade, a.instituicao, a.periodo from Atividade a where a.colaborador.idColaborador = "+idColaborador).getResultList();
+		return manager.createQuery("select a where a.colaborador.idColaborador = "+  idColaborador).getResultList();
 	}	
 
 

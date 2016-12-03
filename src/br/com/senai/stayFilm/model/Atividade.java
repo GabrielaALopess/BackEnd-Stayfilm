@@ -27,6 +27,7 @@ public class Atividade {
 	private Long idAtividade;
 	private String instituicao;
 	private String atividade;
+	
 	private Periodo periodo;
 
 	@ManyToOne
