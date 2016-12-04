@@ -5,10 +5,10 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public class SendEmailDao {
 
-	@PersistenceContext
+	//@PersistenceContext
 	private EntityManager manager;
 
 	

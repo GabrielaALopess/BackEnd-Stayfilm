@@ -15,7 +15,6 @@ public class EscalaBloqueioEspecificoViewModel {
 	private int horaInicio;
 	private int horaFim;
 	private Long colaboradorId;
-	
 	private Date data;
 	
 	public Long getIdBloqueioEspecifico() {

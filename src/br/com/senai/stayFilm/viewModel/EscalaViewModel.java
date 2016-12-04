@@ -69,8 +69,8 @@ public class EscalaViewModel {
 		Escala escala= new Escala();
 		
 		escala.setDataEscala(getDataEscala());
-		escala.setComparecimento(isComparecimento());
-		escala.setObservacao(getObservacao());
+		//	escala.setComparecimento(isComparecimento());
+		//escala.setObservacao(getObservacao());
 		escala.setHoraEscalaInicio(getHoraEscalaInicio());
 		escala.setHoraEscalaFim(getHoraEscalaFim());
 		escala.setColaborador(colaborador);

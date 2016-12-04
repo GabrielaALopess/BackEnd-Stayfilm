@@ -64,8 +64,8 @@ public class EscalaVisualizacaoViewModel {
 		
 		//setDataEscala(new SimpleDateFormat("dd/MM/yyyy").format(escala.getDataEscala()));
 		setDataEscala(escala.getDataEscala());
-		setComparecimento(escala.isComparecimento());
-		setObservacao(escala.getObservacao()); 
+		//setComparecimento(escala.isComparecimento());
+		//setObservacao(escala.getObservacao()); 
 		String horario = escala.getHoraEscalaInicio()+" - "+escala.getHoraEscalaFim();
 		setHorario(horario);
 		setIdColaborador(escala.getColaborador().getIdColaborador());

@@ -40,12 +40,12 @@ public class EscalaRestController {
 	public EscalaMensalBo escalaMensalBo;
 	
 	
-	@RequestMapping(value = "/escala", method = RequestMethod.POST, 
+	@RequestMapping(value = "/escala/{id}", method = RequestMethod.POST, 
 			consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<EscalaVisualizacaoViewModel> inserir(@RequestBody EscalaViewModel viewModel,HttpServletRequest request) throws URISyntaxException{
+	public ResponseEntity<EscalaVisualizacaoViewModel> inserir(@RequestBody EscalaViewModel viewModel,@PathVariable long id) throws URISyntaxException{
 		try{
-			long colaboradorId = (long)request.getAttribute("id_colaborador");
+			long colaboradorId = id;
 			
 			Colaborador colaborador = colaboradorBo.buscar(colaboradorId);
 			Escala escala = viewModel.toEscala(colaborador);

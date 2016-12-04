@@ -36,19 +36,19 @@ public class EscalaBloqueioEspecificoRestController {
 	@Autowired
 	public ColaboradorBo colaboradorBo;
 
-	@RequestMapping(value = "/escalabloqueioEspecifico", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/escalabloqueioEspecifico/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<EscalaBloqueioEspecificoVisualizacaoViewModel> inserir(
-			@RequestBody EscalaBloqueioEspecificoViewModel viewModel, HttpServletRequest request)
+			@RequestBody EscalaBloqueioEspecificoViewModel viewModel, @PathVariable long id)
 			throws URISyntaxException {
 
 		try {
-			long colaboradorId = (long) request.getAttribute("id_colaborador");
+			long colaboradorId =id;
 
 			Colaborador colaborador = colaboradorBo.buscar(colaboradorId);
 			EscalaBloqueioEspecifico escala = viewModel.toEscala(colaborador);
 			escalaBloqueioEspecificoBo.insert(escala);
 
-			URI location = new URI("/escalabloqueiofixo" + escala.getIdBloqueioEspecifico());
+			URI location = new URI("/escalabloqueioEspecifico" + escala.getIdBloqueioEspecifico());
 			return ResponseEntity.created(location).body(new EscalaBloqueioEspecificoVisualizacaoViewModel(escala));
 		} catch (SQLException e) {
 			e.printStackTrace();

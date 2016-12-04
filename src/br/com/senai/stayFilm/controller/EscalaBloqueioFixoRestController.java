@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,13 +41,13 @@ public class EscalaBloqueioFixoRestController {
 	@Autowired
 	public ColaboradorBo colaboradorBo;
 
-	@RequestMapping(value = "/escalabloqueiofixo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<EscalaBloqueioFixoVisualizacaoViewModel> inserir(@RequestBody EscalaBloqueioFixoViewModel viewModel, HttpServletRequest request) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, SignatureException, IOException, JWTVerifyException {
+	@RequestMapping(value = "/escalabloqueiofixo/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<EscalaBloqueioFixoVisualizacaoViewModel> inserir(@RequestBody EscalaBloqueioFixoViewModel viewModel,@PathVariable long id) throws SQLException, InvalidKeyException, NoSuchAlgorithmException, IllegalStateException, SignatureException, IOException, JWTVerifyException {
 		try {
 //			JWTVerifier verifier= new JWTVerifier(ColaboradorRestController.SECRET);
 //			Map<String, Object>claims = verifier.verify(token);
 //			long colaboradorId = (int)claims.get("id_colaborador");
-			long colaboradorId =(long) request.getAttribute("id_colaborador");
+			long colaboradorId =id;
 			
 			Colaborador colaborador = colaboradorBo.buscar(colaboradorId);
 			EscalaBloqueioFixo escala = viewModel.toEscala(colaborador);
