@@ -3,15 +3,13 @@ package br.com.senai.stayFilm.vizualizacao.viewModel;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 
 
 
 public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 
-	@JsonFormat(pattern="dd-MM-yyyy")
+
 	private Date data;
 	private String horario;
 	
@@ -36,8 +34,8 @@ public class EscalaBloqueioEspecificoVisualizacaoViewModel {
 	}*/
 	
 	public EscalaBloqueioEspecificoVisualizacaoViewModel(EscalaBloqueioEspecifico escala){
-		setData(escala.getData());
-		String horario = escala.getHoraInicio()+" - "+ escala.getHoraFim();
+		escala.setData(getData());
+		String horario = escala.getHoraInicio()+ " - "+ escala.getHoraFim();
 		setHorario(horario);
 	}
 	

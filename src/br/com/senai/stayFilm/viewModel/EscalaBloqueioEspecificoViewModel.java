@@ -2,6 +2,7 @@ package br.com.senai.stayFilm.viewModel;
 
 
 
+import java.util.Calendar;
 import java.util.Date;
 
 import br.com.senai.stayFilm.model.Colaborador;
@@ -41,7 +42,6 @@ public class EscalaBloqueioEspecificoViewModel {
 	public void setColaboradorId(Long colaboradorId) {
 		this.colaboradorId = colaboradorId;
 	}
-	
 	
 	public Date getData() {
 		return data;

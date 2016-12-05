@@ -66,4 +66,7 @@ public class EscalaBloqueioEspecificoRestController {
 		return lista;
 	}
 
+	
+	
+	
 }

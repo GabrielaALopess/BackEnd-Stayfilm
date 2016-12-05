@@ -1,5 +1,6 @@
 package br.com.senai.stayFilm.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.datetime.standard.DateTimeContext;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,26 +22,27 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class EscalaBloqueioEspecifico {
 
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idBloqueioEspecifico;
-	
+
 	private int horaInicio;
-	
+
 	private int horaFim;
-	
-	@JsonFormat(pattern = "dd-MM-yyyy")
+
+
 	@Column(name="dataEspecifica")
+	@CreatedDate
 	private Date data;
-	
+
 	@Fetch(FetchMode.SELECT)
 	@ManyToOne
 	@JoinColumn(name="colaboradorId")
 	private Colaborador colaboradorId;
-	
-	
-	
+
+
+
 
 	public Long getIdBloqueioEspecifico() {
 		return idBloqueioEspecifico;
@@ -80,11 +84,11 @@ public class EscalaBloqueioEspecifico {
 		this.colaboradorId = colaboradorId;
 	}
 
-	
 
 
-	
-	
-	
+
+
+
+
 }
 

@@ -53,7 +53,7 @@ public class EscalaMensalBo {
 		List<Escala> escalas = ((EscalaDao) escalaDao).listaEscala(colaborador, mes, ano);
 
 
-		int dias = LocalDate.of(ano, mes, 1).getMonth().length(true);
+		int dias = LocalDate.of(ano, mes, 1).getMonth().length(false);
 		List<LocalDate> datas = new ArrayList<>();
 		for (int dia = 1; dia <= dias; dia++) {
 			System.out.println(ano);
@@ -79,13 +79,14 @@ public class EscalaMensalBo {
 			//primeira expressao lambda para realizar uma lista de escala Especifica , dia a dia, e de forma performatica
 			//pesquisar sobre o (stream e filter) 
 
-			List<EscalaBloqueioEspecifico> escalaFiltradaEsp = especificos.stream()
-					.filter(esp -> esp.getData().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
-			for (EscalaBloqueioEspecifico bloqEsp : escalaFiltradaEsp) {
-				//sempre que ele acha um parametro correspondente ele atribui ao array 
-				escalaMontada.getBloqueado().add(bloqEsp.getHoraInicio() + " - " + bloqEsp.getHoraFim()+ " h" );
+			List<Escala> escalaFiltrada = escalas.stream()
+					.filter(fix -> fix.getDataEscala().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
+			for (Escala escala : escalaFiltrada) {
 
+				escalaMontada.getEscalados().add(escala.getHoraEscalaInicio() + " - " + escala.getHoraEscalaFim()+ " h" );
 			}
+			listaEscalaMensal.add(escalaMontada);
+			
 
 			List<EscalaBloqueioFixo> escalaFiltradaFix = fixas.stream()
 					.filter(fix -> fix.getDiaSemana().ordinal() == data.getDayOfWeek().getValue())
@@ -95,13 +96,19 @@ public class EscalaMensalBo {
 				escalaMontada.getBloqueado().add(bloqFix.getHoraInicio() + " - " + bloqFix.getHoraFim()+ " h" );
 			}
 
-			List<Escala> escalaFiltrada = escalas.stream()
-					.filter(fix -> fix.getDataEscala().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
-			for (Escala escala : escalaFiltrada) {
-
-				escalaMontada.getEscalados().add(escala.getHoraEscalaInicio() + " - " + escala.getHoraEscalaFim()+ " h" );
+			for (EscalaBloqueioEspecifico escala : especificos) {
+				if(escala.getData().getDate() == data.getDayOfMonth()){
+					System.out.println(escala.getData().getDate());
+					int horarioInicio = escala.getHoraInicio();
+					int horariofim= escala.getHoraFim();
+					String horario = horarioInicio + " - "+horariofim+" h";
+					escalaMontada.getBloqueado().add(horario);
+					System.out.println(horario);
+				}
+				
 			}
-			listaEscalaMensal.add(escalaMontada);
+
+			
 		}
 
 		return listaEscalaMensal;
@@ -153,6 +160,21 @@ public class EscalaMensalBo {
 			}
 		}
 		return datas;
+	}
+	
+	
+	
+	
+	
+	// retorna range de horários baseado em um horario inicial e um final
+	public List<Integer>retornaRangeHorarios(int horarioInicio, int horarioFim){
+		List<Integer>horarios= new ArrayList<>();
+		int horario=horarioInicio;
+		while(horario <= horarioFim){
+			horarios.add(horario);
+			horario ++;
+		}
+		return horarios;
 	}
 
 

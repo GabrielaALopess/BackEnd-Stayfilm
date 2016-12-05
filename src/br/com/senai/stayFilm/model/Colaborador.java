@@ -49,7 +49,7 @@ public class Colaborador {
 
 	private String nome;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date dataNasc;
 
 	
@@ -209,15 +209,7 @@ public class Colaborador {
 	}
 	
 
-	
-//
-//	public Usuario getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+
 	
 	
 }

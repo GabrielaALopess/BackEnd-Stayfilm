@@ -144,7 +144,7 @@ public class ColaboradorRestController {
 				long iat = System.currentTimeMillis() / 1000;
 
 				// data de expiracao do token
-				long exp = iat + 364000;
+				long exp = iat + 86400000;
 
 				// objeto qye ura gerar o token
 				JWTSigner signer = new JWTSigner(SECRET);
