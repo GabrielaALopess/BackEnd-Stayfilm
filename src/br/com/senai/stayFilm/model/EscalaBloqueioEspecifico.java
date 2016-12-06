@@ -1,6 +1,5 @@
 package br.com.senai.stayFilm.model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.datetime.standard.DateTimeContext;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,10 +27,8 @@ public class EscalaBloqueioEspecifico {
 	private int horaInicio;
 
 	private int horaFim;
-
-
+	
 	@Column(name="dataEspecifica")
-	@CreatedDate
 	private Date data;
 
 	@Fetch(FetchMode.SELECT)

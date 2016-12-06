@@ -1,6 +1,8 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.model.Avaliacao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 
 @Repository
@@ -48,6 +51,21 @@ public class EscalaBloqueioFixoDao implements GenericDao<EscalaBloqueioFixo> {
 		TypedQuery<EscalaBloqueioFixo> query = 
 				manager.createQuery("SELECT e FROM  EscalaBloqueioFixo e", EscalaBloqueioFixo.class);
 		return query.getResultList();
+	}
+	
+
+	
+	public 	List<EscalaBloqueioFixo> listarFixosDiaEspecifico(int data){ 
+		String hql= "SELECT e FROM EscalaBloqueioFixo e"
+				+ "WHERE diaSemana =:data order by e.horaInicio ASC";
+		TypedQuery<EscalaBloqueioFixo>query = manager.createQuery(hql, EscalaBloqueioFixo.class);
+		query.setParameter("data", data);
+		try{
+			return query.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	 
 	// TUDO ABAIXO NAO É USADO NESTE CENÁRIO

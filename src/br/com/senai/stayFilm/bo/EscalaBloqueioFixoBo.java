@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class EscalaBloqueioFixoBo {
 	
 	public List<EscalaBloqueioFixo>ListarEscalaBloqueio(){
 		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio();
+	}
+	
+	public List<EscalaBloqueioFixo> listarFixosDiaEspecifico(Date data){
+		int dataweek = data.getDay();
+		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).listarFixosDiaEspecifico(dataweek);
 	}
 
 }

@@ -67,6 +67,25 @@ public class EscalaBloqueioEspecificoRestController {
 	}
 
 	
+	/**
+	 * Metodo implementado, para remover uma escala especifica
+	 * @param idEscala
+	 * @return
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/escalaBloqueioEspecifico/remove/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> remover(@PathVariable long id) throws SQLException {
+		try{
+			escalaBloqueioEspecificoBo.delete(id);
+			return ResponseEntity.noContent().build();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+			
+		
+	}
+	
 	
 	
 }

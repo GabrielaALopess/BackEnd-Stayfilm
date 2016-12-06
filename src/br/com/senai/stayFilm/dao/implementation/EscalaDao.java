@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -65,6 +66,16 @@ public class EscalaDao implements GenericDao<Escala> {
 		query.setParameter("ano", ano);
 		return query.getResultList();
 	}
+	
+	
+	
+	public List<Escala> listaPorDataEscala(Date data){
+		String hql= "SELECT e FROM Escala e  WHERE date(e.dataEscala) =:data ORDER BY e.horaEscalaInicio ASC";
+		TypedQuery<Escala>query= manager.createQuery(hql,Escala.class);
+		query.setParameter("data", data.getDate());
+		return query.getResultList();
+	}
+	
 
 	@Override
 	public List<Escala> listar(long idObj) {

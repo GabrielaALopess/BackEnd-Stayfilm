@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class EscalaBloqueioEspecificoBo {
 	
 	public List<EscalaBloqueioEspecifico>listarPorMesPorColaborador(Colaborador idColaborador,int mes,int ano){
 		return( (EscalaBloqueioEspecificoDao)escalaBloqueioEspecificoDao).listaEscalaMes(idColaborador,mes,ano);
+	}
+	
+	public 	List<EscalaBloqueioEspecifico> listaPorData(Date data){
+		return ( (EscalaBloqueioEspecificoDao)escalaBloqueioEspecificoDao).listaPorData(data);
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.senai.stayFilm.bo;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,9 @@ public class EscalaBo {
 		return ((EscalaDao)escalaDao).getEscalasPorMes(mes, ano);
 	}
 	
+	public List<Escala> listaPorDataEscala(Date data){
+		return ((EscalaDao)escalaDao).listaPorDataEscala(data);
+	}
 	
 	/*public List<Escala> listarEscala(){
 	return ((EscalaDao) escalaDao).listaEscalaGeral();

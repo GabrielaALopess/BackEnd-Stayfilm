@@ -1,6 +1,9 @@
 package br.com.senai.stayFilm.controller;
 
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +29,20 @@ public class FilmeRestController {
 	private FilmeDao filmeDao;
 
 	
-	
+	@RequestMapping(value = "/insert/filme", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Filme> inserir(
+			@RequestBody Filme filme) throws SQLException {
+		try {
+			filmeDao.insert(filme);
+			URI location = new URI("/filme" + filme.getIdFilme());
+			return ResponseEntity.created(location).body(filme);
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+	}
+
 	
 	
 	@RequestMapping(value="/Filmes",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)

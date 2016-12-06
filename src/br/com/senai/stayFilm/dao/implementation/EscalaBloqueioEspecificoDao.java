@@ -1,6 +1,9 @@
 package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -64,6 +67,20 @@ public class EscalaBloqueioEspecificoDao implements GenericDao<EscalaBloqueioEsp
 			return query.getResultList();
 	}
 
+	public 	List<EscalaBloqueioEspecifico> listaPorData(Date data){
+		String hql= "SELECT e FROM EscalaBloqueioEspecifico e"
+				+ "WHERE date(e.data)=:data order by e.horarioInicio ASC";
+		TypedQuery<EscalaBloqueioEspecifico>query = manager.createQuery(hql, EscalaBloqueioEspecifico.class);
+		query.setParameter("data", data.getDate());
+		try{
+			return query.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	// TUDO ABAIXO NAO É USADO NESTE CENÁRIO
 
 	@Override

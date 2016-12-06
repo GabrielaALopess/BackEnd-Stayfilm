@@ -20,6 +20,8 @@ import br.com.senai.stayFilm.model.Escala;
 import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 import br.com.senai.stayFilm.model.EscalaMensal;
+import br.com.senai.stayFilm.model.HorariosPessoaEscalaDia;
+import br.com.senai.stayFilm.model.PessoaEscalaDia;
 
 @Component
 public class EscalaMensalBo {
@@ -99,10 +101,11 @@ public class EscalaMensalBo {
 			for (EscalaBloqueioEspecifico escala : especificos) {
 				if(escala.getData().getDate() == data.getDayOfMonth()){
 					System.out.println(escala.getData().getDate());
+					long id = escala.getIdBloqueioEspecifico();
 					int horarioInicio = escala.getHoraInicio();
 					int horariofim= escala.getHoraFim();
-					String horario = horarioInicio + " - "+horariofim+" h";
-					escalaMontada.getBloqueado().add(horario);
+					String horario =  horarioInicio + " - "+ horariofim +" h";
+					escalaMontada.getBloqueado().add( horario);
 					System.out.println(horario);
 				}
 				
@@ -177,5 +180,40 @@ public class EscalaMensalBo {
 		return horarios;
 	}
 
+	
+	public List<PessoaEscalaDia> pessoaEscalaData(Date data){
+		// lista que guarda pessoas que foram escaladas. Essa lista é o retorno do método
+		List<PessoaEscalaDia> pessoaEscaladas = new ArrayList<>();
+		
+		// buscar todas as escalas de uma datas
+		List<Escala> escalas = escalaBo.listaPorDataEscala(data);
+		
+		// constrói lista de colaboradores que foram escalados
+		List<Colaborador> colaboradores = new  ArrayList<>();
+		for(Escala escala: escalas){
+			if(!colaboradores.contains(escala.getColaborador())){
+				colaboradores.add(escala.getColaborador());
+			}		
+		}
+		
+		PessoaEscalaDia pessoa = new PessoaEscalaDia();
+		 
+		pessoa.setHorarios((List<HorariosPessoaEscalaDia>) new HorariosPessoaEscalaDia());
+		for( Colaborador colaborador: colaboradores){
+			pessoa.setId(colaborador.getIdColaborador());
+			pessoa.setNome(colaborador.getNome());
+			pessoa.getHorarios().clear();
+			for(Escala escala: escalas){
+				//if(escala.setColaborador(colaborador.getIdColaborador()) == pessoa.getId()){
+					
+				//}
+			}
+			
+		}
+		
+		
+		
+		return pessoaEscaladas;
+	}
 
 }
