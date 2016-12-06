@@ -72,7 +72,7 @@ public class EscalaDao implements GenericDao<Escala> {
 	public List<Escala> listaPorDataEscala(Date data){
 		String hql= "SELECT e FROM Escala e  WHERE date(e.dataEscala) =:data ORDER BY e.horaEscalaInicio ASC";
 		TypedQuery<Escala>query= manager.createQuery(hql,Escala.class);
-		query.setParameter("data", data.getDate());
+		query.setParameter("data", data);
 		return query.getResultList();
 	}
 	

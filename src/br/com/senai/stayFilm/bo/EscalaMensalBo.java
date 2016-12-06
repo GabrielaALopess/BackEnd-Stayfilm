@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
@@ -223,7 +222,7 @@ public class EscalaMensalBo {
 	
 	
 	public List<PessoaBloqueadaDia> pessoaBloqueadaData(Date data){
-		List<PessoaEscalaDia> pessoasBloqueadas = new ArrayList<>();
+		List<PessoaBloqueadaDia> pessoasBloqueadas = new ArrayList<>();
 		
 		List<EscalaBloqueioFixo>fixas = escalaBloqueioFixoBo.listarFixosDiaEspecifico(data);
 		List<EscalaBloqueioEspecifico> especificas= escalaBloqueioEspecificosBo.listaPorData(data);
@@ -231,17 +230,41 @@ public class EscalaMensalBo {
 		// constrói lista de colaboradores que foram escalados
 		List<Colaborador> colaboradores = new ArrayList<>();
 		for (EscalaBloqueioFixo fixa : fixas){
-			
-			if(!colaboradores.contains(fixa.getColaborador().getIdColaborador())){
-			
+			if(!colaboradores.contains(fixa.getColaborador())){
+				colaboradores.add(fixa.getColaborador());
 			}
 		}
 		for (EscalaBloqueioEspecifico especifica: especificas){
 			if(!colaboradores.contains(especifica.getColaboradorId())){
 				colaboradores.add(especifica.getColaboradorId());
+				// TO-DO: trocar o nome do gerColaboradorId(), está retornado o colaborador. o certo é getColaborador()
 			}
 		}
-		return null /*TO-DO*/;
+		
+		
+		PessoaBloqueadaDia pessoa = new PessoaBloqueadaDia();
+		pessoa.setHorario(new ArrayList<>());
+		for (Colaborador colaborador: colaboradores){
+			pessoa.setId(colaborador.getIdColaborador());
+			pessoa.setNome(colaborador.getNome());
+			pessoa.getHorario().clear();   //caso der ruim criar um metodo pra limpar.
+			
+		for(EscalaBloqueioFixo fixa : fixas){
+			if(fixa.getColaborador().getIdColaborador() == pessoa.getId()){
+				List<Integer> rangeHorarios = retornaRangeHorarios(fixa.getHoraInicio(),fixa.getHoraFim());
+				pessoa.addListaHorarios(rangeHorarios);
+			}
+		}
+		for(EscalaBloqueioEspecifico especifica : especificas){
+			if(especifica.getColaboradorId().getIdColaborador() == pessoa.getId()){
+				List<Integer> rangehorarios = retornaRangeHorarios(especifica.getHoraInicio(), especifica.getHoraFim()); 
+				pessoa.addListaHorarios(rangehorarios);
+			}
+			
+		}
+		pessoasBloqueadas.add(pessoa);
+	}
+		return pessoasBloqueadas;
 	}
 	
 	
@@ -264,14 +287,14 @@ public class EscalaMensalBo {
 		
 		PessoaEscalaDia pessoa = new PessoaEscalaDia();
 		 
-		pessoa.setHorarios((List<HorariosPessoaEscalaDia>) new HorariosPessoaEscalaDia());
+		pessoa.setHorarios(new ArrayList<HorariosPessoaEscalaDia>());
 		for( Colaborador colaborador: colaboradores){
 			pessoa.setId(colaborador.getIdColaborador());
 			pessoa.setNome(colaborador.getNome());
 			pessoa.getHorarios().clear();
 			for(Escala escala: escalas){
 				if(escala.getColaborador().getIdColaborador()== pessoa.getId()){
-					//TO-DO
+					pessoa.addHorario(new HorariosPessoaEscalaDia(escala.getHoraEscalaInicio(), escala.getHoraEscalaFim()));
 				}
 			}
 			 pessoaEscaladas.add(pessoa);

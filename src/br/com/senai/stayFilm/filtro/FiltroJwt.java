@@ -50,7 +50,7 @@ public class FiltroJwt implements Filter {
 			return;
 		}
 
-		System.out.println("passou aqui " + request);
+		//System.out.println("passou aqui " + request);
 		if (request.getRequestURI().contains("login")) {
 			chain.doFilter(req, resp);
 			return;// ultimo passo doFilter
@@ -58,7 +58,7 @@ public class FiltroJwt implements Filter {
 
 		String token = request.getHeader("Authorization");
 		try {
-			System.out.println("token" + token);
+			//System.out.println("token" + token);
 			JWTVerifier verifier = new JWTVerifier(ColaboradorRestController.SECRET);
 			Map<String, Object> claims = verifier.verify(token);
 			long colaboradorId = (int) claims.get("id_colaborador");
@@ -72,11 +72,11 @@ public class FiltroJwt implements Filter {
 
 				if (permissao == TipoPermissao.ADMINISTRADOR) {
 					chain.doFilter(req, resp);
-					System.out.println("caiu aqui 1");
+					//System.out.println("caiu aqui 1");
 					return;
 				} else {
 					response.sendError(HttpStatus.FORBIDDEN.value());
-					System.out.println("caiu aqui depois");
+					//System.out.println("caiu aqui depois");
 					return;
 				}
 			}
@@ -85,7 +85,7 @@ public class FiltroJwt implements Filter {
 				e.printStackTrace();
 				response.sendError(HttpStatus.UNAUTHORIZED.value());
 			} else {
-				System.out.println("veio pra ca direto");
+				//System.out.println("veio pra ca direto");
 				e.printStackTrace();
 				response.sendError(HttpStatus.FORBIDDEN.value());
 			}

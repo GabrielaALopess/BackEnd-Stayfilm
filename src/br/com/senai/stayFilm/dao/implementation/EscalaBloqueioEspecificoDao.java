@@ -68,10 +68,10 @@ public class EscalaBloqueioEspecificoDao implements GenericDao<EscalaBloqueioEsp
 	}
 
 	public 	List<EscalaBloqueioEspecifico> listaPorData(Date data){
-		String hql= "SELECT e FROM EscalaBloqueioEspecifico e"
-				+ "WHERE date(e.data)=:data order by e.horarioInicio ASC";
+		String hql= "SELECT e FROM EscalaBloqueioEspecifico e "
+				+ "WHERE e.data = date(:data) order by e.horaInicio ASC";
 		TypedQuery<EscalaBloqueioEspecifico>query = manager.createQuery(hql, EscalaBloqueioEspecifico.class);
-		query.setParameter("data", data.getDate());
+		query.setParameter("data", data);
 		try{
 			return query.getResultList();
 		}catch (Exception e) {

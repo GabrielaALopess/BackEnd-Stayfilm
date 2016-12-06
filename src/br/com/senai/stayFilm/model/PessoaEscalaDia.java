@@ -28,6 +28,10 @@ public class PessoaEscalaDia {
 		this.horarios = horarios;
 	}
 	
+	public void addHorario(HorariosPessoaEscalaDia horario){
+		this.horarios.add(horario);
+	}
+	
 	
 
 }

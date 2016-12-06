@@ -41,8 +41,7 @@ public class EscalaBloqueioFixoBo {
 	}
 	
 	public List<EscalaBloqueioFixo> listarFixosDiaEspecifico(Date data){
-		int dataweek = data.getDay();
-		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).listarFixosDiaEspecifico(dataweek);
+		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).listarFixosDiaEspecifico(data);
 	}
 
 }
