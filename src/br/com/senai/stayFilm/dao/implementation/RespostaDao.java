@@ -62,6 +62,19 @@ public class RespostaDao implements GenericDao<Resposta> {
 	}
 	
 	
+	public Resposta listaRespostaEspecifica(long id){
+		String hql="SELECT r FROM Resposta r "
+				+ "WHERE r.idResposta=:id";
+		TypedQuery<Resposta> query = manager.createQuery(hql, Resposta.class);
+		query.setParameter("id",id);
+		try{
+			return query.getSingleResult();
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
 	
 	
 	@Override

@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Component;
 
 import br.com.senai.stayFilm.dao.GenericDao;
@@ -21,6 +22,7 @@ import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 import br.com.senai.stayFilm.model.EscalaMensal;
 import br.com.senai.stayFilm.model.HorariosPessoaEscalaDia;
+import br.com.senai.stayFilm.model.PessoaBloqueadaDia;
 import br.com.senai.stayFilm.model.PessoaEscalaDia;
 
 @Component
@@ -44,7 +46,22 @@ public class EscalaMensalBo {
 	
 	@Autowired
 	private EscalaBo escalaBo;
-
+	
+	@Autowired
+	private EscalaBloqueioFixoBo  escalaBloqueioFixoBo;
+	
+	@Autowired
+	private EscalaBloqueioEspecificoBo escalaBloqueioEspecificosBo;
+	
+	
+	
+	/**
+	 * metodo para estruturar a escala do colaborador (MINHA ESCALA)
+	 * @param idColaborador
+	 * @param mes
+	 * @param ano
+	 * @return
+	 */
 	public List<EscalaMensal> escalaColaboradorMes(long idColaborador, int mes, int ano) {
 
 		Colaborador colaborador = colaboradorDao.buscarPorId(idColaborador);
@@ -66,6 +83,15 @@ public class EscalaMensalBo {
 	}
 
 
+	
+	/**
+	 * metodo responsavel por realizar  a montagem da escala (MINHA ESCALA)
+	 * @param fixas
+	 * @param especificos
+	 * @param escalas
+	 * @param datas
+	 * @return
+	 */
 	public List<EscalaMensal> montarEscala(List<EscalaBloqueioFixo> fixas, List<EscalaBloqueioEspecifico> especificos,
 			List<Escala> escalas, List<LocalDate> datas) {
 
@@ -118,7 +144,12 @@ public class EscalaMensalBo {
 	}
 
 
-
+	/**
+	 * metodo para criar os dias Concluidos do mes
+	 * @param mes
+	 * @param ano
+	 * @return
+	 */
 	public List<Integer>diasConcluidosMes(int mes, int ano){
 		List<Escala> escalas=  escalaBo.getEscalasPorMes(mes, ano);
 		List<Date> dataEscala = getDistinctDias((List<Escala>) escalas);
@@ -154,7 +185,11 @@ public class EscalaMensalBo {
 	}
 
 
-
+	/**
+	 * metodo para pegar os dias destintos
+	 * @param escalas
+	 * @return
+	 */
 	public List<Date> getDistinctDias(List<Escala> escalas){
 		ArrayList<Date> datas = new ArrayList<Date>();
 		for (Escala escala : escalas) {
@@ -168,7 +203,12 @@ public class EscalaMensalBo {
 	
 	
 	
-	
+	/**
+	 * metodo para retornar um range de horarios 
+	 * @param horarioInicio
+	 * @param horarioFim
+	 * @return
+	 */
 	// retorna range de horários baseado em um horario inicial e um final
 	public List<Integer>retornaRangeHorarios(int horarioInicio, int horarioFim){
 		List<Integer>horarios= new ArrayList<>();
@@ -180,6 +220,32 @@ public class EscalaMensalBo {
 		return horarios;
 	}
 
+	
+	
+	public List<PessoaBloqueadaDia> pessoaBloqueadaData(Date data){
+		List<PessoaEscalaDia> pessoasBloqueadas = new ArrayList<>();
+		
+		List<EscalaBloqueioFixo>fixas = escalaBloqueioFixoBo.listarFixosDiaEspecifico(data);
+		List<EscalaBloqueioEspecifico> especificas= escalaBloqueioEspecificosBo.listaPorData(data);
+		
+		// constrói lista de colaboradores que foram escalados
+		List<Colaborador> colaboradores = new ArrayList<>();
+		for (EscalaBloqueioFixo fixa : fixas){
+			
+			if(!colaboradores.contains(fixa.getColaborador().getIdColaborador())){
+			
+			}
+		}
+		for (EscalaBloqueioEspecifico especifica: especificas){
+			if(!colaboradores.contains(especifica.getColaboradorId())){
+				colaboradores.add(especifica.getColaboradorId());
+			}
+		}
+		return null /*TO-DO*/;
+	}
+	
+	
+	
 	
 	public List<PessoaEscalaDia> pessoaEscalaData(Date data){
 		// lista que guarda pessoas que foram escaladas. Essa lista é o retorno do método
@@ -204,15 +270,13 @@ public class EscalaMensalBo {
 			pessoa.setNome(colaborador.getNome());
 			pessoa.getHorarios().clear();
 			for(Escala escala: escalas){
-				//if(escala.setColaborador(colaborador.getIdColaborador()) == pessoa.getId()){
-					
-				//}
+				if(escala.getColaborador().getIdColaborador()== pessoa.getId()){
+					//TO-DO
+				}
 			}
-			
+			 pessoaEscaladas.add(pessoa);
 		}
-		
-		
-		
+
 		return pessoaEscaladas;
 	}
 
