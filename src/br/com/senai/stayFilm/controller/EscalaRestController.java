@@ -124,7 +124,7 @@ public class EscalaRestController {
 	}
 
 
-	@RequestMapping(value = "/listaPessoasBloqueadasData/{dataEscolhida}", method = RequestMethod.GET, 
+	@RequestMapping(value = "/private/bloqueadosDia/{dataEscolhida}", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<PessoaBloqueadaDia> listarPessoasBloqueadasData(@PathVariable String dataEscolhida ){
 		try {
@@ -139,7 +139,13 @@ public class EscalaRestController {
 		}	
 	}
 	
-	@RequestMapping(value = "/listaPorDataEscala/{dataEscolhida}", method = RequestMethod.GET, 
+	
+	/**
+	 * REst responsavel por listar os colaboradores que estão escalados para aquele dia.
+	 * @param dataEscolhida
+	 * @return
+	 */
+	@RequestMapping(value = "/private/escaladosDia/{dataEscolhida}", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<PessoaEscalaDia> listaPorDataEscala(@PathVariable String dataEscolhida){
 		try {
