@@ -137,6 +137,12 @@ public class EscalaRestController {
 		}	
 	}
 	
+	
+	/**
+	 * REst responsavel por listar os colaboradores que estão escalados para aquele dia.
+	 * @param dataEscolhida
+	 * @return
+	 */
 	@RequestMapping(value = "/private/escaladosDia/{dataEscolhida}", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<PessoaEscalaDia> listaPorDataEscala(@PathVariable String dataEscolhida){
