@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.dao.implementation;
+/*package br.com.senai.stayFilm.dao.implementation;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -88,3 +88,4 @@ public class CuradoriaDao implements GenericDao<Curadoria> {
 
 
 }
+*/

@@ -65,7 +65,7 @@ public class EscalaMensalBo {
 
 		Colaborador colaborador = colaboradorDao.buscarPorId(idColaborador);
 
-		List<EscalaBloqueioFixo> fixas = ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio();
+		List<EscalaBloqueioFixo> fixas = ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio(idColaborador);
 		List<EscalaBloqueioEspecifico> especificos = ((EscalaBloqueioEspecificoDao) escalaBloqueioEspecificoDao)
 				.listaEscalaMes(colaborador, mes, ano);
 		List<Escala> escalas = ((EscalaDao) escalaDao).listaEscala(colaborador, mes, ano);

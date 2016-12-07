@@ -16,6 +16,7 @@ import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 @Component
 public class EscalaBloqueioFixoBo {
 	
+	
 	@Autowired
 	@Qualifier("escalaBloqueioFixoDao")
 	private GenericDao<EscalaBloqueioFixo> escalaBloqueioFixoDao;
@@ -36,8 +37,8 @@ public class EscalaBloqueioFixoBo {
 		return escalaBloqueioFixoDao.search(id);
 	}
 	
-	public List<EscalaBloqueioFixo>ListarEscalaBloqueio(){
-		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio();
+	public List<EscalaBloqueioFixo>ListarEscalaBloqueio(long idColaborador){
+		return ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio(idColaborador);
 	}
 	
 	public List<EscalaBloqueioFixo> listarFixosDiaEspecifico(Date data){

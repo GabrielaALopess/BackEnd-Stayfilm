@@ -45,10 +45,19 @@ public class EscalaBloqueioFixoDao implements GenericDao<EscalaBloqueioFixo> {
 
 
 	
-	public List<EscalaBloqueioFixo> ListarEscalaBloqueio(){
-		TypedQuery<EscalaBloqueioFixo> query = 
-				manager.createQuery("SELECT e FROM  EscalaBloqueioFixo e", EscalaBloqueioFixo.class);
-		return query.getResultList();
+	public List<EscalaBloqueioFixo> ListarEscalaBloqueio(long idColaborador){
+		String hql= "SELECT e FROM  EscalaBloqueioFixo e WHERE e.colaborador.idColaborador= :colaborador";
+		TypedQuery<EscalaBloqueioFixo> query = manager.createQuery(hql, EscalaBloqueioFixo.class);
+			query.setParameter("colaborador", idColaborador);
+			
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			System.out.println("Passou direto :" + idColaborador);
+			return null;
+			
+		}	
+		
 	}
 	
 

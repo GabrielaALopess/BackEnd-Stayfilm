@@ -1,4 +1,4 @@
-package br.com.senai.stayFilm.model;
+/*package br.com.senai.stayFilm.model;
 
 public class Curadoria {
 
@@ -63,3 +63,4 @@ public class Curadoria {
 //	private Status statusCuradoria;
 
 }
+*/
