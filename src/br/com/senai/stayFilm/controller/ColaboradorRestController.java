@@ -190,7 +190,7 @@ public class ColaboradorRestController {
 
 					SendMail sendMail = new SendMail();
 					String from = "correo.stayfilm@gmail.com";
-					String to = "sf-senai@googlegroups.com";
+					String to = "gustavohenriqueaj@gmail.com";
 					String subject = "Recuperação de senha - usuário :"+email.getEmail().toString();
 					String message = "O usuário  "+ email.getEmail().toString() + " solicitou recuperação de senha";
 					sendMail.sendMail(from, to, subject, message);

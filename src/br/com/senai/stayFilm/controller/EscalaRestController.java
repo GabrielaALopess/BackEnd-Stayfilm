@@ -102,6 +102,7 @@ public class EscalaRestController {
 		return lista;
 	}
 
+	
 	@RequestMapping(value = "/diasConcluidosMes", method = RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Integer> listarEscalaMontada(int mes, int ano) throws SQLException {

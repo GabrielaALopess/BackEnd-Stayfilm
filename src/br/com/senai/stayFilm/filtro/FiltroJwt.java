@@ -45,7 +45,7 @@ public class FiltroJwt implements Filter {
 		// primeiro passo dofilter
 		
 		
-		if(request.getMethod().equals("recuperarSenha")|| request.getRequestURI().contains("login")){
+		if(request.getMethod().equals("recuperarSenha")){
 			chain.doFilter(request, response);
 			return;
 		}

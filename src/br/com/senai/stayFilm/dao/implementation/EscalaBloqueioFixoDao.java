@@ -43,7 +43,18 @@ public class EscalaBloqueioFixoDao implements GenericDao<EscalaBloqueioFixo> {
 		return manager.find(EscalaBloqueioFixo.class, id);
 	}
 
+	public List<EscalaBloqueioFixo> ListarEscalaBloqueioSemParametro(){
+		String hql= "SELECT e FROM  EscalaBloqueioFixo e ";
+		TypedQuery<EscalaBloqueioFixo> query = manager.createQuery(hql, EscalaBloqueioFixo.class);
 
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			System.out.println("Passou direto :");
+			return null;
+			
+		}	
+	}
 	
 	public List<EscalaBloqueioFixo> ListarEscalaBloqueio(long idColaborador){
 		String hql= "SELECT e FROM  EscalaBloqueioFixo e WHERE e.colaborador.idColaborador= :colaborador";
