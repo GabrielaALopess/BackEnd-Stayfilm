@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import br.com.senai.stayFilm.dao.GenericDao;
 import br.com.senai.stayFilm.dao.implementation.ColaboradorDao;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.sendMail.SendMail;
 
 /**
  * Bo de Colaborador
@@ -30,7 +31,7 @@ public class ColaboradorBo {
 	 * 
 	 * @param colaborador
 	 * @throws SQLException
-	 */
+	 */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 	public void insert(Colaborador colaborador) throws SQLException {
 		colaboradorDao.insert(colaborador);
 	}
@@ -48,8 +49,8 @@ public class ColaboradorBo {
 		return colaboradorDao.listarTodos();
 	}
 
-	
-	
+
+
 	/**
 	 * Atualizar os  dados do colaborador quando o mesmo e selecionado
 	 * @param colaborador
@@ -58,13 +59,13 @@ public class ColaboradorBo {
 	 */
 	public Colaborador atualizar(Colaborador colaborador, Long idColaborador) throws SQLException {
 		if(colaborador.getSenha()==null || colaborador.getSenha().isEmpty()){
-		Colaborador colaboradorbusca = colaboradorDao.search(idColaborador);
-		colaborador.setSenhaEdit(colaboradorbusca.getSenha());
+			Colaborador colaboradorbusca = colaboradorDao.search(idColaborador);
+			colaborador.setSenhaEdit(colaboradorbusca.getSenha());
 		}
 		return colaboradorDao.updateWithKey(colaborador, idColaborador);
 	}
-	
-	
+
+
 	/**
 	 * Metodo usado para preencher os dados dos colaboradores 
 	 * (utilizado  na transicao entre a lista e o alterar)
@@ -75,10 +76,15 @@ public class ColaboradorBo {
 	public Colaborador buscarPorId(Long idColaborador) throws SQLException {
 		return colaboradorDao.buscarPorId(idColaborador);
 	}
-	
-	
+
+
 	public Colaborador realizaLogin(Colaborador colaborador) throws SQLException{
-			return ((ColaboradorDao) colaboradorDao).realizaLogin(colaborador);
+		return ((ColaboradorDao) colaboradorDao).realizaLogin(colaborador);
 	}
+
 	
+	public Colaborador recuperaSenha (Colaborador email){
+		return ((ColaboradorDao) colaboradorDao).recuperaSenha(email);
+	}
+
 }

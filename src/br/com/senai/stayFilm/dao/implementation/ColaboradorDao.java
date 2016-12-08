@@ -102,35 +102,6 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		return manager.find(Colaborador.class, idColaborador);
 	}
 	
-	
-	
-	
-	@Override
-	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	
-	
-	/**
-	 * atualiza os dados do colaborador (step 1)
-	 */
-	@PatchMapping
-	@Transactional
-	@Override
-	public Colaborador update(Colaborador colaborador) throws SQLException {
-		//NOT USE
-		return null;
-	}
-	
-	/**
-	 * Metodo nao implementado na classe colaborador
-	 */
-	@Override
-	public void insertWithKey(Colaborador colaborador, long idColaborador) {
-		// NOT USE
-	}
 
 	/**
 	 * Metodo responsavel por realizar o login
@@ -151,14 +122,49 @@ public class ColaboradorDao implements GenericDao<Colaborador> {
 		}
 		
 	}
+	
+
+	public Colaborador recuperaSenha (Colaborador email){
+		String hql="SELECT c FROM Colaborador c WHERE c.email =:email";
+		TypedQuery<Colaborador>query=
+				manager.createQuery(hql, Colaborador.class);
+		query.setParameter("email", email);
+		try{
+			return query.getSingleResult();
+		}catch (Exception e) {
+			return null;
+		}
+	}
+	
 
 	@Override
 	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta, Long filme) {
+		// TODO Auto-generated method stub	
+	}
+
+	/**
+	 * Metodo nao implementado na classe colaborador
+	 */
+	@Override
+	public void insertWithKey(Colaborador colaborador, long idColaborador) {
+		// NOT USE
+	}
+	
+	@Override
+	public void insert(Avaliacao avaliacao, Long idColaborador, Long idResposta) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	
-	
-	
+	/**
+	 * atualiza os dados do colaborador (step 1)
+	 */
+	@PatchMapping
+	@Transactional
+	@Override
+	public Colaborador update(Colaborador colaborador) throws SQLException {
+		//NOT USE
+		return null;
+	}
+
 }

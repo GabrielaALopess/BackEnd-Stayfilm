@@ -45,13 +45,18 @@ public class FiltroJwt implements Filter {
 		// primeiro passo dofilter
 		
 		
+		if(request.getMethod().equals("recuperarSenha")|| request.getRequestURI().contains("login")){
+			chain.doFilter(request, response);
+			return;
+		}
+		
 		if(request.getMethod().equals("OPTIONS")){
 			chain.doFilter(request, response);
 			return;
 		}
 
 		//System.out.println("passou aqui " + request);
-		if (request.getRequestURI().contains("login")) {
+		if (request.getRequestURI().contains("login") || request.getMethod().equals("recuperarSenha")) {
 			chain.doFilter(req, resp);
 			return;// ultimo passo doFilter
 		}
