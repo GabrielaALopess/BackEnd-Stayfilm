@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.senai.stayFilm.bo.RespostaBO;
 import br.com.senai.stayFilm.model.Resposta;
+import br.com.senai.stayFilm.model.RespostaFront;
+import br.com.senai.stayFilm.sendMail.SendMail;
 import br.com.senai.stayFilm.viewModel.RespostaViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.RespostaVisualizacaoViewModel;
 
@@ -102,4 +104,35 @@ public class RespostaRestController {
 		respostaBo.delete(idResposta);
 		return ResponseEntity.noContent().build();
 	}
+	
+	
+	/**
+	 * Metodo utilizado no envio de uma resposta
+	 * 
+	 * @param viewModel
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/sendResposta", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public void recuperarSenha(@RequestBody RespostaFront mensagem, RespostaFront assunto) throws SQLException {
+		
+		new Thread() {
+			
+				public void run() {
+					
+					super.run();
+
+					SendMail sendMail = new SendMail();
+					String from = "correo.stayfilm@gmail.com";
+					String to = "sf-senai@googlegroups.com";
+					String subject = "MOTIVO DA REPROVAÇÃO: "+ " -- " + assunto.getAssunto()+" -- " ;
+					String message = "O Filme não poderá ser aprovado devido:\n"+
+							mensagem.getMensagem() + ", recomendamos um tema diferente.\n"
+									+ "Obrigado! =)";
+					sendMail.sendMail(from, to, subject, message);
+					System.out.println(message);
+				}
+			}.start();
+
+
+		}
 }

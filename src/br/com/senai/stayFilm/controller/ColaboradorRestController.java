@@ -181,16 +181,13 @@ public class ColaboradorRestController {
 	 */
 	@RequestMapping(value = "/recuperarSenha", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public void recuperarSenha(@RequestBody Colaborador email) throws SQLException {
-
-		if(colaboradorBO.recuperaSenha(email)!=null ){
-		
 			new Thread() {
 				public void run() {
 					super.run();
 
 					SendMail sendMail = new SendMail();
 					String from = "correo.stayfilm@gmail.com";
-					String to = "gustavohenriqueaj@gmail.com";
+					String to = "flpacelino@gmail.com";
 					String subject = "Recuperação de senha - usuário :"+email.getEmail().toString();
 					String message = "O usuário  "+ email.getEmail().toString() + " solicitou recuperação de senha";
 					sendMail.sendMail(from, to, subject, message);
@@ -201,6 +198,6 @@ public class ColaboradorRestController {
 
 		}
 
-	}
+	
 
 }

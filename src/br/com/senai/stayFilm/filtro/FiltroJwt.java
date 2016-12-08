@@ -36,19 +36,24 @@ public class FiltroJwt implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-//		chain.doFilter(req, resp);
-		
-		
+	//chain.doFilter(req, resp);
 		
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		// primeiro passo dofilter
 		
 		
+	
 		if(request.getMethod().equals("recuperarSenha")){
 			chain.doFilter(request, response);
 			return;
 		}
+		
+		if(request.getMethod().equals("sendResposta")){
+			chain.doFilter(request, response);
+			return;
+		}
+		
 		
 		if(request.getMethod().equals("OPTIONS")){
 			chain.doFilter(request, response);
