@@ -74,7 +74,7 @@ public class EscalaMensalBo {
 		int dias = LocalDate.of(ano, mes, 1).getMonth().length(false);
 		List<LocalDate> datas = new ArrayList<>();
 		for (int dia = 1; dia <= dias; dia++) {
-			System.out.println(ano);
+			
 			datas.add(LocalDate.of(ano, mes, dia));
 		}
 
@@ -105,7 +105,18 @@ public class EscalaMensalBo {
 			escalaMontada.setEscalados(new ArrayList<String>());
 			//primeira expressao lambda para realizar uma lista de escala Especifica , dia a dia, e de forma performatica
 			//pesquisar sobre o (stream e filter) 
-
+			
+			for (EscalaBloqueioEspecifico escala : especificos) {
+				if(escala.getData().getDate() == data.getDayOfMonth()){
+					long id = escala.getIdBloqueioEspecifico();
+					int horarioInicio = escala.getHoraInicio();
+					int horariofim= escala.getHoraFim();
+					String horario =  horarioInicio + " - "+ horariofim +" h";
+					escalaMontada.getBloqueado().add( horario);
+					
+				}
+				
+			}
 			List<Escala> escalaFiltrada = escalas.stream()
 					.filter(fix -> fix.getDataEscala().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
 			for (Escala escala : escalaFiltrada) {
@@ -123,20 +134,6 @@ public class EscalaMensalBo {
 				escalaMontada.getBloqueado().add(bloqFix.getHoraInicio() + " - " + bloqFix.getHoraFim()+ " h" );
 			}
 
-			for (EscalaBloqueioEspecifico escala : especificos) {
-				if(escala.getData().getDate() == data.getDayOfMonth()){
-					System.out.println(escala.getData().getDate());
-					long id = escala.getIdBloqueioEspecifico();
-					int horarioInicio = escala.getHoraInicio();
-					int horariofim= escala.getHoraFim();
-					String horario =  horarioInicio + " - "+ horariofim +" h";
-					escalaMontada.getBloqueado().add( horario);
-					System.out.println(horario);
-				}
-				
-			}
-
-			
 		}
 
 		return listaEscalaMensal;

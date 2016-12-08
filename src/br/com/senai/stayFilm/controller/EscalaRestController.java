@@ -98,8 +98,6 @@ public class EscalaRestController {
 	@RequestMapping(value = "/listarEscalaMontada/{idColaborador}", method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<EscalaMensal> listarEscalaMontada(@PathVariable Long idColaborador, int mes, int ano) throws SQLException {
-		
-		
 		List<EscalaMensal> lista = escalaMensalBo.escalaColaboradorMes(idColaborador, mes, ano);
 		return lista;
 	}
