@@ -65,7 +65,7 @@ public class EscalaMensalBo {
 
 		Colaborador colaborador = colaboradorDao.buscarPorId(idColaborador);
 
-		List<EscalaBloqueioFixo> fixas = ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueioSemParametro();
+		List<EscalaBloqueioFixo> fixas = ((EscalaBloqueioFixoDao) escalaBloqueioFixoDao).ListarEscalaBloqueio(idColaborador);
 		List<EscalaBloqueioEspecifico> especificos = ((EscalaBloqueioEspecificoDao) escalaBloqueioEspecificoDao)
 				.listaEscalaMes(colaborador, mes, ano);
 		List<Escala> escalas = ((EscalaDao) escalaDao).listaEscala(colaborador, mes, ano);
@@ -117,23 +117,31 @@ public class EscalaMensalBo {
 				}
 				
 			}
-			List<Escala> escalaFiltrada = escalas.stream()
-					.filter(fix -> fix.getDataEscala().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
-			for (Escala escala : escalaFiltrada) {
-
-				escalaMontada.getEscalados().add(escala.getHoraEscalaInicio() + " - " + escala.getHoraEscalaFim()+ " h" );
+//			List<Escala> escalaFiltrada = escalas.stream()
+//					.filter(fix -> fix.getDataEscala().getDay() == data.getDayOfMonth()).collect(Collectors.toList());
+//			for (Escala escala : escalaFiltrada) {
+			for (EscalaBloqueioFixo fixa : fixas){
+				if(data.getDayOfWeek().getValue() == fixa.getDiaSemana().ordinal() ){
+					int horarioInicio = fixa.getHoraInicio();
+					int horarioFim = fixa.getHoraFim();
+					String horario = horarioInicio + " - "+ horarioFim + " h";
+					escalaMontada.getBloqueado().add(horario);
+				}
+				
+			}
+			//listaEscalaMensal.add(escalaMontada);
+//			List<EscalaBloqueioFixo> escalaFiltradaFix = fixas.stream()
+//					.filter(fix -> fix.getDiaSemana().ordinal() == data.getDayOfWeek().getValue())
+//					.collect(Collectors.toList());
+			for (Escala escala : escalas) {
+				if(data.getDayOfMonth() == escala.getDataEscala().getDate()){
+					int horarioInicio = escala.getHoraEscalaInicio();
+					int horarioFim = escala.getHoraEscalaFim();
+					String horario = horarioInicio + " - "+ horarioFim + " h";
+					escalaMontada.getEscalados().add(horario);
+				}
 			}
 			listaEscalaMensal.add(escalaMontada);
-			
-
-			List<EscalaBloqueioFixo> escalaFiltradaFix = fixas.stream()
-					.filter(fix -> fix.getDiaSemana().ordinal() == data.getDayOfWeek().getValue())
-					.collect(Collectors.toList());
-			for (EscalaBloqueioFixo bloqFix : escalaFiltradaFix) {
-
-				escalaMontada.getBloqueado().add(bloqFix.getHoraInicio() + " - " + bloqFix.getHoraFim()+ " h" );
-			}
-
 		}
 
 		return listaEscalaMensal;
