@@ -28,6 +28,7 @@ public class EscalaBloqueioEspecifico {
 
 	private int horaFim;
 	
+	@JsonFormat(pattern="dd-MM-yyyy")
 	@Column(name="dataEspecifica")
 	private Date data;
 

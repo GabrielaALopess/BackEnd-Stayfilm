@@ -1,8 +1,6 @@
 package br.com.senai.stayFilm.model;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +22,6 @@ public class EscalaBloqueioFixo {
 	private int horaInicio;
 	private int HoraFim;
 	
-	@Enumerated(EnumType.ORDINAL)
 	private DiaSemana diaSemana;
 	
 	@Fetch(FetchMode.SELECT)

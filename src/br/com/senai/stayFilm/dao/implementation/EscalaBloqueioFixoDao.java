@@ -71,11 +71,11 @@ public class EscalaBloqueioFixoDao implements GenericDao<EscalaBloqueioFixo> {
 		
 	}
 	
-
+//	WHERE dayofweek(e.diaSemana) = (dayofweek(:data)-1) order by e.horaInicio ASC"
 	
 	public 	List<EscalaBloqueioFixo> listarFixosDiaEspecifico(Date data){ 
 		String hql= "SELECT e FROM EscalaBloqueioFixo e "
-				+ " WHERE e.diaSemana = dayofweek(:data) order by e.horaInicio ASC";
+				+ " WHERE dayofweek(e.diaSemana)= dayofweek(:data) order by e.horaInicio ASC";
 		TypedQuery<EscalaBloqueioFixo>query = manager.createQuery(hql, EscalaBloqueioFixo.class);
 		query.setParameter("data", data);
 		System.out.println(data);

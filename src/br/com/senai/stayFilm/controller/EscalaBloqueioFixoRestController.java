@@ -6,6 +6,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWTVerifyException;
 
 import br.com.senai.stayFilm.bo.ColaboradorBo;
+import br.com.senai.stayFilm.bo.EscalaBloqueioEspecificoBo;
 import br.com.senai.stayFilm.bo.EscalaBloqueioFixoBo;
 import br.com.senai.stayFilm.model.Colaborador;
+import br.com.senai.stayFilm.model.EscalaBloqueioEspecifico;
 import br.com.senai.stayFilm.model.EscalaBloqueioFixo;
 import br.com.senai.stayFilm.viewModel.EscalaBloqueioFixoViewModel;
 import br.com.senai.stayFilm.vizualizacao.viewModel.EscalaBloqueioFixoVisualizacaoViewModel;
@@ -62,4 +65,16 @@ public class EscalaBloqueioFixoRestController {
 
 		
 	}
+	
+	
+	
+	@RequestMapping(value = "/listarBloqueioFixo/{idColaborador}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<EscalaBloqueioFixo> listarTodasEscalas(@PathVariable Long idColaborador) throws SQLException {
+		//long colaboradorId = (long) request.getAttribute("id_colaborador");
+		
+		return escalaBloqueioFixoBo.ListarEscalaBloqueio(idColaborador);
+	}
+	
+	
+	
 }
